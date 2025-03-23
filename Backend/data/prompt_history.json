@@ -1,0 +1,323 @@
+[
+  {
+    "id": "a33cc389-612a-4cfa-aec8-0461328bd53f",
+    "prompt": "What is the age of earth",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "Unfortunately, I was not able to get your answer. Please try again.",
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT AVG(age) AS average_age\nFROM The_Titanic_dataset_csv\nWHERE age IS NOT NULL\n\"\"\"\naverage_age_df = execute_sql_query(sql_query)\naverage_age = average_age_df['average_age'].iloc[0]\nresult = {'type': 'number', 'value': average_age}",
+    "timestamp": "2025-03-23T19:17:33.439319"
+  },
+  {
+    "id": "50c5cf68-bfdb-492d-8ab6-0814225bb3f3",
+    "prompt": "Construct a graph showing the number of males vs number of females. label the numbers on the bar graph also\n",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "exports/charts/temp_chart.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nbars = plt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nfor bar in bars:\n    yval = bar.get_height()\n    plt.text(bar.get_x() + bar.get_width() / 2, yval, int(yval), va='bottom')\nplt.title('Number of Males vs Number of Females')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.savefig('exports/charts/temp_chart.png')\nresult = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}",
+    "timestamp": "2025-03-23T19:16:53.752564"
+  },
+  {
+    "id": "b999f83b-4ba5-47fd-924b-bac76a5e6fe9",
+    "prompt": "Construct a graph showing the number of males vs number of females\n",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "exports/charts/temp_chart.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Number of Females on the Titanic')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplot_filename = 'exports/charts/temp_chart.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
+    "timestamp": "2025-03-23T19:16:15.797673"
+  },
+  {
+    "id": "d73e8aec-4cab-479f-9560-da97e7e9fddc",
+    "prompt": "What is the number of passengers",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T19:15:59.884416",
+    "feedback": "useful"
+  },
+  {
+    "id": "f95e7e8d-1a44-4a16-936d-7416b8da71c6",
+    "prompt": "What is the number of passengers",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT COUNT(*) AS number_of_passengers\nFROM The_Titanic_dataset_csv\n\"\"\"\nresult_df = execute_sql_query(sql_query)\nnumber_of_passengers = result_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T19:14:18.825590"
+  },
+  {
+    "id": "90188604-b147-4a89-b6e4-588df3e3da7a",
+    "prompt": "What is the number of passengers",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\nresult_df = execute_sql_query(sql_query)\nnumber_of_passengers = result_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T19:11:05.549484"
+  },
+  {
+    "id": "e0d77512-1622-4489-8c90-f2b9f993cfbd",
+    "prompt": "What is the number of passengers?",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT COUNT(*) AS number_of_passengers\nFROM The_Titanic_dataset_csv\n\"\"\"\nresult_df = execute_sql_query(sql_query)\nnumber_of_passengers = result_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T19:07:08.098864"
+  },
+  {
+    "id": "1f653121-1331-4b0c-af6e-8ae8c7ea5146",
+    "prompt": "Construct a graph showing the number of males vs number of females\n",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "exports/charts/temp_chart.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Number of Females')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplot_file = 'exports/charts/temp_chart.png'\nplt.savefig(plot_file)\nplt.close()\nresult = {'type': 'plot', 'value': plot_file}",
+    "timestamp": "2025-03-23T19:05:53.523617"
+  },
+  {
+    "id": "498541df-c212-429d-b061-239da7507ec5",
+    "prompt": "Construct a graph showing the number of males vs number of females\n",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "exports/charts/temp_chart.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Number of Females')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplot_filename = 'exports/charts/temp_chart.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
+    "timestamp": "2025-03-23T19:05:33.600189"
+  },
+  {
+    "id": "248c4d7f-337e-4d67-87b4-7c1cfe127d13",
+    "prompt": "What is the number of passengers",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T19:04:10.808447"
+  },
+  {
+    "id": "ecfe208b-0fad-47e5-bb20-db08bcd783e8",
+    "prompt": "What is the number of passengers",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T19:02:23.596081"
+  },
+  {
+    "id": "130c9165-8195-4c0e-8f53-b5a3ba96355d",
+    "prompt": "Construct a graph showing the number of males vs number of females\n",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "exports/charts/temp_chart.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Number of Females on the Titanic')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplot_filename = 'exports/charts/temp_chart.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
+    "timestamp": "2025-03-23T19:02:10.331964"
+  },
+  {
+    "id": "ed4b6545-9f39-4e36-a1a6-67e3ae631d2b",
+    "prompt": "What is the number of passengers",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T19:01:08.742543"
+  },
+  {
+    "id": "f92b02c1-7f0c-4f6d-897a-3c1d1e9bec96",
+    "prompt": "Construct a graph showing the number of males vs number of females\n",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "exports/charts/temp_chart.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Number of Females')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplot_filename = 'exports/charts/temp_chart.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
+    "timestamp": "2025-03-23T19:00:44.532771"
+  },
+  {
+    "id": "9b59979d-4d84-4227-b2b7-dfab0e47e130",
+    "prompt": "Construct a graph showing the number of males vs number of females\n",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "exports/charts/temp_chart.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Number of Females on the Titanic')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplot_filename = 'exports/charts/temp_chart.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
+    "timestamp": "2025-03-23T19:00:06.385058"
+  },
+  {
+    "id": "f3e334d5-dcaa-44c7-8ce2-44f7fe56e5a9",
+    "prompt": "Construct a graph showing the number of males vs number of females\n",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "exports/charts/temp_chart.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Number of Females')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplot_filename = 'exports/charts/temp_chart.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
+    "timestamp": "2025-03-23T18:58:35.882606"
+  },
+  {
+    "id": "2e992167-9e5c-441f-b876-a839825ddee3",
+    "prompt": "Construct a graph showing the number of males vs number of females\n",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "exports/charts/temp_chart.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Number of Females on the Titanic')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=0)\nplt.grid(axis='y')\nplot_filename = 'exports/charts/temp_chart.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
+    "timestamp": "2025-03-23T18:58:08.955314"
+  },
+  {
+    "id": "637ba3f7-3dfb-4d30-b665-defbd6f7c78e",
+    "prompt": "Construct a graph showing the number of males vs number of females\n",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "exports/charts/temp_chart.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Number of Females')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplot_filename = 'exports/charts/temp_chart.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
+    "timestamp": "2025-03-23T18:57:31.740026"
+  },
+  {
+    "id": "bfd0547d-966b-4630-9276-47b38f559369",
+    "prompt": "What is the number of passengers",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T18:57:03.727210"
+  },
+  {
+    "id": "6b31fea6-a9e4-40b0-9ede-4c87c24fea48",
+    "prompt": "What is the number of passengers",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T18:56:51.453207"
+  },
+  {
+    "id": "faf3d913-48a7-4eb2-a5f7-a1baded4ad5e",
+    "prompt": "What is the number of passengers",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T18:56:32.485898"
+  },
+  {
+    "id": "a6d16006-d4d6-4b84-a2b1-a596f37539bc",
+    "prompt": "What is the number of passengers",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T18:55:31.600644"
+  },
+  {
+    "id": "a8e41367-17bd-46e7-b8b4-9b01677fdb31",
+    "prompt": "What is the number of passengers",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T18:54:17.802175"
+  },
+  {
+    "id": "ecf174b2-1e63-4475-b5bb-bd995951ee3f",
+    "prompt": "What is the number of passengers",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T18:53:39.270769"
+  },
+  {
+    "id": "bbd80066-e1bb-4ce6-a562-447730ecc9e2",
+    "prompt": "What is the number of passengers",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T18:53:21.362706"
+  },
+  {
+    "id": "85de9d0a-4cb0-4103-ab6d-1581eae96245",
+    "prompt": "What is the number of passengers",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T18:52:01.245095"
+  },
+  {
+    "id": "34b89fb2-963e-46db-b236-f5b8f47e40b3",
+    "prompt": "What is the number of passengers",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T18:49:18.560932"
+  },
+  {
+    "id": "b38f206c-8782-4b87-87be-520f791d9012",
+    "prompt": "What is the number of passengers",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T18:48:13.334670"
+  },
+  {
+    "id": "e4d7ccb4-5306-41b8-a3bf-dc815f7f44d3",
+    "prompt": "What is the number of passengers",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T18:45:03.454800"
+  },
+  {
+    "id": "081a0ede-1cb4-4fa3-9dcf-64840c1284d8",
+    "prompt": "What is the number of passengers",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T18:44:06.185329"
+  },
+  {
+    "id": "6d030a44-f003-42eb-bcce-dafa48e2bd63",
+    "prompt": "What is the number of passengers",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T18:40:04.154199"
+  },
+  {
+    "id": "822e0f4a-ec52-48d6-863d-ca227a2e3a45",
+    "prompt": "What is the number of passengers",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
+    "timestamp": "2025-03-23T18:39:46.992926"
+  }
+]
