@@ -16,6 +16,8 @@ import {
 import SendIcon from "@mui/icons-material/Send";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import Lottie from "lottie-react";
+import aiLoadingAnimation from "../assets/ai-loader.json";
 
 const LLMPage = () => {
   const location = useLocation();
@@ -71,7 +73,7 @@ const LLMPage = () => {
 
       // Log the response directly
       console.log(res.data.response);
-
+      setShowCode(true);
       setResponse(res.data.response || "No response received.");
       setResponseId(res.data.id);
     } catch (err) {
@@ -135,7 +137,15 @@ const LLMPage = () => {
         Submit Query
       </Button>
 
-      {loading && <CircularProgress />}
+      {loading && (
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+          <Lottie
+            animationData={aiLoadingAnimation}
+            loop={true}
+            style={{ width: 300 }}
+          />
+        </Box>
+      )}
 
       {response && (
         <Paper elevation={2} sx={{ padding: 2, backgroundColor: "#f9f9f9" }}>
@@ -152,9 +162,17 @@ const LLMPage = () => {
                 )
               ) : (
                 <>
-                  {response.value &&
-                  typeof response.value === "string" &&
-                  response.value.includes("exports/charts/") ? (
+                  {response.value ===
+                  "Unfortunately, I was not able to get your answer. Please try again." ? (
+                    <Typography sx={{ whiteSpace: "pre-wrap", color: "black" }}>
+                      Please enhance your prompt to make the instructions
+                      clearer for the LLM. Consider specifying the need for
+                      conversion of datatypes of the columns. Take a look at the
+                      SQL Query for more understanding.
+                    </Typography>
+                  ) : response.value &&
+                    typeof response.value === "string" &&
+                    response.value.includes("exports/charts/") ? (
                     <Box mt={2} sx={{ textAlign: "center" }}>
                       {/* Add timestamp or random query param to avoid cached image */}
                       <img

@@ -15,13 +15,20 @@ pai.config.set({
     "llm": llm,
     "explain": True,
     "enable_cache": False,
-    "custom_instructions": "You are working in a pandas environment, not SQL. Use pandas syntax like df.shape and df.columns instead of SQL queries."
+    "custom_instructions": """
+    You are working in a pandas environment, not SQL. Use pandas syntax like df.shape and df.columns instead of SQL queries.
+    """
 })
 
+
 def convert_numpy_types(obj):
-    """Recursively convert numpy types to native Python types."""
+    """Recursively convert numpy types, pandas DataFrames, or Series to native Python types."""
     if isinstance(obj, np.generic):  # Check for numpy types
         return obj.item()  # Convert numpy scalar to native Python type
+    elif isinstance(obj, pd.DataFrame):  # Check for pandas DataFrame
+        return obj.to_dict(orient='records')  # Convert DataFrame to list of dictionaries (records)
+    elif isinstance(obj, pd.Series):  # Check for pandas Series
+        return obj.tolist()  # Convert Series to a list
     elif isinstance(obj, dict):
         return {key: convert_numpy_types(value) for key, value in obj.items()}
     elif isinstance(obj, list):
@@ -66,6 +73,7 @@ def run_llm_query(filenames: list, prompt: str) -> dict:
 
         # Debug: print raw DataFrame columns
         print(f"Columns in '{filename}': {list(df.columns)}")
+        print(df.dtypes)
 
         # Wrap as semantic DataFrame
         sanitized_filename = filename.replace(" ", "_").replace(".", "_")
@@ -77,21 +85,21 @@ def run_llm_query(filenames: list, prompt: str) -> dict:
 
     try:
         result = pai.chat(prompt, *semantic_dfs)
+        print(type(convert_numpy_types(result.value)), "here")
 
-        value = result.value if hasattr(result, "value") else result
-        safe_value = convert_numpy_types(value)  # Convert numpy types
-
-        # Optional debug print
-        print("\nLLM Result:", safe_value)
-        if hasattr(result, "last_code_executed"):
-            print("Code executed by LLM:")
-            print(result.last_code_executed)
-
-        return {
-            "value": safe_value,
+        response = {
+            "value": convert_numpy_types(result.value),
             "last_code_executed": getattr(result, "last_code_executed", None),
             "error": getattr(result, "error", None),
         }
+
+        # Debug print
+        print("\nLLM Result:", response["value"])
+        if response["last_code_executed"]:
+            print("Code executed by LLM:")
+            print(response["last_code_executed"])
+
+        return response
 
     except Exception as e:
         print("\nException occurred during LLM execution:")

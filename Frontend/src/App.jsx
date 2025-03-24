@@ -27,7 +27,6 @@ function App() {
             <Route path="/llm" element={<LLMPage />} />
           </Routes>
         </Box>
-
         <Footer />
       </Box>
     </Router>

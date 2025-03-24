@@ -14,6 +14,7 @@ import {
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UploadPage = () => {
   const navigate = useNavigate();
@@ -48,14 +49,38 @@ const UploadPage = () => {
     }
 
     try {
-      await axios.post("http://localhost:8000/api/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      await fetchUploadedFiles(); // Refresh file list after upload
+      const response = await axios.post(
+        "http://localhost:8000/api/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      // ✅ Confirm response from server
+      if (response.status === 200) {
+        Swal.fire({
+          icon: "success",
+          title: "Upload Successful",
+          text: "Your file(s) have been uploaded!",
+          timer: 2000,
+          showConfirmButton: false,
+        });
+
+        await fetchUploadedFiles(); // Refresh file list after upload
+      } else {
+        throw new Error("Unexpected response");
+      }
     } catch (err) {
       console.error("Error uploading files:", err);
+
+      Swal.fire({
+        icon: "error",
+        title: "Upload Failed",
+        text: "Something went wrong while uploading your file(s).",
+      });
     }
   };
 
@@ -98,7 +123,7 @@ const UploadPage = () => {
           variant="contained"
           startIcon={<UploadFileIcon />}
           onClick={() => fileInputRef.current.click()}
-          sx={{ maxWidth: "300px", mr: '16px' }}
+          sx={{ maxWidth: "300px", mr: "16px" }}
         >
           Upload CSV/XLS Files
         </Button>
@@ -106,7 +131,9 @@ const UploadPage = () => {
           <Button
             variant="contained"
             startIcon={<UploadFileIcon />}
-            onClick={() => navigate("/llm", { state: { files: [selectedFile] } })}
+            onClick={() =>
+              navigate("/llm", { state: { files: [selectedFile] } })
+            }
             sx={{ maxWidth: "300px" }}
           >
             Query LLM

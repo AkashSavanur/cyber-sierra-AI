@@ -1,403 +1,1940 @@
 [
   {
-    "id": "f47b6f09-88af-49a0-8dcf-ef7025fa9210",
-    "prompt": "Construct a graph showing the number of males vs number of females. label the numbers on the bar graph also\n",
+    "id": "1a7bf9b1-a0c2-496c-814c-91454ad81761",
+    "prompt": "List all passengers who did not survive but had a first-class ticket.",
     "filenames": [
       "The Titanic dataset.csv"
     ],
-    "response": "exports/charts/temp_chart.png",
-    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nbars = plt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nfor bar in bars:\n    yval = bar.get_height()\n    plt.text(bar.get_x() + bar.get_width() / 2, yval, int(yval), ha='center', va='bottom')\nplt.title('Number of Males vs Number of Females')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=0)\nplt.savefig('exports/charts/temp_chart.png')\nplt.close()\nresult = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}",
-    "timestamp": "2025-03-24T03:01:56.506529"
+    "response": [
+      {
+        "sn": "25",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Allison, Miss. Helen Loraine",
+        "gender": "female",
+        "age": "2",
+        "family": "3",
+        "fare": "151.55",
+        "embarked": "S",
+        "date": "25-Jan-90"
+      },
+      {
+        "sn": "26",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Allison, Mr. Hudson Joshua Creighton",
+        "gender": "male",
+        "age": "30",
+        "family": "3",
+        "fare": "151.55",
+        "embarked": "S",
+        "date": "26-Jan-90"
+      },
+      {
+        "sn": "27",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Allison, Mrs. Hudson J C (Bessie Waldo Daniels)",
+        "gender": "female",
+        "age": "25",
+        "family": "3",
+        "fare": "151.55",
+        "embarked": "S",
+        "date": "27-Jan-90"
+      },
+      {
+        "sn": "47",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Andrews, Mr. Thomas Jr",
+        "gender": "male",
+        "age": "39",
+        "family": "0",
+        "fare": "0",
+        "embarked": "S",
+        "date": "16-Feb-90"
+      },
+      {
+        "sn": "55",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Artagaveytia, Mr. Ramon",
+        "gender": "male",
+        "age": "71",
+        "family": "0",
+        "fare": "49.5042",
+        "embarked": "C",
+        "date": "24-Feb-90"
+      },
+      {
+        "sn": "69",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Astor, Col. John Jacob",
+        "gender": "male",
+        "age": "47",
+        "family": "1",
+        "fare": "227.525",
+        "embarked": "C",
+        "date": "10-Mar-90"
+      },
+      {
+        "sn": "98",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Baumann, Mr. John D",
+        "gender": "male",
+        "age": "",
+        "family": "0",
+        "fare": "25.925",
+        "embarked": "S",
+        "date": "08-Apr-90"
+      },
+      {
+        "sn": "99",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Baxter, Mr. Quigg Edmond",
+        "gender": "male",
+        "age": "24",
+        "family": "1",
+        "fare": "247.5208",
+        "embarked": "C",
+        "date": "09-Apr-90"
+      },
+      {
+        "sn": "104",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Beattie, Mr. Thomson",
+        "gender": "male",
+        "age": "36",
+        "family": "0",
+        "fare": "75.2417",
+        "embarked": "C",
+        "date": "14-Apr-90"
+      },
+      {
+        "sn": "125",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Birnbaum, Mr. Jakob",
+        "gender": "male",
+        "age": "25",
+        "family": "0",
+        "fare": "26",
+        "embarked": "C",
+        "date": "05-May-90"
+      },
+      {
+        "sn": "131",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Blackwell, Mr. Stephen Weart",
+        "gender": "male",
+        "age": "45",
+        "family": "0",
+        "fare": "35.5",
+        "embarked": "S",
+        "date": "11-May-90"
+      },
+      {
+        "sn": "135",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Borebank, Mr. John James",
+        "gender": "male",
+        "age": "42",
+        "family": "0",
+        "fare": "26.55",
+        "embarked": "S",
+        "date": "15-May-90"
+      },
+      {
+        "sn": "152",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Brady, Mr. John Bertram",
+        "gender": "male",
+        "age": "41",
+        "family": "0",
+        "fare": "30.5",
+        "embarked": "S",
+        "date": "01-Jun-90"
+      },
+      {
+        "sn": "154",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Brandeis, Mr. Emil",
+        "gender": "male",
+        "age": "48",
+        "family": "0",
+        "fare": "50.4958",
+        "embarked": "C",
+        "date": "03-Jun-90"
+      },
+      {
+        "sn": "157",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Brewe, Dr. Arthur Jackson",
+        "gender": "male",
+        "age": "",
+        "family": "0",
+        "fare": "39.6",
+        "embarked": "C",
+        "date": "06-Jun-90"
+      },
+      {
+        "sn": "176",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Butt, Major. Archibald Willingham",
+        "gender": "male",
+        "age": "45",
+        "family": "0",
+        "fare": "26.55",
+        "embarked": "S",
+        "date": "25-Jun-90"
+      },
+      {
+        "sn": "183",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Cairns, Mr. Alexander",
+        "gender": "male",
+        "age": "",
+        "family": "0",
+        "fare": "31",
+        "embarked": "S",
+        "date": "02-Jul-90"
+      },
+      {
+        "sn": "203",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Carlsson, Mr. Frans Olof",
+        "gender": "male",
+        "age": "33",
+        "family": "0",
+        "fare": "5",
+        "embarked": "S",
+        "date": "22-Jul-90"
+      },
+      {
+        "sn": "206",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Carrau, Mr. Francisco M",
+        "gender": "male",
+        "age": "28",
+        "family": "0",
+        "fare": "47.1",
+        "embarked": "S",
+        "date": "25-Jul-90"
+      },
+      {
+        "sn": "207",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Carrau, Mr. Jose Pedro",
+        "gender": "male",
+        "age": "17",
+        "family": "0",
+        "fare": "47.1",
+        "embarked": "S",
+        "date": "26-Jul-90"
+      },
+      {
+        "sn": "215",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Case, Mr. Howard Brown",
+        "gender": "male",
+        "age": "49",
+        "family": "0",
+        "fare": "26",
+        "embarked": "S",
+        "date": "03-Aug-90"
+      },
+      {
+        "sn": "217",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Cavendish, Mr. Tyrell William",
+        "gender": "male",
+        "age": "36",
+        "family": "1",
+        "fare": "78.85",
+        "embarked": "S",
+        "date": "05-Aug-90"
+      },
+      {
+        "sn": "220",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Chaffee, Mr. Herbert Fuller",
+        "gender": "male",
+        "age": "46",
+        "family": "1",
+        "fare": "61.175",
+        "embarked": "S",
+        "date": "08-Aug-90"
+      },
+      {
+        "sn": "233",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Chisholm, Mr. Roderick Robert Crispin",
+        "gender": "male",
+        "age": "",
+        "family": "0",
+        "fare": "0",
+        "embarked": "S",
+        "date": "21-Aug-90"
+      },
+      {
+        "sn": "239",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Clark, Mr. Walter Miller",
+        "gender": "male",
+        "age": "27",
+        "family": "1",
+        "fare": "136.7792",
+        "embarked": "C",
+        "date": "27-Aug-90"
+      },
+      {
+        "sn": "244",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Clifford, Mr. George Quincy",
+        "gender": "male",
+        "age": "",
+        "family": "0",
+        "fare": "52",
+        "embarked": "S",
+        "date": "01-Sep-90"
+      },
+      {
+        "sn": "253",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Colley, Mr. Edward Pomeroy",
+        "gender": "male",
+        "age": "47",
+        "family": "0",
+        "fare": "25.5875",
+        "embarked": "S",
+        "date": "10-Sep-90"
+      },
+      {
+        "sn": "258",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Compton, Mr. Alexander Taylor Jr",
+        "gender": "male",
+        "age": "37",
+        "family": "2",
+        "fare": "83.1583",
+        "embarked": "C",
+        "date": "15-Sep-90"
+      },
+      {
+        "sn": "279",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Crafton, Mr. John Bertram",
+        "gender": "male",
+        "age": "",
+        "family": "0",
+        "fare": "26.55",
+        "embarked": "S",
+        "date": "06-Oct-90"
+      },
+      {
+        "sn": "283",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Crosby, Capt. Edward Gifford",
+        "gender": "male",
+        "age": "70",
+        "family": "2",
+        "fare": "71",
+        "embarked": "S",
+        "date": "10-Oct-90"
+      },
+      {
+        "sn": "287",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Cumings, Mr. John Bradley",
+        "gender": "male",
+        "age": "39",
+        "family": "1",
+        "fare": "71.2833",
+        "embarked": "C",
+        "date": "14-Oct-90"
+      },
+      {
+        "sn": "304",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Davidson, Mr. Thornton",
+        "gender": "male",
+        "age": "31",
+        "family": "1",
+        "fare": "52",
+        "embarked": "S",
+        "date": "31-Oct-90"
+      },
+      {
+        "sn": "348",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Douglas, Mr. Walter Donald",
+        "gender": "male",
+        "age": "50",
+        "family": "1",
+        "fare": "106.425",
+        "embarked": "C",
+        "date": "14-Dec-90"
+      },
+      {
+        "sn": "362",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Dulles, Mr. William Crothers",
+        "gender": "male",
+        "age": "39",
+        "family": "0",
+        "fare": "29.7",
+        "embarked": "C",
+        "date": "28-Dec-90"
+      },
+      {
+        "sn": "383",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Evans, Miss. Edith Corse",
+        "gender": "female",
+        "age": "36",
+        "family": "0",
+        "fare": "31.6792",
+        "embarked": "C",
+        "date": "18-Jan-91"
+      },
+      {
+        "sn": "387",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Farthing, Mr. John",
+        "gender": "male",
+        "age": "",
+        "family": "0",
+        "fare": "221.7792",
+        "embarked": "S",
+        "date": "22-Jan-91"
+      },
+      {
+        "sn": "408",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Foreman, Mr. Benjamin Laventall",
+        "gender": "male",
+        "age": "30",
+        "family": "0",
+        "fare": "27.75",
+        "embarked": "C",
+        "date": "12-Feb-91"
+      },
+      {
+        "sn": "412",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Fortune, Mr. Charles Alexander",
+        "gender": "male",
+        "age": "19",
+        "family": "5",
+        "fare": "263",
+        "embarked": "S",
+        "date": "16-Feb-91"
+      },
+      {
+        "sn": "413",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Fortune, Mr. Mark",
+        "gender": "male",
+        "age": "64",
+        "family": "5",
+        "fare": "263",
+        "embarked": "S",
+        "date": "17-Feb-91"
+      },
+      {
+        "sn": "419",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Franklin, Mr. Thomas Parham",
+        "gender": "male",
+        "age": "",
+        "family": "0",
+        "fare": "26.55",
+        "embarked": "S",
+        "date": "23-Feb-91"
+      },
+      {
+        "sn": "427",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Fry, Mr. Richard",
+        "gender": "male",
+        "age": "",
+        "family": "0",
+        "fare": "0",
+        "embarked": "S",
+        "date": "03-Mar-91"
+      },
+      {
+        "sn": "429",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Futrelle, Mr. Jacques Heath",
+        "gender": "male",
+        "age": "37",
+        "family": "1",
+        "fare": "53.1",
+        "embarked": "S",
+        "date": "05-Mar-91"
+      },
+      {
+        "sn": "439",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Gee, Mr. Arthur H",
+        "gender": "male",
+        "age": "47",
+        "family": "0",
+        "fare": "38.5",
+        "embarked": "S",
+        "date": "15-Mar-91"
+      },
+      {
+        "sn": "444",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Giglio, Mr. Victor",
+        "gender": "male",
+        "age": "24",
+        "family": "0",
+        "fare": "79.2",
+        "embarked": "C",
+        "date": "20-Mar-91"
+      },
+      {
+        "sn": "457",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Goldschmidt, Mr. George B",
+        "gender": "male",
+        "age": "71",
+        "family": "0",
+        "fare": "34.6542",
+        "embarked": "C",
+        "date": "02-Apr-91"
+      },
+      {
+        "sn": "473",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Graham, Mr. George Edward",
+        "gender": "male",
+        "age": "38",
+        "family": "1",
+        "fare": "153.4625",
+        "embarked": "S",
+        "date": "18-Apr-91"
+      },
+      {
+        "sn": "481",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Guggenheim, Mr. Benjamin",
+        "gender": "male",
+        "age": "46",
+        "family": "0",
+        "fare": "79.2",
+        "embarked": "C",
+        "date": "26-Apr-91"
+      },
+      {
+        "sn": "510",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Harrington, Mr. Charles H",
+        "gender": "male",
+        "age": "",
+        "family": "0",
+        "fare": "42.4",
+        "embarked": "S",
+        "date": "25-May-91"
+      },
+      {
+        "sn": "512",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Harris, Mr. Henry Birkhardt",
+        "gender": "male",
+        "age": "45",
+        "family": "1",
+        "fare": "83.475",
+        "embarked": "S",
+        "date": "27-May-91"
+      },
+      {
+        "sn": "515",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Harrison, Mr. William",
+        "gender": "male",
+        "age": "40",
+        "family": "0",
+        "fare": "0",
+        "embarked": "S",
+        "date": "30-May-91"
+      },
+      {
+        "sn": "524",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Hays, Mr. Charles Melville",
+        "gender": "male",
+        "age": "55",
+        "family": "2",
+        "fare": "93.5",
+        "embarked": "S",
+        "date": "08-Jun-91"
+      },
+      {
+        "sn": "526",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Head, Mr. Christopher",
+        "gender": "male",
+        "age": "42",
+        "family": "0",
+        "fare": "42.5",
+        "embarked": "S",
+        "date": "10-Jun-91"
+      },
+      {
+        "sn": "545",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Hilliard, Mr. Herbert Henry",
+        "gender": "male",
+        "age": "",
+        "family": "0",
+        "fare": "51.8625",
+        "embarked": "S",
+        "date": "29-Jun-91"
+      },
+      {
+        "sn": "547",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Hipkins, Mr. William Edward",
+        "gender": "male",
+        "age": "55",
+        "family": "0",
+        "fare": "50",
+        "embarked": "S",
+        "date": "01-Jul-91"
+      },
+      {
+        "sn": "562",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Holverson, Mr. Alexander Oskar",
+        "gender": "male",
+        "age": "42",
+        "family": "1",
+        "fare": "52",
+        "embarked": "S",
+        "date": "16-Jul-91"
+      },
+      {
+        "sn": "573",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Hoyt, Mr. William Fisher",
+        "gender": "male",
+        "age": "",
+        "family": "0",
+        "fare": "30.6958",
+        "embarked": "C",
+        "date": "27-Jul-91"
+      },
+      {
+        "sn": "584",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Isham, Miss. Ann Elizabeth",
+        "gender": "female",
+        "age": "50",
+        "family": "0",
+        "fare": "28.7125",
+        "embarked": "C",
+        "date": "07-Aug-91"
+      },
+      {
+        "sn": "618",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Jones, Mr. Charles Cresson",
+        "gender": "male",
+        "age": "46",
+        "family": "0",
+        "fare": "26",
+        "embarked": "S",
+        "date": "10-Sep-91"
+      },
+      {
+        "sn": "622",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Julian, Mr. Henry Forbes",
+        "gender": "male",
+        "age": "50",
+        "family": "0",
+        "fare": "26",
+        "embarked": "S",
+        "date": "14-Sep-91"
+      },
+      {
+        "sn": "643",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Keeping, Mr. Edwin",
+        "gender": "male",
+        "age": "32.5",
+        "family": "0",
+        "fare": "211.5",
+        "embarked": "C",
+        "date": "05-Oct-91"
+      },
+      {
+        "sn": "650",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Kent, Mr. Edward Austin",
+        "gender": "male",
+        "age": "58",
+        "family": "0",
+        "fare": "29.7",
+        "embarked": "C",
+        "date": "12-Oct-91"
+      },
+      {
+        "sn": "651",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Kenyon, Mr. Frederick R",
+        "gender": "male",
+        "age": "41",
+        "family": "1",
+        "fare": "51.8625",
+        "embarked": "S",
+        "date": "13-Oct-91"
+      },
+      {
+        "sn": "666",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Klaber, Mr. Herman",
+        "gender": "male",
+        "age": "",
+        "family": "0",
+        "fare": "26.55",
+        "embarked": "S",
+        "date": "28-Oct-91"
+      },
+      {
+        "sn": "712",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Lewy, Mr. Ervin G",
+        "gender": "male",
+        "age": "",
+        "family": "0",
+        "fare": "27.7208",
+        "embarked": "C",
+        "date": "13-Dec-91"
+      },
+      {
+        "sn": "717",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Lindeberg-Lind, Mr. Erik Gustaf (\"Mr Edward Lingrey\")",
+        "gender": "male",
+        "age": "42",
+        "family": "0",
+        "fare": "26.55",
+        "embarked": "S",
+        "date": "18-Dec-91"
+      },
+      {
+        "sn": "731",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Long, Mr. Milton Clyde",
+        "gender": "male",
+        "age": "29",
+        "family": "0",
+        "fare": "30",
+        "embarked": "S",
+        "date": "01-Jan-92"
+      },
+      {
+        "sn": "733",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Loring, Mr. Joseph Holland",
+        "gender": "male",
+        "age": "30",
+        "family": "0",
+        "fare": "45.5",
+        "embarked": "S",
+        "date": "03-Jan-92"
+      },
+      {
+        "sn": "749",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Maguire, Mr. John Edward",
+        "gender": "male",
+        "age": "30",
+        "family": "0",
+        "fare": "26",
+        "embarked": "S",
+        "date": "19-Jan-92"
+      },
+      {
+        "sn": "767",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Marvin, Mr. Daniel Warner",
+        "gender": "male",
+        "age": "19",
+        "family": "1",
+        "fare": "53.1",
+        "embarked": "S",
+        "date": "06-Feb-92"
+      },
+      {
+        "sn": "774",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "McCaffry, Mr. Thomas Francis",
+        "gender": "male",
+        "age": "46",
+        "family": "0",
+        "fare": "75.2417",
+        "embarked": "C",
+        "date": "13-Feb-92"
+      },
+      {
+        "sn": "776",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "McCarthy, Mr. Timothy J",
+        "gender": "male",
+        "age": "54",
+        "family": "0",
+        "fare": "51.8625",
+        "embarked": "S",
+        "date": "15-Feb-92"
+      },
+      {
+        "sn": "802",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Meyer, Mr. Edgar Joseph",
+        "gender": "male",
+        "age": "28",
+        "family": "1",
+        "fare": "82.1708",
+        "embarked": "C",
+        "date": "12-Mar-92"
+      },
+      {
+        "sn": "806",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Millet, Mr. Francis Davis",
+        "gender": "male",
+        "age": "65",
+        "family": "0",
+        "fare": "26.55",
+        "embarked": "S",
+        "date": "16-Mar-92"
+      },
+      {
+        "sn": "808",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Minahan, Dr. William Edward",
+        "gender": "male",
+        "age": "44",
+        "family": "2",
+        "fare": "90",
+        "embarked": "Q",
+        "date": "18-Mar-92"
+      },
+      {
+        "sn": "820",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Molson, Mr. Harry Markland",
+        "gender": "male",
+        "age": "55",
+        "family": "0",
+        "fare": "30.5",
+        "embarked": "S",
+        "date": "30-Mar-92"
+      },
+      {
+        "sn": "824",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Moore, Mr. Clarence Bloomfield",
+        "gender": "male",
+        "age": "47",
+        "family": "0",
+        "fare": "42.4",
+        "embarked": "S",
+        "date": "03-Apr-92"
+      },
+      {
+        "sn": "858",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Natsch, Mr. Charles H",
+        "gender": "male",
+        "age": "37",
+        "family": "1",
+        "fare": "29.7",
+        "embarked": "C",
+        "date": "07-May-92"
+      },
+      {
+        "sn": "867",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Newell, Mr. Arthur Webster",
+        "gender": "male",
+        "age": "58",
+        "family": "2",
+        "fare": "113.275",
+        "embarked": "C",
+        "date": "16-May-92"
+      },
+      {
+        "sn": "870",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Nicholson, Mr. Arthur Ernest",
+        "gender": "male",
+        "age": "64",
+        "family": "0",
+        "fare": "26",
+        "embarked": "S",
+        "date": "19-May-92"
+      },
+      {
+        "sn": "916",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Ostby, Mr. Engelhart Cornelius",
+        "gender": "male",
+        "age": "65",
+        "family": "1",
+        "fare": "61.9792",
+        "embarked": "C",
+        "date": "04-Jul-92"
+      },
+      {
+        "sn": "919",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Ovies y Rodriguez, Mr. Servando",
+        "gender": "male",
+        "age": "28.5",
+        "family": "0",
+        "fare": "27.7208",
+        "embarked": "C",
+        "date": "07-Jul-92"
+      },
+      {
+        "sn": "937",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Parr, Mr. William Henry Marsh",
+        "gender": "male",
+        "age": "",
+        "family": "0",
+        "fare": "0",
+        "embarked": "S",
+        "date": "25-Jul-92"
+      },
+      {
+        "sn": "939",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Partner, Mr. Austen",
+        "gender": "male",
+        "age": "45.5",
+        "family": "0",
+        "fare": "28.5",
+        "embarked": "S",
+        "date": "27-Jul-92"
+      },
+      {
+        "sn": "944",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Payne, Mr. Vivian Ponsonby",
+        "gender": "male",
+        "age": "23",
+        "family": "0",
+        "fare": "93.5",
+        "embarked": "S",
+        "date": "01-Aug-92"
+      },
+      {
+        "sn": "949",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Pears, Mr. Thomas Clinton",
+        "gender": "male",
+        "age": "29",
+        "family": "1",
+        "fare": "66.6",
+        "embarked": "S",
+        "date": "06-Aug-92"
+      },
+      {
+        "sn": "955",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Penasco y Castellana, Mr. Victor de Satode",
+        "gender": "male",
+        "age": "18",
+        "family": "1",
+        "fare": "108.9",
+        "embarked": "C",
+        "date": "12-Aug-92"
+      },
+      {
+        "sn": "984",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Porter, Mr. Walter Chamberlain",
+        "gender": "male",
+        "age": "47",
+        "family": "0",
+        "fare": "52",
+        "embarked": "S",
+        "date": "10-Sep-92"
+      },
+      {
+        "sn": "998",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Reuchlin, Jonkheer. John George",
+        "gender": "male",
+        "age": "38",
+        "family": "0",
+        "fare": "0",
+        "embarked": "S",
+        "date": "24-Sep-92"
+      },
+      {
+        "sn": "1014",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Ringhini, Mr. Sante",
+        "gender": "male",
+        "age": "22",
+        "family": "0",
+        "fare": "135.6333",
+        "embarked": "C",
+        "date": "10-Oct-92"
+      },
+      {
+        "sn": "1019",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Robbins, Mr. Victor",
+        "gender": "male",
+        "age": "",
+        "family": "0",
+        "fare": "227.525",
+        "embarked": "C",
+        "date": "15-Oct-92"
+      },
+      {
+        "sn": "1023",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Roebling, Mr. Washington Augustus II",
+        "gender": "male",
+        "age": "31",
+        "family": "0",
+        "fare": "50.4958",
+        "embarked": "S",
+        "date": "19-Oct-92"
+      },
+      {
+        "sn": "1028",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Rood, Mr. Hugh Roscoe",
+        "gender": "male",
+        "age": "",
+        "family": "0",
+        "fare": "50",
+        "embarked": "S",
+        "date": "24-Oct-92"
+      },
+      {
+        "sn": "1033",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Rosenshine, Mr. George (\"Mr George Thorne\")",
+        "gender": "male",
+        "age": "46",
+        "family": "0",
+        "fare": "79.2",
+        "embarked": "C",
+        "date": "29-Oct-92"
+      },
+      {
+        "sn": "1034",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Ross, Mr. John Hugo",
+        "gender": "male",
+        "age": "36",
+        "family": "0",
+        "fare": "40.125",
+        "embarked": "C",
+        "date": "30-Oct-92"
+      },
+      {
+        "sn": "1037",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Rothschild, Mr. Martin",
+        "gender": "male",
+        "age": "55",
+        "family": "1",
+        "fare": "59.4",
+        "embarked": "C",
+        "date": "02-Nov-92"
+      },
+      {
+        "sn": "1040",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Rowe, Mr. Alfred G",
+        "gender": "male",
+        "age": "33",
+        "family": "0",
+        "fare": "26.55",
+        "embarked": "S",
+        "date": "05-Nov-92"
+      },
+      {
+        "sn": "1048",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Ryerson, Mr. Arthur Larned",
+        "gender": "male",
+        "age": "61",
+        "family": "4",
+        "fare": "262.375",
+        "embarked": "C",
+        "date": "13-Nov-92"
+      },
+      {
+        "sn": "1099",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Silvey, Mr. William Baird",
+        "gender": "male",
+        "age": "50",
+        "family": "1",
+        "fare": "55.9",
+        "embarked": "S",
+        "date": "03-Jan-93"
+      },
+      {
+        "sn": "1122",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Smart, Mr. John Montgomery",
+        "gender": "male",
+        "age": "56",
+        "family": "0",
+        "fare": "26.55",
+        "embarked": "S",
+        "date": "26-Jan-93"
+      },
+      {
+        "sn": "1125",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Smith, Mr. James Clinch",
+        "gender": "male",
+        "age": "56",
+        "family": "0",
+        "fare": "30.6958",
+        "embarked": "C",
+        "date": "29-Jan-93"
+      },
+      {
+        "sn": "1126",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Smith, Mr. Lucien Philip",
+        "gender": "male",
+        "age": "24",
+        "family": "1",
+        "fare": "60",
+        "embarked": "S",
+        "date": "30-Jan-93"
+      },
+      {
+        "sn": "1127",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Smith, Mr. Richard William",
+        "gender": "male",
+        "age": "",
+        "family": "0",
+        "fare": "26",
+        "embarked": "S",
+        "date": "31-Jan-93"
+      },
+      {
+        "sn": "1140",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Spencer, Mr. William Augustus",
+        "gender": "male",
+        "age": "57",
+        "family": "1",
+        "fare": "146.5208",
+        "embarked": "C",
+        "date": "13-Feb-93"
+      },
+      {
+        "sn": "1149",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Stead, Mr. William Thomas",
+        "gender": "male",
+        "age": "62",
+        "family": "0",
+        "fare": "26.55",
+        "embarked": "S",
+        "date": "22-Feb-93"
+      },
+      {
+        "sn": "1153",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Stewart, Mr. Albert A",
+        "gender": "male",
+        "age": "",
+        "family": "0",
+        "fare": "27.7208",
+        "embarked": "C",
+        "date": "26-Feb-93"
+      },
+      {
+        "sn": "1160",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Straus, Mr. Isidor",
+        "gender": "male",
+        "age": "67",
+        "family": "1",
+        "fare": "221.7792",
+        "embarked": "S",
+        "date": "05-Mar-93"
+      },
+      {
+        "sn": "1161",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Straus, Mrs. Isidor (Rosalie Ida Blun)",
+        "gender": "female",
+        "age": "63",
+        "family": "1",
+        "fare": "221.7792",
+        "embarked": "S",
+        "date": "06-Mar-93"
+      },
+      {
+        "sn": "1168",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Sutton, Mr. Frederick",
+        "gender": "male",
+        "age": "61",
+        "family": "0",
+        "fare": "32.3208",
+        "embarked": "S",
+        "date": "13-Mar-93"
+      },
+      {
+        "sn": "1176",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Taussig, Mr. Emil",
+        "gender": "male",
+        "age": "52",
+        "family": "2",
+        "fare": "79.65",
+        "embarked": "S",
+        "date": "21-Mar-93"
+      },
+      {
+        "sn": "1181",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Thayer, Mr. John Borland",
+        "gender": "male",
+        "age": "49",
+        "family": "2",
+        "fare": "110.8833",
+        "embarked": "C",
+        "date": "26-Mar-93"
+      },
+      {
+        "sn": "1215",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Uruchurtu, Don. Manuel E",
+        "gender": "male",
+        "age": "40",
+        "family": "0",
+        "fare": "27.7208",
+        "embarked": "C",
+        "date": "29-Apr-93"
+      },
+      {
+        "sn": "1219",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Van der hoef, Mr. Wyckoff",
+        "gender": "male",
+        "age": "61",
+        "family": "0",
+        "fare": "33.5",
+        "embarked": "S",
+        "date": "03-May-93"
+      },
+      {
+        "sn": "1239",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Walker, Mr. William Anderson",
+        "gender": "male",
+        "age": "47",
+        "family": "0",
+        "fare": "34.0208",
+        "embarked": "S",
+        "date": "23-May-93"
+      },
+      {
+        "sn": "1245",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Warren, Mr. Frank Manley",
+        "gender": "male",
+        "age": "64",
+        "family": "1",
+        "fare": "75.25",
+        "embarked": "C",
+        "date": "29-May-93"
+      },
+      {
+        "sn": "1251",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Weir, Col. John",
+        "gender": "male",
+        "age": "60",
+        "family": "0",
+        "fare": "26.55",
+        "embarked": "S",
+        "date": "04-Jun-93"
+      },
+      {
+        "sn": "1265",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "White, Mr. Percival Wayland",
+        "gender": "male",
+        "age": "54",
+        "family": "1",
+        "fare": "77.2875",
+        "embarked": "S",
+        "date": "18-Jun-93"
+      },
+      {
+        "sn": "1266",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "White, Mr. Richard Frasar",
+        "gender": "male",
+        "age": "21",
+        "family": "1",
+        "fare": "77.2875",
+        "embarked": "S",
+        "date": "19-Jun-93"
+      },
+      {
+        "sn": "1269",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Wick, Mr. George Dennick",
+        "gender": "male",
+        "age": "57",
+        "family": "2",
+        "fare": "164.8667",
+        "embarked": "S",
+        "date": "22-Jun-93"
+      },
+      {
+        "sn": "1272",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Widener, Mr. George Dunton",
+        "gender": "male",
+        "age": "50",
+        "family": "2",
+        "fare": "211.5",
+        "embarked": "C",
+        "date": "25-Jun-93"
+      },
+      {
+        "sn": "1273",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Widener, Mr. Harry Elkins",
+        "gender": "male",
+        "age": "27",
+        "family": "2",
+        "fare": "211.5",
+        "embarked": "C",
+        "date": "26-Jun-93"
+      },
+      {
+        "sn": "1280",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Williams, Mr. Charles Duane",
+        "gender": "male",
+        "age": "51",
+        "family": "1",
+        "fare": "61.3792",
+        "embarked": "C",
+        "date": "03-Jul-93"
+      },
+      {
+        "sn": "1284",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Williams-Lambert, Mr. Fletcher Fellows",
+        "gender": "male",
+        "age": "",
+        "family": "0",
+        "fare": "35",
+        "embarked": "S",
+        "date": "07-Jul-93"
+      },
+      {
+        "sn": "1291",
+        "pclass": "1",
+        "survived": "0",
+        "nan": "Wright, Mr. George",
+        "gender": "male",
+        "age": "62",
+        "family": "0",
+        "fare": "26.55",
+        "embarked": "S",
+        "date": "14-Jul-93"
+      }
+    ],
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT *\nFROM table_aab87f923d5bd82edba8d82e8400ad50\nWHERE survived = 0 AND pclass = 1\n\"\"\"\nresult_df = execute_sql_query(sql_query)\nresult = {'type': 'dataframe', 'value': result_df}",
+    "timestamp": "2025-03-24T18:47:24.004882",
+    "feedback": "useful"
   },
   {
-    "id": "6230299f-18c3-4777-8d10-0b3ede4512f8",
-    "prompt": "Construct a graph showing the number of males vs number of females. label the numbers on the bar graph also\n",
+    "id": "d5100791-0f05-4496-a5f0-0b0fc1076337",
+    "prompt": "Plot a scatter plot of age vs fare for passengers, binary color-coded by survival. Convert age and fare to FLOAT before querying.",
     "filenames": [
       "The Titanic dataset.csv"
     ],
-    "response": "exports/charts/temp_chart.png",
-    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nbars = plt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nfor bar in bars:\n    yval = bar.get_height()\n    plt.text(bar.get_x() + bar.get_width() / 2, yval, int(yval), va='bottom')\nplt.title('Number of Males vs Number of Females')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.savefig('exports/charts/temp_chart.png')\nresult = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}",
-    "timestamp": "2025-03-24T02:58:00.100727"
+    "response": "exports/charts/temp_chart_dc1ca33d-9331-4bfd-b390-2a22d5f0eb86.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT \n    CAST(age AS FLOAT) AS age,\n    CAST(fare AS FLOAT) AS fare,\n    survived\nFROM \n    table_aab87f923d5bd82edba8d82e8400ad50\nWHERE \n    age NOT IN ('?', '') AND fare NOT IN ('**', '')\n\"\"\"\ndf = execute_sql_query(sql_query)\nplt.figure(figsize=(10, 6))\nplt.scatter(df['age'], df['fare'], c=df['survived'], cmap='bwr', alpha=0.7)\nplt.colorbar(label='Survived (0 = No, 1 = Yes)')\nplt.title('Scatter Plot of Age vs Fare')\nplt.xlabel('Age')\nplt.ylabel('Fare')\nplt.grid(True)\nplt.savefig('exports/charts/temp_chart_dc1ca33d-9331-4bfd-b390-2a22d5f0eb86.png')\nplt.close()\nresult = {'type': 'plot', 'value': 'exports/charts/temp_chart_dc1ca33d-9331-4bfd-b390-2a22d5f0eb86.png'}",
+    "timestamp": "2025-03-24T18:46:56.852427"
   },
   {
-    "id": "946af522-9ced-4e46-b214-ec572c5f7bc2",
-    "prompt": "Construct a graph showing the number of males vs number of females. label the numbers on the bar graph also\n",
+    "id": "29d5dc0e-0eed-4181-a752-c229d35b8c6b",
+    "prompt": "Plot a scatter plot of age vs fare for passengers, color-coded by survival. Convert age and fare to FLOAT before querying.",
     "filenames": [
       "The Titanic dataset.csv"
     ],
-    "response": null,
-    "code": null,
-    "timestamp": "2025-03-24T02:55:55.130228"
+    "response": "exports/charts/temp_chart_d2acd6e3-5eea-44dc-a29b-6785b1e9f45c.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT \n    CAST(age AS FLOAT) AS age, \n    CAST(fare AS FLOAT) AS fare, \n    survived \nFROM \n    table_aab87f923d5bd82edba8d82e8400ad50 \nWHERE \n    age NOT IN ('?', '') AND fare NOT IN ('**', '')\n\"\"\"\ndata = execute_sql_query(sql_query)\nplt.figure(figsize=(10, 6))\nscatter = plt.scatter(data['age'], data['fare'], c=data['survived'], cmap='coolwarm', alpha=0.6)\nplt.colorbar(scatter, label='Survived (0 = No, 1 = Yes)')\nplt.title('Scatter Plot of Age vs Fare')\nplt.xlabel('Age')\nplt.ylabel('Fare')\nplt.grid(True)\nplt.savefig('exports/charts/temp_chart_d2acd6e3-5eea-44dc-a29b-6785b1e9f45c.png')\nplt.close()\nresult = {'type': 'plot', 'value': 'exports/charts/temp_chart_d2acd6e3-5eea-44dc-a29b-6785b1e9f45c.png'}",
+    "timestamp": "2025-03-24T18:46:18.403880"
   },
   {
-    "id": "34502f35-f223-42de-812d-23d83ca7e62a",
-    "prompt": "Construct a graph showing the number of males vs number of females. label the numbers on the bar graph also\n",
+    "id": "5afb9430-a9d7-4766-85c8-04a2b35adadc",
+    "prompt": "Construct a bar graph showing number of males vs females.",
     "filenames": [
       "The Titanic dataset.csv"
     ],
-    "response": null,
-    "code": null,
-    "timestamp": "2025-03-24T02:51:19.809733"
+    "response": "exports/charts/temp_chart_fcc81024-7e30-4a7e-a957-f3302d8e82fd.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM table_aab87f923d5bd82edba8d82e8400ad50\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Females')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplt.savefig('exports/charts/temp_chart_fcc81024-7e30-4a7e-a957-f3302d8e82fd.png')\nplt.close()\nresult = {'type': 'plot', 'value': 'exports/charts/temp_chart_fcc81024-7e30-4a7e-a957-f3302d8e82fd.png'}",
+    "timestamp": "2025-03-24T18:45:00.258977"
   },
   {
-    "id": "dc92ac3a-b851-482c-af84-360c765be16d",
-    "prompt": "Construct a graph showing the number of males vs number of females. label the numbers on the bar graph also\n",
+    "id": "42f57f57-94f1-4600-a61b-d5e07c68fc40",
+    "prompt": "Construct a bar graph showing number of males vs females.",
     "filenames": [
       "The Titanic dataset.csv"
     ],
-    "response": null,
-    "code": null,
-    "timestamp": "2025-03-24T02:48:41.197526"
+    "response": "exports/charts/temp_chart_75f47d7f-55c3-4c26-8b92-36a5b4cfa012.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM table_aab87f923d5bd82edba8d82e8400ad50\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Females')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplt.savefig('exports/charts/temp_chart_75f47d7f-55c3-4c26-8b92-36a5b4cfa012.png')\nplt.close()\nresult = {'type': 'plot', 'value': 'exports/charts/temp_chart_75f47d7f-55c3-4c26-8b92-36a5b4cfa012.png'}",
+    "timestamp": "2025-03-24T18:44:35.159514"
   },
   {
-    "id": "caa13399-c5e6-4f12-84c0-e340aa60830e",
-    "prompt": "Construct a graph showing the number of males vs number of females. label the numbers on the bar graph also\n",
+    "id": "46185c9c-3cb4-4e51-a819-e63c09464429",
+    "prompt": "Find the average fare for each of the embarkation points. Convert fare to FLOAT in the SQL query ",
     "filenames": [
       "The Titanic dataset.csv"
     ],
-    "response": null,
-    "code": null,
-    "timestamp": "2025-03-24T02:47:38.925802"
+    "response": [
+      {
+        "embarked": "",
+        "average_fare": 33.18333339691162
+      },
+      {
+        "embarked": "C",
+        "average_fare": 62.90132887979572
+      },
+      {
+        "embarked": "Q",
+        "average_fare": 12.409012193602274
+      },
+      {
+        "embarked": "S",
+        "average_fare": 27.62067485622186
+      }
+    ],
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT embarked, AVG(CAST(fare AS FLOAT)) AS average_fare\nFROM table_aab87f923d5bd82edba8d82e8400ad50\nWHERE fare NOT LIKE '**' AND fare IS NOT NULL AND fare != ''\nGROUP BY embarked\nORDER BY embarked;\n\"\"\"\naverage_fares_df = execute_sql_query(sql_query)\nresult = {'type': 'dataframe', 'value': average_fares_df}",
+    "timestamp": "2025-03-24T18:43:03.665197"
   },
   {
-    "id": "0743dfa6-44a2-49a4-b060-2b6264c6b9e3",
-    "prompt": "Construct a graph showing the number of males vs number of females. label the numbers on the bar graph also\n",
+    "id": "96b34b5d-6174-4711-ae53-1c8292f7bc5a",
+    "prompt": "Identify the youngest and oldest passengers on the Titanic. Convert age to FLOAT before querying.",
     "filenames": [
       "The Titanic dataset.csv"
     ],
-    "response": null,
-    "code": null,
-    "timestamp": "2025-03-24T02:47:10.211824"
+    "response": "The youngest passenger is 0.17000000178813934 years old and the oldest passenger is 80.0 years old.",
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT \n    MIN(CAST(age AS FLOAT)) AS youngest_age,\n    MAX(CAST(age AS FLOAT)) AS oldest_age\nFROM \n    table_aab87f923d5bd82edba8d82e8400ad50\nWHERE \n    age IS NOT NULL AND age != '?' AND age != ''\n\"\"\"\nresult_df = execute_sql_query(sql_query)\nyoungest_age = result_df['youngest_age'].iloc[0]\noldest_age = result_df['oldest_age'].iloc[0]\nresult = {'type': 'string', 'value': f'The youngest passenger is {youngest_age} years old and the oldest passenger is {oldest_age} years old.'}",
+    "timestamp": "2025-03-24T18:27:23.828940",
+    "feedback": "useful"
   },
   {
-    "id": "c773f0ff-de40-4fed-af9c-10eadea8358e",
-    "prompt": "Construct a graph showing the number of males vs number of females. label the numbers on the bar graph also\n",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": null,
-    "code": null,
-    "timestamp": "2025-03-24T02:46:33.692601"
-  },
-  {
-    "id": "a33cc389-612a-4cfa-aec8-0461328bd53f",
-    "prompt": "What is the age of earth",
+    "id": "0d5814d6-63c6-4ea2-95c6-5db283ec1a22",
+    "prompt": "Identify the names of the youngest and oldest passengers on the Titanic. Convert age to FLOAT before querying.",
     "filenames": [
       "The Titanic dataset.csv"
     ],
     "response": "Unfortunately, I was not able to get your answer. Please try again.",
-    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT AVG(age) AS average_age\nFROM The_Titanic_dataset_csv\nWHERE age IS NOT NULL\n\"\"\"\naverage_age_df = execute_sql_query(sql_query)\naverage_age = average_age_df['average_age'].iloc[0]\nresult = {'type': 'number', 'value': average_age}",
-    "timestamp": "2025-03-23T19:17:33.439319"
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT \n    MIN(CAST(age AS FLOAT)) AS youngest_age,\n    MAX(CAST(age AS FLOAT)) AS oldest_age,\n    (SELECT name FROM table_aab87f923d5bd82edba8d82e8400ad50 WHERE CAST(age AS FLOAT) = MIN(CAST(age AS FLOAT))) AS youngest_name,\n    (SELECT name FROM table_aab87f923d5bd82edba8d82e8400ad50 WHERE CAST(age AS FLOAT) = MAX(CAST(age AS FLOAT))) AS oldest_name\nFROM \n    table_aab87f923d5bd82edba8d82e8400ad50\nWHERE \n    age IS NOT NULL AND age != '?'\n\"\"\"\nresult_df = execute_sql_query(sql_query)\nyoungest_name = result_df['youngest_name'].iloc[0]\noldest_name = result_df['oldest_name'].iloc[0]\nresult = {'type': 'string', 'value': f'The youngest passenger is {youngest_name} and the oldest passenger is {oldest_name}.'}",
+    "timestamp": "2025-03-24T18:26:09.159915"
   },
   {
-    "id": "50c5cf68-bfdb-492d-8ab6-0814225bb3f3",
-    "prompt": "Construct a graph showing the number of males vs number of females. label the numbers on the bar graph also\n",
+    "id": "cfc607a3-43d2-4bc7-b5c9-e97990397f1f",
+    "prompt": "Identify the youngest and oldest passengers on the Titanic. Convert age to FLOAT before querying.",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "The youngest passenger is 0.17000000178813934 years old and the oldest passenger is 80.0 years old.",
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT \n    MIN(CAST(age AS FLOAT)) AS youngest_age,\n    MAX(CAST(age AS FLOAT)) AS oldest_age\nFROM \n    table_aab87f923d5bd82edba8d82e8400ad50\nWHERE \n    age IS NOT NULL AND age != '?' AND age != ''\n\"\"\"\nresult_df = execute_sql_query(sql_query)\nyoungest_age = result_df['youngest_age'].iloc[0]\noldest_age = result_df['oldest_age'].iloc[0]\nresult = {'type': 'string', 'value': f'The youngest passenger is {youngest_age} years old and the oldest passenger is {oldest_age} years old.'}",
+    "timestamp": "2025-03-24T18:25:14.316127"
+  },
+  {
+    "id": "772312cb-ec7f-4a7c-bd79-6f34d6eb89d3",
+    "prompt": "Identify the youngest and oldest passengers on the Titanic.",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "Unfortunately, I was not able to get your answer. Please try again.",
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT \n    MIN(age) AS youngest_age,\n    MAX(age) AS oldest_age\nFROM \n    table_aab87f923d5bd82edba8d82e8400ad50\nWHERE \n    age IS NOT NULL\n\"\"\"\nage_data = execute_sql_query(sql_query)\nyoungest_age = age_data['youngest_age'].values[0]\noldest_age = age_data['oldest_age'].values[0]\nsql_query_youngest = f\"\"\"\nSELECT \n    * \nFROM \n    table_aab87f923d5bd82edba8d82e8400ad50\nWHERE \n    age = {youngest_age}\n\"\"\"\nsql_query_oldest = f\"\"\"\nSELECT \n    * \nFROM \n    table_aab87f923d5bd82edba8d82e8400ad50\nWHERE \n    age = {oldest_age}\n\"\"\"\nyoungest_passenger = execute_sql_query(sql_query_youngest)\noldest_passenger = execute_sql_query(sql_query_oldest)\nresult = {'type': 'string', 'value': f\"The youngest passenger is {youngest_passenger.iloc[0]['name']} aged {youngest_age}, and the oldest passenger is {oldest_passenger.iloc[0]['name']} aged {oldest_age}.\"}",
+    "timestamp": "2025-03-24T18:24:33.342189"
+  },
+  {
+    "id": "f4e8f22d-89f1-4769-bf03-c49b03940e65",
+    "prompt": "Find the average fare for each of the embarkation points. Convert fare to FLOAT in the SQL query ",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": [
+      {
+        "embarked": "",
+        "average_fare": 33.18333339691162
+      },
+      {
+        "embarked": "C",
+        "average_fare": 62.90132887979572
+      },
+      {
+        "embarked": "Q",
+        "average_fare": 12.409012193602274
+      },
+      {
+        "embarked": "S",
+        "average_fare": 27.62067485622186
+      }
+    ],
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT embarked, AVG(CAST(fare AS FLOAT)) AS average_fare\nFROM table_aab87f923d5bd82edba8d82e8400ad50\nWHERE fare IS NOT NULL AND fare != '' AND fare != '**'\nGROUP BY embarked\nORDER BY embarked;\n\"\"\"\naverage_fares_df = execute_sql_query(sql_query)\nresult = {'type': 'dataframe', 'value': average_fares_df}",
+    "timestamp": "2025-03-24T13:16:24.788703"
+  },
+  {
+    "id": "69d8c6e9-2572-45b0-aaff-ebdfb9738195",
+    "prompt": "Find the average fare for each of the embarkation points.",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": [
+      {
+        "embarked": "",
+        "average_fare": 33.18333333333333
+      },
+      {
+        "embarked": "C",
+        "average_fare": 62.901328464419414
+      },
+      {
+        "embarked": "Q",
+        "average_fare": 12.409012195121951
+      },
+      {
+        "embarked": "S",
+        "average_fare": 27.62067483370282
+      }
+    ],
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT embarked, AVG(CAST(fare AS DOUBLE)) AS average_fare\nFROM table_aab87f923d5bd82edba8d82e8400ad50\nWHERE fare IS NOT NULL \n  AND fare != '' \n  AND fare NOT LIKE '%[^0-9.]%'\n  AND fare NOT LIKE '**'  -- Exclude the invalid fare entry\nGROUP BY embarked\nORDER BY embarked;\n\"\"\"\naverage_fare_df = execute_sql_query(sql_query)\nresult = {'type': 'dataframe', 'value': average_fare_df}",
+    "timestamp": "2025-03-24T13:12:47.144524"
+  },
+  {
+    "id": "086a2837-a6ce-469e-896b-53cd09275c36",
+    "prompt": "Find the average fare for each of the embarkation points",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "Unfortunately, I was not able to get your answer. Please try again.",
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT embarked, AVG(fare) AS average_fare\nFROM The_Titanic_dataset_csv\nWHERE fare IS NOT NULL\nGROUP BY embarked\nORDER BY embarked;\n\"\"\"\naverage_fare_df = execute_sql_query(sql_query)\nresult = {'type': 'dataframe', 'value': average_fare_df}",
+    "timestamp": "2025-03-24T11:12:33.198579"
+  },
+  {
+    "id": "263df47b-2fd2-4cca-9a5c-ae31a6a8e236",
+    "prompt": "Find the average fare for each of the embarkation points. Convert fare to FLOAT in the SQL query ",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": [
+      {
+        "embarked": "",
+        "average_fare": 33.18333339691162
+      },
+      {
+        "embarked": "C",
+        "average_fare": 62.90132887979572
+      },
+      {
+        "embarked": "Q",
+        "average_fare": 12.409012193602274
+      },
+      {
+        "embarked": "S",
+        "average_fare": 27.62067485622186
+      }
+    ],
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT embarked, AVG(CAST(fare AS FLOAT)) AS average_fare\nFROM The_Titanic_dataset_csv\nWHERE fare IS NOT NULL AND fare != '**' AND fare != ''\nGROUP BY embarked\nORDER BY embarked;\n\"\"\"\naverage_fares_df = execute_sql_query(sql_query)\nresult = {'type': 'dataframe', 'value': average_fares_df}",
+    "timestamp": "2025-03-24T11:02:15.763558"
+  },
+  {
+    "id": "eb69a2ef-ac9f-4c4a-9f34-51b640fd0549",
+    "prompt": "Find the average fare for each of the embarkation points.",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "Unfortunately, I was not able to get your answer. Please try again.",
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT embarked, AVG(fare) AS average_fare\nFROM The_Titanic_dataset_csv\nWHERE fare IS NOT NULL\nGROUP BY embarked\nORDER BY embarked;\n\"\"\"\naverage_fares_df = execute_sql_query(sql_query)\nresult = {'type': 'dataframe', 'value': average_fares_df}",
+    "timestamp": "2025-03-24T11:01:37.922590"
+  },
+  {
+    "id": "3e630b08-9d55-4cae-8590-03ba344f898d",
+    "prompt": "Find the average fare for each of the embarkation points.Ensure that columns containing numeric values are converted to the appropriate data types (e.g., int, float) if they are stored as strings or objects. If necessary, replace invalid or non-numeric values with NaN to avoid calculation errors.If a query requires calculations, such as averages, sums, or counts, first check and convert the relevant columns to the appropriate numeric types. This ensures accurate calculations and consistent results.You should handle missing or invalid data gracefully and ensure that calculations are based on the correct data types. If non-numeric data is encountered in numeric columns, replace it with NaN or handle it appropriately before performing any calculations.",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": null,
+    "code": null,
+    "timestamp": "2025-03-24T11:00:53.033411"
+  },
+  {
+    "id": "169358e5-59ee-4373-bc83-17a8216b3415",
+    "prompt": "Find the average fare for each of the embarkation points.",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "Unfortunately, I was not able to get your answer. Please try again.",
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT embarked, AVG(fare) AS average_fare\nFROM The_Titanic_dataset_csv\nWHERE fare IS NOT NULL\nGROUP BY embarked\nORDER BY embarked;\n\"\"\"\naverage_fares_df = execute_sql_query(sql_query)\nresult = {'type': 'dataframe', 'value': average_fares_df}",
+    "timestamp": "2025-03-24T10:54:53.770108"
+  },
+  {
+    "id": "27df09ad-fb75-4876-b0a9-29c65b5370c5",
+    "prompt": "Calculate the average fare",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 33.46218184238222,
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT AVG(CAST(fare AS FLOAT)) AS average_fare\nFROM The_Titanic_dataset_csv\nWHERE fare IS NOT NULL AND fare != '**' AND fare != ''\n\"\"\"\naverage_fare_df = execute_sql_query(sql_query)\naverage_fare = average_fare_df['average_fare'].iloc[0]\nresult = {'type': 'number', 'value': average_fare}",
+    "timestamp": "2025-03-24T10:53:00.853473"
+  },
+  {
+    "id": "53434f1c-effd-425d-a5e8-ad10b12d485e",
+    "prompt": "Find the average fare for each of the embarkation points.",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "Unfortunately, I was not able to get your answer. Please try again.",
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT embarked, AVG(fare) AS average_fare\nFROM The_Titanic_dataset_csv\nWHERE fare IS NOT NULL AND embarked IS NOT NULL\nGROUP BY embarked\nORDER BY embarked;\n\"\"\"\naverage_fares_df = execute_sql_query(sql_query)\nresult = {'type': 'dataframe', 'value': average_fares_df}",
+    "timestamp": "2025-03-24T10:45:45.726449"
+  },
+  {
+    "id": "dd0435a0-1dfb-4d58-b54f-922794ccb07d",
+    "prompt": "Find the average fare for each of the embarkation points.",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "Unfortunately, I was not able to get your answer. Please try again.",
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT embarked, AVG(fare) AS average_fare\nFROM The_Titanic_dataset_csv\nWHERE fare IS NOT NULL\nGROUP BY embarked\nORDER BY embarked;\n\"\"\"\naverage_fares_df = execute_sql_query(sql_query)\nresult = {'type': 'dataframe', 'value': average_fares_df}",
+    "timestamp": "2025-03-24T10:41:30.381770"
+  },
+  {
+    "id": "14d94cbd-f681-4a08-8545-1c9fa57db8a9",
+    "prompt": "Find the number of average fare each of the embarkation points.",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "Unfortunately, I was not able to get your answer. Please try again.",
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT embarked, AVG(fare) AS average_fare\nFROM The_Titanic_dataset_csv\nWHERE fare IS NOT NULL\nGROUP BY embarked\nORDER BY embarked;\n\"\"\"\naverage_fare_df = execute_sql_query(sql_query)\nresult = {'type': 'dataframe', 'value': average_fare_df}",
+    "timestamp": "2025-03-24T10:41:05.798795"
+  },
+  {
+    "id": "c24e26ac-0d7f-4414-b5f2-cd74dfb2a760",
+    "prompt": "Find the number of passengers who boarded from each embarkation point.",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": [
+      {
+        "embarked": "S",
+        "num_passengers": 905
+      },
+      {
+        "embarked": "C",
+        "num_passengers": 267
+      },
+      {
+        "embarked": "Q",
+        "num_passengers": 123
+      },
+      {
+        "embarked": "",
+        "num_passengers": 6
+      }
+    ],
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT embarked, COUNT(*) AS num_passengers\nFROM The_Titanic_dataset_csv\nGROUP BY embarked\nORDER BY num_passengers DESC\n\"\"\"\nresult_df = execute_sql_query(sql_query)\nresult = {'type': 'dataframe', 'value': result_df}",
+    "timestamp": "2025-03-24T10:40:24.795397"
+  },
+  {
+    "id": "c0f52f12-c678-4220-a598-101fd67d06ae",
+    "prompt": "Group the passengers by class and calculate the average fare for each class.",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "Unfortunately, I was not able to get your answer. Please try again.",
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT pclass, AVG(fare) AS average_fare\nFROM The_Titanic_dataset_csv\nWHERE fare IS NOT NULL\nGROUP BY pclass\nORDER BY pclass;\n\"\"\"\naverage_fare_by_class = execute_sql_query(sql_query)\nresult = {'type': 'dataframe', 'value': average_fare_by_class}",
+    "timestamp": "2025-03-24T10:38:10.058094"
+  },
+  {
+    "id": "919c5300-bec1-4728-a6e4-01f1f46b995c",
+    "prompt": "Fill the missing 'age' values using the mean or median of the available data.",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "Unfortunately, I was not able to get your answer. Please try again.",
+    "code": "import pandas as pd\nmean_age_query = \"\"\"\nSELECT AVG(age) AS mean_age\nFROM The_Titanic_dataset_csv\nWHERE age IS NOT NULL\n\"\"\"\nmean_age_df = execute_sql_query(mean_age_query)\nmean_age = mean_age_df['mean_age'].iloc[0]\ntitanic_data_query = \"\"\"\nSELECT *\nFROM The_Titanic_dataset_csv\n\"\"\"\ntitanic_data_df = execute_sql_query(titanic_data_query)\ntitanic_data_df['age'] = titanic_data_df['age'].replace('?', None).astype(float)\ntitanic_data_df['age'].fillna(mean_age, inplace=True)\nresult = {'type': 'dataframe', 'value': titanic_data_df}",
+    "timestamp": "2025-03-24T10:37:03.907911"
+  },
+  {
+    "id": "447815f6-b066-451f-90f1-8423304ad1d4",
+    "prompt": "Fill the missing 'age' values using the mean or median of the available data.",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "Unfortunately, I was not able to get your answer. Please try again.",
+    "code": "import pandas as pd\nmean_age_query = \"\"\"\nSELECT AVG(age) AS mean_age\nFROM The_Titanic_dataset_csv\nWHERE age IS NOT NULL\n\"\"\"\nmean_age_df = execute_sql_query(mean_age_query)\nmean_age = mean_age_df['mean_age'].iloc[0]\ntitanic_data_query = \"\"\"\nSELECT *\nFROM The_Titanic_dataset_csv\n\"\"\"\ntitanic_data_df = execute_sql_query(titanic_data_query)\ntitanic_data_df['age'] = titanic_data_df['age'].replace('?', None).astype(float)\ntitanic_data_df['age'].fillna(mean_age, inplace=True)\nresult = {'type': 'dataframe', 'value': titanic_data_df}",
+    "timestamp": "2025-03-24T10:36:08.184507"
+  },
+  {
+    "id": "03d4b113-5446-4cb6-884d-0d85d3d7bc70",
+    "prompt": "How many missing values are there in the 'age' column?",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": 258,
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT COUNT(*) AS missing_age_count\nFROM The_Titanic_dataset_csv\nWHERE age IS NULL OR age = '' OR age = '?'\n\"\"\"\nresult_df = execute_sql_query(sql_query)\nmissing_age_count = result_df['missing_age_count'].iloc[0]\nresult = {'type': 'number', 'value': missing_age_count}",
+    "timestamp": "2025-03-24T10:35:27.134698"
+  },
+  {
+    "id": "8c53559a-d70d-416c-b0f0-b1c9e4346828",
+    "prompt": "Construct a bar graph showing number of males vs females.",
     "filenames": [
       "The Titanic dataset.csv"
     ],
     "response": "exports/charts/temp_chart.png",
-    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nbars = plt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nfor bar in bars:\n    yval = bar.get_height()\n    plt.text(bar.get_x() + bar.get_width() / 2, yval, int(yval), va='bottom')\nplt.title('Number of Males vs Number of Females')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.savefig('exports/charts/temp_chart.png')\nresult = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}",
-    "timestamp": "2025-03-23T19:16:53.752564"
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Females on the Titanic')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplt.savefig('exports/charts/temp_chart.png')\nresult = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}",
+    "timestamp": "2025-03-24T10:34:52.177332"
   },
   {
-    "id": "b999f83b-4ba5-47fd-924b-bac76a5e6fe9",
-    "prompt": "Construct a graph showing the number of males vs number of females\n",
+    "id": "6d68b110-588f-4052-8aa5-a5eccff18690",
+    "prompt": "Create a pie chart for the survival rate based on embarkation points.",
     "filenames": [
       "The Titanic dataset.csv"
     ],
-    "response": "exports/charts/temp_chart.png",
-    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Number of Females on the Titanic')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplot_filename = 'exports/charts/temp_chart.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
-    "timestamp": "2025-03-23T19:16:15.797673"
+    "response": "Unfortunately, I was not able to get your answer. Please try again.",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT embarked, \n       SUM(survived) AS survived_count, \n       COUNT(*) AS total_count,\n       (SUM(survived) * 100.0 / COUNT(*)) AS survival_rate\nFROM The_Titanic_dataset_csv\nGROUP BY embarked\n\"\"\"\nembarkation_data = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 6))\nplt.pie(embarkation_data['survival_rate'], labels=embarkation_data['embarked'], autopct='%1.1f%%', startangle=140)\nplt.title('Survival Rate Based on Embarkation Points')\nplt.axis('equal')\nplt.savefig('exports/charts/temp_chart.png')\nplt.close()\nresult = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}",
+    "timestamp": "2025-03-24T10:33:57.358647"
   },
   {
-    "id": "d73e8aec-4cab-479f-9560-da97e7e9fddc",
-    "prompt": "What is the number of passengers",
+    "id": "cd4a98b1-cad8-42bd-882b-9b00aa5e7799",
+    "prompt": "Create a pie chart for the survival rate based on embarkation points.",
     "filenames": [
       "The Titanic dataset.csv"
     ],
-    "response": 1301,
-    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T19:15:59.884416",
-    "feedback": "useful"
+    "response": "Unfortunately, I was not able to get your answer. Please try again.",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT embarked, \n       SUM(survived) AS survived_count, \n       COUNT(*) AS total_count,\n       (SUM(survived) * 100.0 / COUNT(*)) AS survival_rate\nFROM The_Titanic_dataset_csv\nGROUP BY embarked\n\"\"\"\nembarkation_data = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 6))\nplt.pie(embarkation_data['survival_rate'], labels=embarkation_data['embarked'], autopct='%1.1f%%', startangle=140)\nplt.title('Survival Rate Based on Embarkation Points')\nplt.axis('equal')\nplt.savefig('exports/charts/temp_chart.png')\nplt.close()\nresult = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}",
+    "timestamp": "2025-03-24T10:33:12.261991"
   },
   {
-    "id": "f95e7e8d-1a44-4a16-936d-7416b8da71c6",
-    "prompt": "What is the number of passengers",
+    "id": "dc2c739d-edcb-43b6-814e-d31cf001d63c",
+    "prompt": "Find the number of passengers who boarded from each embarkation point.",
     "filenames": [
       "The Titanic dataset.csv"
     ],
-    "response": 1301,
-    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT COUNT(*) AS number_of_passengers\nFROM The_Titanic_dataset_csv\n\"\"\"\nresult_df = execute_sql_query(sql_query)\nnumber_of_passengers = result_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T19:14:18.825590"
-  },
-  {
-    "id": "90188604-b147-4a89-b6e4-588df3e3da7a",
-    "prompt": "What is the number of passengers",
-    "filenames": [
-      "The Titanic dataset.csv"
+    "response": [
+      {
+        "embarked": "S",
+        "num_passengers": 905
+      },
+      {
+        "embarked": "C",
+        "num_passengers": 267
+      },
+      {
+        "embarked": "Q",
+        "num_passengers": 123
+      },
+      {
+        "embarked": "",
+        "num_passengers": 6
+      }
     ],
-    "response": 1301,
-    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\nresult_df = execute_sql_query(sql_query)\nnumber_of_passengers = result_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T19:11:05.549484"
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT embarked, COUNT(*) AS num_passengers\nFROM The_Titanic_dataset_csv\nGROUP BY embarked\nORDER BY num_passengers DESC\n\"\"\"\nresult_df = execute_sql_query(sql_query)\nresult = {'type': 'dataframe', 'value': result_df}",
+    "timestamp": "2025-03-24T10:31:48.248470"
   },
   {
-    "id": "e0d77512-1622-4489-8c90-f2b9f993cfbd",
-    "prompt": "What is the number of passengers?",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": 1301,
-    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT COUNT(*) AS number_of_passengers\nFROM The_Titanic_dataset_csv\n\"\"\"\nresult_df = execute_sql_query(sql_query)\nnumber_of_passengers = result_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T19:07:08.098864"
-  },
-  {
-    "id": "1f653121-1331-4b0c-af6e-8ae8c7ea5146",
-    "prompt": "Construct a graph showing the number of males vs number of females\n",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": "exports/charts/temp_chart.png",
-    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Number of Females')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplot_file = 'exports/charts/temp_chart.png'\nplt.savefig(plot_file)\nplt.close()\nresult = {'type': 'plot', 'value': plot_file}",
-    "timestamp": "2025-03-23T19:05:53.523617"
-  },
-  {
-    "id": "498541df-c212-429d-b061-239da7507ec5",
-    "prompt": "Construct a graph showing the number of males vs number of females\n",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": "exports/charts/temp_chart.png",
-    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Number of Females')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplot_filename = 'exports/charts/temp_chart.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
-    "timestamp": "2025-03-23T19:05:33.600189"
-  },
-  {
-    "id": "248c4d7f-337e-4d67-87b4-7c1cfe127d13",
-    "prompt": "What is the number of passengers",
+    "id": "0ddb0acd-ad66-4a25-a900-7c6b0faea704",
+    "prompt": "How many rows are in the dataset?",
     "filenames": [
       "The Titanic dataset.csv"
     ],
     "response": 1301,
-    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T19:04:10.808447"
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS row_count FROM The_Titanic_dataset_csv'\nresult_df = execute_sql_query(sql_query)\nrow_count = result_df['row_count'].iloc[0]\nresult = {'type': 'number', 'value': row_count}",
+    "timestamp": "2025-03-24T10:29:29.213407"
   },
   {
-    "id": "ecfe208b-0fad-47e5-bb20-db08bcd783e8",
-    "prompt": "What is the number of passengers",
+    "id": "4290279c-2a05-4b83-907d-88ad1282eabf",
+    "prompt": "Find the number of passengers who boarded from each embarkation point.",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": [
+      {
+        "embarked": "S",
+        "num_passengers": 905
+      },
+      {
+        "embarked": "C",
+        "num_passengers": 267
+      },
+      {
+        "embarked": "Q",
+        "num_passengers": 123
+      },
+      {
+        "embarked": "",
+        "num_passengers": 6
+      }
+    ],
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT embarked, COUNT(*) AS num_passengers\nFROM The_Titanic_dataset_csv\nGROUP BY embarked\nORDER BY num_passengers DESC\n\"\"\"\nresult_df = execute_sql_query(sql_query)\nresult = {'type': 'dataframe', 'value': result_df}",
+    "timestamp": "2025-03-24T10:29:03.515689"
+  },
+  {
+    "id": "aaa2e0c8-9287-4c67-b9a6-9ce6a637b944",
+    "prompt": "How many rows are in the dataset?",
     "filenames": [
       "The Titanic dataset.csv"
     ],
     "response": 1301,
-    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T19:02:23.596081"
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS row_count FROM The_Titanic_dataset_csv'\nresult_df = execute_sql_query(sql_query)\nrow_count = result_df['row_count'].iloc[0]\nresult = {'type': 'number', 'value': row_count}",
+    "timestamp": "2025-03-24T10:26:23.956141"
   },
   {
-    "id": "130c9165-8195-4c0e-8f53-b5a3ba96355d",
-    "prompt": "Construct a graph showing the number of males vs number of females\n",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": "exports/charts/temp_chart.png",
-    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Number of Females on the Titanic')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplot_filename = 'exports/charts/temp_chart.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
-    "timestamp": "2025-03-23T19:02:10.331964"
-  },
-  {
-    "id": "ed4b6545-9f39-4e36-a1a6-67e3ae631d2b",
-    "prompt": "What is the number of passengers",
+    "id": "78570e29-79a3-4005-bad1-ed9834afcc06",
+    "prompt": "How many rows are in the dataset?",
     "filenames": [
       "The Titanic dataset.csv"
     ],
     "response": 1301,
-    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T19:01:08.742543"
-  },
-  {
-    "id": "f92b02c1-7f0c-4f6d-897a-3c1d1e9bec96",
-    "prompt": "Construct a graph showing the number of males vs number of females\n",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": "exports/charts/temp_chart.png",
-    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Number of Females')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplot_filename = 'exports/charts/temp_chart.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
-    "timestamp": "2025-03-23T19:00:44.532771"
-  },
-  {
-    "id": "9b59979d-4d84-4227-b2b7-dfab0e47e130",
-    "prompt": "Construct a graph showing the number of males vs number of females\n",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": "exports/charts/temp_chart.png",
-    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Number of Females on the Titanic')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplot_filename = 'exports/charts/temp_chart.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
-    "timestamp": "2025-03-23T19:00:06.385058"
-  },
-  {
-    "id": "f3e334d5-dcaa-44c7-8ce2-44f7fe56e5a9",
-    "prompt": "Construct a graph showing the number of males vs number of females\n",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": "exports/charts/temp_chart.png",
-    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Number of Females')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplot_filename = 'exports/charts/temp_chart.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
-    "timestamp": "2025-03-23T18:58:35.882606"
-  },
-  {
-    "id": "2e992167-9e5c-441f-b876-a839825ddee3",
-    "prompt": "Construct a graph showing the number of males vs number of females\n",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": "exports/charts/temp_chart.png",
-    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Number of Females on the Titanic')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=0)\nplt.grid(axis='y')\nplot_filename = 'exports/charts/temp_chart.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
-    "timestamp": "2025-03-23T18:58:08.955314"
-  },
-  {
-    "id": "637ba3f7-3dfb-4d30-b665-defbd6f7c78e",
-    "prompt": "Construct a graph showing the number of males vs number of females\n",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": "exports/charts/temp_chart.png",
-    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nplt.title('Number of Males vs Number of Females')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplot_filename = 'exports/charts/temp_chart.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
-    "timestamp": "2025-03-23T18:57:31.740026"
-  },
-  {
-    "id": "bfd0547d-966b-4630-9276-47b38f559369",
-    "prompt": "What is the number of passengers",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": 1301,
-    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T18:57:03.727210"
-  },
-  {
-    "id": "6b31fea6-a9e4-40b0-9ede-4c87c24fea48",
-    "prompt": "What is the number of passengers",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": 1301,
-    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T18:56:51.453207"
-  },
-  {
-    "id": "faf3d913-48a7-4eb2-a5f7-a1baded4ad5e",
-    "prompt": "What is the number of passengers",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": 1301,
-    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T18:56:32.485898"
-  },
-  {
-    "id": "a6d16006-d4d6-4b84-a2b1-a596f37539bc",
-    "prompt": "What is the number of passengers",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": 1301,
-    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T18:55:31.600644"
-  },
-  {
-    "id": "a8e41367-17bd-46e7-b8b4-9b01677fdb31",
-    "prompt": "What is the number of passengers",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": 1301,
-    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T18:54:17.802175"
-  },
-  {
-    "id": "ecf174b2-1e63-4475-b5bb-bd995951ee3f",
-    "prompt": "What is the number of passengers",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": 1301,
-    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T18:53:39.270769"
-  },
-  {
-    "id": "bbd80066-e1bb-4ce6-a562-447730ecc9e2",
-    "prompt": "What is the number of passengers",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": 1301,
-    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T18:53:21.362706"
-  },
-  {
-    "id": "85de9d0a-4cb0-4103-ab6d-1581eae96245",
-    "prompt": "What is the number of passengers",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": 1301,
-    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T18:52:01.245095"
-  },
-  {
-    "id": "34b89fb2-963e-46db-b236-f5b8f47e40b3",
-    "prompt": "What is the number of passengers",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": 1301,
-    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T18:49:18.560932"
-  },
-  {
-    "id": "b38f206c-8782-4b87-87be-520f791d9012",
-    "prompt": "What is the number of passengers",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": 1301,
-    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T18:48:13.334670"
-  },
-  {
-    "id": "e4d7ccb4-5306-41b8-a3bf-dc815f7f44d3",
-    "prompt": "What is the number of passengers",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": 1301,
-    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T18:45:03.454800"
-  },
-  {
-    "id": "081a0ede-1cb4-4fa3-9dcf-64840c1284d8",
-    "prompt": "What is the number of passengers",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": 1301,
-    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T18:44:06.185329"
-  },
-  {
-    "id": "6d030a44-f003-42eb-bcce-dafa48e2bd63",
-    "prompt": "What is the number of passengers",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": 1301,
-    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T18:40:04.154199"
-  },
-  {
-    "id": "822e0f4a-ec52-48d6-863d-ca227a2e3a45",
-    "prompt": "What is the number of passengers",
-    "filenames": [
-      "The Titanic dataset.csv"
-    ],
-    "response": 1301,
-    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS number_of_passengers FROM The_Titanic_dataset_csv'\npassenger_count_df = execute_sql_query(sql_query)\nnumber_of_passengers = passenger_count_df['number_of_passengers'].iloc[0]\nresult = {'type': 'number', 'value': number_of_passengers}",
-    "timestamp": "2025-03-23T18:39:46.992926"
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS row_count FROM The_Titanic_dataset_csv'\nresult_df = execute_sql_query(sql_query)\nnumber_of_rows = result_df['row_count'].iloc[0]\nresult = {'type': 'number', 'value': number_of_rows}",
+    "timestamp": "2025-03-24T10:25:11.001408"
   }
 ]
