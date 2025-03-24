@@ -125,7 +125,7 @@ git add .
 git commit -m "Initial commit: full-stack AI app"
 git push origin main
 ```
-#🚀 Built by Akash Savanur
+# 🚀 Built by Akash Savanur
 
 
 
