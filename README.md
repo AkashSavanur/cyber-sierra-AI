@@ -78,13 +78,17 @@ npm start
 Frontend runs at: http://localhost:3000
 
 ### ⚙️ API Endpoints (Backend)
-Method	Endpoint	Description
-POST	/api/upload	Upload one or more files
-GET	/api/files	List uploaded files
-GET	/api/preview	Get top N rows of a selected file
-POST	/api/query	Ask prompt to LLM with file context
-POST	/api/feedback	Send feedback on LLM response
-GET	/api/history	Retrieve all past prompt responses
+
+| Method | Endpoint        | Description                             |
+|--------|------------------|-----------------------------------------|
+| POST   | `/api/upload`    | Upload one or more files                |
+| GET    | `/api/files`     | List uploaded files                     |
+| GET    | `/api/preview`   | Get top N rows of a selected file       |
+| POST   | `/api/query`     | Ask prompt to LLM with file context     |
+| POST   | `/api/feedback`  | Send feedback on LLM response           |
+| GET    | `/api/history`   | Retrieve all past prompt responses      |
+| GET    | `/api/charts/{chart_name}`   | Retrieve all past prompt responses      |
+
 
 ### 📘 Bonus Features
 - Prompt reuse from history
