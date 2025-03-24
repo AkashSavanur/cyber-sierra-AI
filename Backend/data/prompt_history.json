@@ -1,5 +1,85 @@
 [
   {
+    "id": "f47b6f09-88af-49a0-8dcf-ef7025fa9210",
+    "prompt": "Construct a graph showing the number of males vs number of females. label the numbers on the bar graph also\n",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "exports/charts/temp_chart.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nbars = plt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nfor bar in bars:\n    yval = bar.get_height()\n    plt.text(bar.get_x() + bar.get_width() / 2, yval, int(yval), ha='center', va='bottom')\nplt.title('Number of Males vs Number of Females')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.xticks(rotation=0)\nplt.savefig('exports/charts/temp_chart.png')\nplt.close()\nresult = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}",
+    "timestamp": "2025-03-24T03:01:56.506529"
+  },
+  {
+    "id": "6230299f-18c3-4777-8d10-0b3ede4512f8",
+    "prompt": "Construct a graph showing the number of males vs number of females. label the numbers on the bar graph also\n",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "exports/charts/temp_chart.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) as count\nFROM The_Titanic_dataset_csv\nWHERE gender IS NOT NULL\nGROUP BY gender\n\"\"\"\ngender_counts = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nbars = plt.bar(gender_counts['gender'], gender_counts['count'], color=['blue', 'pink'])\nfor bar in bars:\n    yval = bar.get_height()\n    plt.text(bar.get_x() + bar.get_width() / 2, yval, int(yval), va='bottom')\nplt.title('Number of Males vs Number of Females')\nplt.xlabel('Gender')\nplt.ylabel('Count')\nplt.savefig('exports/charts/temp_chart.png')\nresult = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}",
+    "timestamp": "2025-03-24T02:58:00.100727"
+  },
+  {
+    "id": "946af522-9ced-4e46-b214-ec572c5f7bc2",
+    "prompt": "Construct a graph showing the number of males vs number of females. label the numbers on the bar graph also\n",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": null,
+    "code": null,
+    "timestamp": "2025-03-24T02:55:55.130228"
+  },
+  {
+    "id": "34502f35-f223-42de-812d-23d83ca7e62a",
+    "prompt": "Construct a graph showing the number of males vs number of females. label the numbers on the bar graph also\n",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": null,
+    "code": null,
+    "timestamp": "2025-03-24T02:51:19.809733"
+  },
+  {
+    "id": "dc92ac3a-b851-482c-af84-360c765be16d",
+    "prompt": "Construct a graph showing the number of males vs number of females. label the numbers on the bar graph also\n",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": null,
+    "code": null,
+    "timestamp": "2025-03-24T02:48:41.197526"
+  },
+  {
+    "id": "caa13399-c5e6-4f12-84c0-e340aa60830e",
+    "prompt": "Construct a graph showing the number of males vs number of females. label the numbers on the bar graph also\n",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": null,
+    "code": null,
+    "timestamp": "2025-03-24T02:47:38.925802"
+  },
+  {
+    "id": "0743dfa6-44a2-49a4-b060-2b6264c6b9e3",
+    "prompt": "Construct a graph showing the number of males vs number of females. label the numbers on the bar graph also\n",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": null,
+    "code": null,
+    "timestamp": "2025-03-24T02:47:10.211824"
+  },
+  {
+    "id": "c773f0ff-de40-4fed-af9c-10eadea8358e",
+    "prompt": "Construct a graph showing the number of males vs number of females. label the numbers on the bar graph also\n",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": null,
+    "code": null,
+    "timestamp": "2025-03-24T02:46:33.692601"
+  },
+  {
     "id": "a33cc389-612a-4cfa-aec8-0461328bd53f",
     "prompt": "What is the age of earth",
     "filenames": [

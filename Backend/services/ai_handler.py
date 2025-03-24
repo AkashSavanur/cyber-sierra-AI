@@ -10,7 +10,6 @@ load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 DATA_FOLDER = "data"
 
-# Set up OpenAI LLM globally for PandasAI
 llm = OpenAI(api_token=OPENAI_API_KEY)
 pai.config.set({
     "llm": llm,
