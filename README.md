@@ -38,44 +38,56 @@ A full-stack AI-powered web app that allows users to:
 
 ### 📍 Pre-requisites
 
-- Node.js (v18+)
-- Python (>=3.11 recommended)
+Ensure you have the following installed:
+
+- **Node.js** (v18+)
+- **Python** (>= 3.11 recommended)
 - `pip`, `venv`, and `git`
 
 ---
 
-### 📦 Backend Setup (FastAPI)
+```bash
+# Clone the repo
+git clone https://github.com/your-username/cyber-sierra.git
+```
+
+## 📦 Backend Setup (FastAPI + PandasAI)
 
 ```bash
-cd Backend
-python -m venv venv
-source venv/bin/activate  # or venv\Scripts\activate on Windows
+cd cyber-sierra/Backend
 
-# Install requirements
+# 2. Create and activate virtual environment
+python -m venv venv
+source venv/bin/activate          # On Mac/Linux
+# venv\Scripts\activate           # On Windows
+
+# 3. Install dependencies
 pip install -r requirements.txt
 
-# OR install manually if requirements.txt is missing
-pip install fastapi uvicorn pandas openpyxl python-dotenv pandasai pandasai-openai
+# If requirements.txt is missing, run:
+# pip install fastapi uvicorn pandas openpyxl python-dotenv pandasai pandasai-openai
 
-# Create a .env file
-echo "OPENAI_API_KEY=sk-proj-..." > .env
+# 4. Set up environment variables
+touch .env                        # or `notepad .env` on Windows
+# Paste your OpenAI key into the .env file:
+# OPENAI_API_KEY=sk-proj-...
 
-# Start the server
+# 5. Run the server
 uvicorn main:app --reload
 ```
-App will be running at: http://127.0.0.1:8000
 
-### 💻 Frontend Setup (React)
+✅ Backend will be running at: http://127.0.0.1:8000
 
+💻 Frontend Setup (React + MUI)
 ```bash
-cd Frontend
+cd ../Frontend
+
+# 1. Install Node modules
 npm install
 
-# Start the React app
+# 2. Start the frontend app
 npm start
 ```
-
-Frontend runs at: http://localhost:3000
 
 ### ⚙️ API Endpoints (Backend)
 
