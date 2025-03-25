@@ -57,7 +57,7 @@ git clone https://github.com/AkashSavanur/cyber-sierra-AI.git
 cd cyber-sierra-AI/Backend
 
 # 2. Create and activate virtual environment
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate          # On Mac/Linux
 # venv\Scripts\activate           # On Windows
 
