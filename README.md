@@ -121,22 +121,6 @@ npm start
 - Designed with extensibility and security in mind
 - LLM errors are gracefully handled with fallback messaging
 
-### 📋 Git Instructions
-```bash
-# Initialize Git (if not already)
-git init
-git remote add origin <your-repo-url>
-
-# Don't forget to ignore venv and sensitive files
-echo "venv/" >> .gitignore
-echo ".env" >> .gitignore
-echo "data/" >> .gitignore
-
-# Commit and push
-git add .
-git commit -m "Initial commit: full-stack AI app"
-git push origin main
-```
 # 🚀 Built by Akash Savanur
 
 
