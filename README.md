@@ -62,10 +62,7 @@ source venv/bin/activate          # On Mac/Linux
 # venv\Scripts\activate           # On Windows
 
 # 3. Install dependencies
-pip install -r requirements.txt
-
-# If requirements.txt is missing, run:
-# pip install setuptools wheel xlrd fastapi uvicorn pandas openpyxl python-dotenv pandasai pandasai-openai python-multipart
+pip install setuptools wheel xlrd fastapi uvicorn pandas openpyxl python-dotenv pandasai pandasai-openai python-multipart
 
 # May need to install Rust and Cargo, if encountering errors:
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
