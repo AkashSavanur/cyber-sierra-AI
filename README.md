@@ -48,13 +48,13 @@ Ensure you have the following installed:
 
 ```bash
 # Clone the repo
-git clone https://github.com/your-username/cyber-sierra.git
+git clone https://github.com/AkashSavanur/cyber-sierra-AI.git
 ```
 
 ## 📦 Backend Setup (FastAPI + PandasAI)
 
 ```bash
-cd cyber-sierra/Backend
+cd cyber-sierra-AI/Backend
 
 # 2. Create and activate virtual environment
 python -m venv venv
