@@ -49386,3 +49386,215 @@ result = {'type': 'plot', 'value': plot_filename}
 2025-03-26 00:20:04 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 2025-03-26 00:20:04 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 2025-03-26 00:20:05 [INFO] Response generated successfully.
+2025-03-26 01:58:11 [INFO] Question: Construct a bar graph of top 10 inbound VLAN traffic frequency
+2025-03-26 01:58:11 [INFO] Running PandaAI with openai LLM...
+2025-03-26 01:58:11 [INFO] Prompt ID: 194d6cd4-4422-4134-aeda-3558b506474d
+2025-03-26 01:58:11 [INFO] Generating new code...
+2025-03-26 01:58:11 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_8b203ce1c2a958757008b6ae93d9f30d" dimensions="65535x20">
+Type,s_flow_agent_address,input port,output port,src_MAC,drc_MAC,ethernet_type,in_vlan,out_vlan,src_IP,dst_IP,IP_protocol,ip_tos,ip_ttl,src_transport_port,dst_transport_port,tcp_flags,packet_size,IP_size,sampling_rate
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.22,140.115.32.81,6,0x00,50,51216,23505,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,193,609c9f851b00,0031466b23cf,0x0800,11,919,155.69.160.32,64.233.188.128,6,0x00,56,23159,80,0x10,74,52,2048
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.53,140.115.32.83,6,0x00,50,50041,20739,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,135,609c9f851b00,002688cd5fc7,0x0800,11,919,155.69.160.32,54.169.174.79,17,0x00,120,54241,26510,0x10,116,94,2048
+FLOW,203.30.38.251,130,199,00239cd087c1,544b8cf9a7df,0x0800,919,600,137.132.228.15,193.62.192.8,6,0x00,56,53923,34262,0x10,70,52,2048
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Construct a bar graph of top 10 inbound VLAN traffic frequency
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-03-26 01:58:23 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-26 01:58:23 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Execute SQL query to get the top 10 inbound VLAN traffic frequency
+sql_query = """
+SELECT in_vlan, COUNT(*) AS traffic_count
+FROM table_8b203ce1c2a958757008b6ae93d9f30d
+GROUP BY in_vlan
+ORDER BY traffic_count DESC
+LIMIT 10
+"""
+vlan_traffic_df = execute_sql_query(sql_query)
+
+# Plotting the bar graph
+plt.figure(figsize=(10, 6))
+plt.bar(vlan_traffic_df['in_vlan'].astype(str), vlan_traffic_df['traffic_count'], color='skyblue')
+plt.title('Top 10 Inbound VLAN Traffic Frequency')
+plt.xlabel('Inbound VLAN')
+plt.ylabel('Traffic Count')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot to a file
+plot_filename = 'top_10_inbound_vlan_traffic.png'
+plt.savefig(plot_filename)
+plt.close()
+
+# Declare result var
+result = {"type": "plot", "value": plot_filename}
+2025-03-26 01:58:23 [INFO] Validating code requirements...
+2025-03-26 01:58:23 [INFO] Code validation successful.
+2025-03-26 01:58:23 [INFO] Cleaning the generated code...
+2025-03-26 01:58:23 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT in_vlan, COUNT(*) AS traffic_count
+FROM table_8b203ce1c2a958757008b6ae93d9f30d
+GROUP BY in_vlan
+ORDER BY traffic_count DESC
+LIMIT 10
+"""
+vlan_traffic_df = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(vlan_traffic_df['in_vlan'].astype(str), vlan_traffic_df['traffic_count'], color='skyblue')
+plt.title('Top 10 Inbound VLAN Traffic Frequency')
+plt.xlabel('Inbound VLAN')
+plt.ylabel('Traffic Count')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'exports/charts/temp_chart_129ea20c-c992-4b29-aebb-b6155a4b35c0.png'
+plt.savefig(plot_filename)
+plt.close()
+result = {'type': 'plot', 'value': plot_filename}
+2025-03-26 01:58:23 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-03-26 01:58:23 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-03-26 01:58:23 [INFO] Response generated successfully.
+2025-03-26 02:13:45 [INFO] Question: Construtc a histogram of ip_ttl 
+2025-03-26 02:13:45 [INFO] Running PandaAI with openai LLM...
+2025-03-26 02:13:45 [INFO] Prompt ID: 51b4b71b-2dbf-459c-af6b-cc574291869d
+2025-03-26 02:13:45 [INFO] Generating new code...
+2025-03-26 02:13:45 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_8b203ce1c2a958757008b6ae93d9f30d" dimensions="65535x20">
+Type,s_flow_agent_address,input port,output port,src_MAC,drc_MAC,ethernet_type,in_vlan,out_vlan,src_IP,dst_IP,IP_protocol,ip_tos,ip_ttl,src_transport_port,dst_transport_port,tcp_flags,packet_size,IP_size,sampling_rate
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.22,140.115.32.81,6,0x00,50,51216,23505,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,193,609c9f851b00,0031466b23cf,0x0800,11,919,155.69.160.32,64.233.188.128,6,0x00,56,23159,80,0x10,74,52,2048
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.53,140.115.32.83,6,0x00,50,50041,20739,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,135,609c9f851b00,002688cd5fc7,0x0800,11,919,155.69.160.32,54.169.174.79,17,0x00,120,54241,26510,0x10,116,94,2048
+FLOW,203.30.38.251,130,199,00239cd087c1,544b8cf9a7df,0x0800,919,600,137.132.228.15,193.62.192.8,6,0x00,56,53923,34262,0x10,70,52,2048
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Construtc a histogram of ip_ttl 
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-03-26 02:13:53 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-26 02:13:53 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Execute SQL query to get the count of each ip_ttl value
+sql_query = """
+SELECT ip_ttl, COUNT(*) AS count
+FROM table_8b203ce1c2a958757008b6ae93d9f30d
+GROUP BY ip_ttl
+ORDER BY ip_ttl
+"""
+df_ip_ttl = execute_sql_query(sql_query)
+
+# Create a histogram plot for ip_ttl
+plt.figure(figsize=(10, 6))
+plt.bar(df_ip_ttl['ip_ttl'].astype(str), df_ip_ttl['count'], color='blue')
+plt.xlabel('IP TTL Values')
+plt.ylabel('Count')
+plt.title('Histogram of IP TTL Values')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot to a file
+plot_filename = 'ip_ttl_histogram.png'
+plt.savefig(plot_filename)
+plt.close()
+
+# Declare result var: 
+result = { "type": "plot", "value": plot_filename }
+2025-03-26 02:13:53 [INFO] Validating code requirements...
+2025-03-26 02:13:53 [INFO] Code validation successful.
+2025-03-26 02:13:53 [INFO] Cleaning the generated code...
+2025-03-26 02:13:53 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT ip_ttl, COUNT(*) AS count
+FROM table_8b203ce1c2a958757008b6ae93d9f30d
+GROUP BY ip_ttl
+ORDER BY ip_ttl
+"""
+df_ip_ttl = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(df_ip_ttl['ip_ttl'].astype(str), df_ip_ttl['count'], color='blue')
+plt.xlabel('IP TTL Values')
+plt.ylabel('Count')
+plt.title('Histogram of IP TTL Values')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'exports/charts/temp_chart_9cbcc1b6-033b-4d0b-82d9-ccb3ee1dca5c.png'
+plt.savefig(plot_filename)
+plt.close()
+result = {'type': 'plot', 'value': plot_filename}
+2025-03-26 02:13:53 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-03-26 02:13:53 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-03-26 02:13:53 [INFO] Response generated successfully.

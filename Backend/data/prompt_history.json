@@ -1,5 +1,25 @@
 [
   {
+    "id": "ccaac548-6f0b-41d5-bd36-11305fd0012b",
+    "prompt": "Construtc a histogram of ip_ttl ",
+    "filenames": [
+      "Data 3.xls"
+    ],
+    "response": "exports/charts/temp_chart_9cbcc1b6-033b-4d0b-82d9-ccb3ee1dca5c.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT ip_ttl, COUNT(*) AS count\nFROM table_8b203ce1c2a958757008b6ae93d9f30d\nGROUP BY ip_ttl\nORDER BY ip_ttl\n\"\"\"\ndf_ip_ttl = execute_sql_query(sql_query)\nplt.figure(figsize=(10, 6))\nplt.bar(df_ip_ttl['ip_ttl'].astype(str), df_ip_ttl['count'], color='blue')\nplt.xlabel('IP TTL Values')\nplt.ylabel('Count')\nplt.title('Histogram of IP TTL Values')\nplt.xticks(rotation=45)\nplt.tight_layout()\nplot_filename = 'exports/charts/temp_chart_9cbcc1b6-033b-4d0b-82d9-ccb3ee1dca5c.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
+    "timestamp": "2025-03-25T18:13:53.354018"
+  },
+  {
+    "id": "99d20523-93f5-44b4-940b-1906dbd6d7e3",
+    "prompt": "Construct a bar graph of top 10 inbound VLAN traffic frequency",
+    "filenames": [
+      "Data 3.xls"
+    ],
+    "response": "exports/charts/temp_chart_129ea20c-c992-4b29-aebb-b6155a4b35c0.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT in_vlan, COUNT(*) AS traffic_count\nFROM table_8b203ce1c2a958757008b6ae93d9f30d\nGROUP BY in_vlan\nORDER BY traffic_count DESC\nLIMIT 10\n\"\"\"\nvlan_traffic_df = execute_sql_query(sql_query)\nplt.figure(figsize=(10, 6))\nplt.bar(vlan_traffic_df['in_vlan'].astype(str), vlan_traffic_df['traffic_count'], color='skyblue')\nplt.title('Top 10 Inbound VLAN Traffic Frequency')\nplt.xlabel('Inbound VLAN')\nplt.ylabel('Traffic Count')\nplt.xticks(rotation=45)\nplt.tight_layout()\nplot_filename = 'exports/charts/temp_chart_129ea20c-c992-4b29-aebb-b6155a4b35c0.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
+    "timestamp": "2025-03-25T17:58:23.141323"
+  },
+  {
     "id": "c394e2ea-ae24-45fb-a724-03cc43d15f9b",
     "prompt": "Construct a bar graph of top 10 inbound VLAN traffic frequency",
     "filenames": [
