@@ -51,10 +51,13 @@ def run_llm_query(filenames: list, prompt: str) -> dict:
         ext = os.path.splitext(file_path)[1]
         if ext == ".csv":
             df = pd.read_csv(file_path)
-        elif ext in [".xls", ".xlsx"]:
-            df = pd.read_excel(file_path, engine="openpyxl")
+        elif ext == ".xlsx":
+            df = pd.read_excel(file_path, engine='openpyxl')
+        elif ext == ".xls":
+            import xlrd
+            df = pd.read_excel(file_path, engine='xlrd')
         else:
-            raise ValueError(f"Unsupported file format: {filename}")
+            raise ValueError("Unsupported file format")
 
         if all(str(col).startswith("Unnamed") or str(col).isdigit() for col in df.columns):
             print(f"🔧 Promoting first row to header for '{filename}' (detected unnamed columns)")

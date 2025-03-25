@@ -21,16 +21,20 @@ def get_uploaded_files(upload_dir: str) -> List[str]:
 
 
 def read_top_n_rows(file_path: str, n: int) -> List[dict]:
-    ext = os.path.splitext(file_path)[1]
+    ext = os.path.splitext(file_path)[1].lower()
 
     if ext == ".csv":
         df = pd.read_csv(file_path)
-    elif ext in [".xls", ".xlsx"]:
+    elif ext == ".xlsx":
         df = pd.read_excel(file_path, engine='openpyxl')
+    elif ext == ".xls":
+        import xlrd
+        df = pd.read_excel(file_path, engine='xlrd')
     else:
         raise ValueError("Unsupported file format")
 
     df = df.head(n).replace([float('inf'), float('-inf')], None).fillna("")
 
     return df.to_dict(orient="records")
+
 

@@ -151,7 +151,6 @@ const LLMPage = () => {
         <Paper elevation={2} sx={{ padding: 2, backgroundColor: "#f9f9f9" }}>
           <Typography variant="h6">Response:</Typography>
 
-          {/* Response Display */}
           <Box mt={1}>
             {typeof response === "object" ? (
               typeof response.value === "object" ? (
