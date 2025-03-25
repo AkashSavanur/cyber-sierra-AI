@@ -54,7 +54,7 @@ git clone https://github.com/AkashSavanur/cyber-sierra-AI.git
 ## 📦 Backend Setup (FastAPI + PandasAI)
 
 ```bash
-cd cyber-sierra-AI/Backend
+cd Backend
 
 # 2. Create and activate virtual environment
 python3.11 -m venv venv
@@ -80,7 +80,7 @@ uvicorn main:app --reload
 
 💻 Frontend Setup (React + MUI)
 ```bash
-cd ../Frontend
+cd Frontend
 
 # 1. Install Node modules
 npm install
