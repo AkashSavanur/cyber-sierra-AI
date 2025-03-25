@@ -57,7 +57,7 @@ git clone https://github.com/AkashSavanur/cyber-sierra-AI.git
 cd cyber-sierra-AI/Backend
 
 # 2. Create and activate virtual environment
-python3 -m venv venv
+python3.11 -m venv venv
 source venv/bin/activate          # On Mac/Linux
 # venv\Scripts\activate           # On Windows
 
@@ -65,7 +65,7 @@ source venv/bin/activate          # On Mac/Linux
 pip install -r requirements.txt
 
 # If requirements.txt is missing, run:
-# pip install fastapi uvicorn pandas openpyxl python-dotenv pandasai pandasai-openai python-multipart
+# pip install setuptools wheel xlrd fastapi uvicorn pandas openpyxl python-dotenv pandasai pandasai-openai python-multipart
 
 # May need to install Rust and Cargo, if encountering errors:
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
