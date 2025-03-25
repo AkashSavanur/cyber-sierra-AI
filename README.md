@@ -65,7 +65,7 @@ source venv/bin/activate          # On Mac/Linux
 pip install -r requirements.txt
 
 # If requirements.txt is missing, run:
-# pip install fastapi uvicorn pandas openpyxl python-dotenv pandasai pandasai-openai
+# pip install fastapi uvicorn pandas openpyxl python-dotenv pandasai pandasai-openai python-multipart
 
 # 4. Set up environment variables
 touch .env                        # or `notepad .env` on Windows
