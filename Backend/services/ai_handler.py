@@ -22,13 +22,12 @@ pai.config.set({
 
 
 def convert_numpy_types(obj):
-    """Recursively convert numpy types, pandas DataFrames, or Series to native Python types."""
-    if isinstance(obj, np.generic):  # Check for numpy types
-        return obj.item()  # Convert numpy scalar to native Python type
-    elif isinstance(obj, pd.DataFrame):  # Check for pandas DataFrame
-        return obj.to_dict(orient='records')  # Convert DataFrame to list of dictionaries (records)
-    elif isinstance(obj, pd.Series):  # Check for pandas Series
-        return obj.tolist()  # Convert Series to a list
+    if isinstance(obj, np.generic):  
+        return obj.item()  
+    elif isinstance(obj, pd.DataFrame):  
+        return obj.to_dict(orient='records')  
+    elif isinstance(obj, pd.Series):  
+        return obj.tolist() 
     elif isinstance(obj, dict):
         return {key: convert_numpy_types(value) for key, value in obj.items()}
     elif isinstance(obj, list):
@@ -64,25 +63,21 @@ def run_llm_query(filenames: list, prompt: str) -> dict:
 
             new_header = df.iloc[0].astype(str)   
             df = df[1:].copy()                    
-            df.columns = new_header               # set new header
+            df.columns = new_header              
 
             df = df.loc[:, df.columns.notna()]
             df.columns = [col.strip() for col in df.columns]
 
             print(f"Cleaned header columns: {list(df.columns)}")
 
-        # Clean NaN/inf to avoid JSON serialization issues
         df = df.replace([float('inf'), float('-inf')], None).fillna("")
 
-        # Debug: print raw DataFrame columns
         print(f"Columns in '{filename}': {list(df.columns)}")
         print(df.dtypes)
 
-        # Wrap as semantic DataFrame
         sanitized_filename = filename.replace(" ", "_").replace(".", "_")
         semantic_dfs.append(pai.DataFrame(df, name=sanitized_filename))
 
-    # Debug: Print DataFrame metadata
     print("\nPrompt:", prompt)
     print("Using files:", filenames)
 
@@ -96,7 +91,6 @@ def run_llm_query(filenames: list, prompt: str) -> dict:
             "error": getattr(result, "error", None),
         }
 
-        # Debug print
         print("\nLLM Result:", response["value"])
         if response["last_code_executed"]:
             print("Code executed by LLM:")

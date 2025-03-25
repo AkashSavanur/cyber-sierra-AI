@@ -14,13 +14,10 @@ class QueryRequest(BaseModel):
 @router.post("/query")
 async def query_data(request: QueryRequest):
     try:
-        # Run LLM query
         result = run_llm_query(request.filenames, request.prompt)
 
-        # Create unique prompt ID
         prompt_id = str(uuid4())
 
-        # Save to history
         save_prompt({
             "id": prompt_id,
             "prompt": request.prompt,
@@ -29,7 +26,6 @@ async def query_data(request: QueryRequest):
             "code": result.get("last_code_executed"),
         })
 
-        # Return response and ID
         return {
             "response": result,
             "id": prompt_id

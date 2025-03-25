@@ -9,7 +9,7 @@ const HomePage = () => {
       p={2}
       sx={{
         backgroundColor: "#fff",
-        color: "#000", // Set text color
+        color: "#000", 
         flexGrow: 1,
       }}
     >

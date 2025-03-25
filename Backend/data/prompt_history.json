@@ -1,5 +1,137 @@
 [
   {
+    "id": "c394e2ea-ae24-45fb-a724-03cc43d15f9b",
+    "prompt": "Construct a bar graph of top 10 inbound VLAN traffic frequency",
+    "filenames": [
+      "Data 3.xls"
+    ],
+    "response": "exports/charts/temp_chart_3cfdb05a-5cd6-4cf8-af5d-265f54388f16.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT in_vlan, COUNT(*) AS traffic_count\nFROM table_8b203ce1c2a958757008b6ae93d9f30d\nGROUP BY in_vlan\nORDER BY traffic_count DESC\nLIMIT 10\n\"\"\"\nvlan_traffic_df = execute_sql_query(sql_query)\nplt.figure(figsize=(10, 6))\nplt.bar(vlan_traffic_df['in_vlan'].astype(str), vlan_traffic_df['traffic_count'], color='skyblue')\nplt.title('Top 10 Inbound VLAN Traffic Frequency')\nplt.xlabel('Inbound VLAN')\nplt.ylabel('Traffic Count')\nplt.xticks(rotation=45)\nplt.tight_layout()\nplot_filename = 'exports/charts/temp_chart_3cfdb05a-5cd6-4cf8-af5d-265f54388f16.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
+    "timestamp": "2025-03-25T16:20:05.062963"
+  },
+  {
+    "id": "7562c794-dc92-4d1b-b3d3-92342c79435b",
+    "prompt": "Was there anyone named Rose on the Titanic?",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "There was no one named Rose on the Titanic.",
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT * \nFROM table_aab87f923d5bd82edba8d82e8400ad50 \nWHERE family LIKE '%Rose%' OR gender LIKE '%Rose%'\n\"\"\"\nresult_df = execute_sql_query(sql_query)\nif not result_df.empty:\n    result_value = 'There was someone named Rose on the Titanic.'\nelse:\n    result_value = 'There was no one named Rose on the Titanic.'\nresult = {'type': 'string', 'value': result_value}",
+    "timestamp": "2025-03-25T08:28:08.672740"
+  },
+  {
+    "id": "d0ec89c5-4c49-4f82-8cab-08ae0c7321cf",
+    "prompt": "What is the percentage of male and female survivors",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": [
+      {
+        "gender": "",
+        "total": 1,
+        "survived_count": 0.0,
+        "survival_percentage": 0.0
+      },
+      {
+        "gender": "male",
+        "total": 835,
+        "survived_count": 161.0,
+        "survival_percentage": 19.281437125748504
+      },
+      {
+        "gender": "female",
+        "total": 465,
+        "survived_count": 339.0,
+        "survival_percentage": 72.90322580645162
+      }
+    ],
+    "code": "import pandas as pd\nsql_query = \"\"\"\nSELECT \n    gender,\n    COUNT(*) AS total,\n    SUM(CAST(survived AS INTEGER)) AS survived_count,\n    (SUM(CAST(survived AS INTEGER)) * 100.0 / COUNT(*)) AS survival_percentage\nFROM \n    table_aab87f923d5bd82edba8d82e8400ad50\nGROUP BY \n    gender\n\"\"\"\nsurvivor_data = execute_sql_query(sql_query)\nresult = {'type': 'dataframe', 'value': survivor_data}\nprint(result)",
+    "timestamp": "2025-03-25T08:27:20.100240",
+    "feedback": "useful"
+  },
+  {
+    "id": "3416f2b7-1eb3-43f4-b066-c7f491b3bed0",
+    "prompt": "Create a bar graph comparing the number of male and female survivors",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "exports/charts/temp_chart_1dafde04-cb14-4371-a1b6-fce9d35e54d9.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, COUNT(*) AS survivor_count\nFROM table_aab87f923d5bd82edba8d82e8400ad50\nWHERE survived = 1\nGROUP BY gender\n\"\"\"\nsurvivor_data = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(survivor_data['gender'], survivor_data['survivor_count'], color=['blue', 'pink'])\nplt.title('Number of Male and Female Survivors')\nplt.xlabel('Gender')\nplt.ylabel('Number of Survivors')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplt.savefig('exports/charts/temp_chart_1dafde04-cb14-4371-a1b6-fce9d35e54d9.png')\nresult = {'type': 'plot', 'value': 'exports/charts/temp_chart_1dafde04-cb14-4371-a1b6-fce9d35e54d9.png'}",
+    "timestamp": "2025-03-25T08:26:45.360002"
+  },
+  {
+    "id": "e3d39982-b0b3-49db-9a54-2f0a4dfa5fef",
+    "prompt": "Heatmap of traffic volume between top 10 port pairs",
+    "filenames": [
+      "Data 3.xls"
+    ],
+    "response": "exports/charts/temp_chart_be3f0d29-f3cf-4e8b-a929-2414066aa7aa.png",
+    "code": "import pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT \n    \"input port\", \n    \"output port\", \n    SUM(packet_size) AS total_traffic\nFROM \n    table_8b203ce1c2a958757008b6ae93d9f30d\nGROUP BY \n    \"input port\", \"output port\"\nORDER BY \n    total_traffic DESC\nLIMIT 10\n\"\"\"\ntop_port_pairs = execute_sql_query(sql_query)\nheatmap_data = top_port_pairs.pivot(index='input port', columns='output port', values='total_traffic').fillna(0)\nplt.figure(figsize=(10, 8))\nsns.heatmap(heatmap_data, annot=True, fmt='.0f', cmap='YlGnBu')\nplt.title('Heatmap of Traffic Volume Between Top 10 Port Pairs')\nplt.xlabel('Output Port')\nplt.ylabel('Input Port')\nplt.savefig('exports/charts/temp_chart_be3f0d29-f3cf-4e8b-a929-2414066aa7aa.png')\nplt.close()\nresult = {'type': 'plot', 'value': 'exports/charts/temp_chart_be3f0d29-f3cf-4e8b-a929-2414066aa7aa.png'}",
+    "timestamp": "2025-03-25T08:23:36.414883"
+  },
+  {
+    "id": "eff646de-3b1a-4bed-a377-c99ae507e678",
+    "prompt": "Heatmap of traffic volume between top 10 port pairs",
+    "filenames": [
+      "Data 3.xls"
+    ],
+    "response": "exports/charts/temp_chart_e686fbca-be21-4cea-adcd-94648d1197ca.png",
+    "code": "import pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT \n    \"input port\", \n    \"output port\", \n    SUM(packet_size) AS total_traffic\nFROM \n    table_8b203ce1c2a958757008b6ae93d9f30d\nGROUP BY \n    \"input port\", \"output port\"\nORDER BY \n    total_traffic DESC\nLIMIT 10\n\"\"\"\ntop_port_pairs = execute_sql_query(sql_query)\nheatmap_data = top_port_pairs.pivot(index='input port', columns='output port', values='total_traffic').fillna(0)\nplt.figure(figsize=(10, 8))\nsns.heatmap(heatmap_data, annot=True, fmt='.0f', cmap='YlGnBu')\nplt.title('Heatmap of Traffic Volume Between Top 10 Port Pairs')\nplt.xlabel('Output Port')\nplt.ylabel('Input Port')\nplt.savefig('exports/charts/temp_chart_e686fbca-be21-4cea-adcd-94648d1197ca.png')\nplt.close()\nresult = {'type': 'plot', 'value': 'exports/charts/temp_chart_e686fbca-be21-4cea-adcd-94648d1197ca.png'}",
+    "timestamp": "2025-03-25T08:23:08.564723"
+  },
+  {
+    "id": "5941b933-5cc7-4bce-95d0-0b769a1475db",
+    "prompt": "How many rows does the Data 3 dataset have? ",
+    "filenames": [
+      "Data 3.xls"
+    ],
+    "response": 65535,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS row_count FROM table_8b203ce1c2a958757008b6ae93d9f30d'\nresult_df = execute_sql_query(sql_query)\nrow_count = result_df['row_count'].iloc[0]\nresult = {'type': 'number', 'value': row_count}",
+    "timestamp": "2025-03-25T08:22:31.239158"
+  },
+  {
+    "id": "b46278df-be46-4946-a9e4-c4f3e9059639",
+    "prompt": "How many rows does the Data 3 dataset have? ",
+    "filenames": [
+      "Data 3.xls"
+    ],
+    "response": 65535,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS row_count FROM table_8b203ce1c2a958757008b6ae93d9f30d'\nresult_df = execute_sql_query(sql_query)\nrow_count = result_df['row_count'].iloc[0]\nresult = {'type': 'number', 'value': row_count}",
+    "timestamp": "2025-03-25T08:19:28.599777"
+  },
+  {
+    "id": "1f039984-0a3a-4e0f-86c2-3b9eff5ada17",
+    "prompt": "How many rows does the Data 3 dataset have? Use the matching csv file",
+    "filenames": [
+      "Data 3.xls",
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS row_count FROM table_aab87f923d5bd82edba8d82e8400ad50'\nresult_df = execute_sql_query(sql_query)\nrow_count = result_df['row_count'].iloc[0]\nresult = {'type': 'number', 'value': row_count}",
+    "timestamp": "2025-03-25T08:18:26.125773"
+  },
+  {
+    "id": "757dab01-116f-458b-ab3f-27376acd6485",
+    "prompt": "How many rows does the Data 3 dataset have?",
+    "filenames": [
+      "Data 3.xls",
+      "The Titanic dataset.csv"
+    ],
+    "response": 1301,
+    "code": "import pandas as pd\nsql_query = 'SELECT COUNT(*) AS row_count FROM table_aab87f923d5bd82edba8d82e8400ad50'\nresult_df = execute_sql_query(sql_query)\nrow_count = result_df['row_count'].iloc[0]\nresult = {'type': 'number', 'value': row_count}",
+    "timestamp": "2025-03-25T08:17:25.908941"
+  },
+  {
+    "id": "c6f5532c-69c7-464f-afd7-72ffa1a1c659",
+    "prompt": "Construct a bar graph of top 10 inbound VLAN traffic frequency",
+    "filenames": [
+      "Data 3.xls"
+    ],
+    "response": "exports/charts/temp_chart_eb346a5c-cb62-4ba2-8798-e687cbf67f54.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT in_vlan, COUNT(*) AS traffic_count\nFROM table_8b203ce1c2a958757008b6ae93d9f30d\nGROUP BY in_vlan\nORDER BY traffic_count DESC\nLIMIT 10\n\"\"\"\nvlan_traffic_df = execute_sql_query(sql_query)\nplt.figure(figsize=(10, 6))\nplt.bar(vlan_traffic_df['in_vlan'].astype(str), vlan_traffic_df['traffic_count'], color='skyblue')\nplt.title('Top 10 Inbound VLAN Traffic Frequency')\nplt.xlabel('Inbound VLAN')\nplt.ylabel('Traffic Count')\nplt.xticks(rotation=45)\nplt.tight_layout()\nplot_filename = 'exports/charts/temp_chart_eb346a5c-cb62-4ba2-8798-e687cbf67f54.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
+    "timestamp": "2025-03-25T08:17:05.299940"
+  },
+  {
     "id": "107bb0f7-13bd-40fd-8d54-1d9fd96a3472",
     "prompt": "Construct a bar graph of top 10 inbound VLAN traffic frequency",
     "filenames": [

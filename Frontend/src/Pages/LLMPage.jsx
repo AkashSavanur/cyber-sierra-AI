@@ -71,7 +71,6 @@ const LLMPage = () => {
         prompt: prompt,
       });
 
-      // Log the response directly
       console.log(res.data.response);
       setShowCode(true);
       setResponse(res.data.response || "No response received.");
@@ -91,7 +90,6 @@ const LLMPage = () => {
         Use AI to ask natural language questions about your uploaded data.
       </Typography>
 
-      {/* Multi-select file dropdown */}
       <FormControl fullWidth>
         <InputLabel id="multi-file-label">Select File(s)</InputLabel>
         <Select
@@ -116,7 +114,6 @@ const LLMPage = () => {
         </Select>
       </FormControl>
 
-      {/* Prompt input */}
       <TextField
         label="Enter your question or prompt"
         multiline
@@ -126,7 +123,6 @@ const LLMPage = () => {
         fullWidth
       />
 
-      {/* Submit button */}
       <Button
         variant="contained"
         endIcon={<SendIcon />}
@@ -196,7 +192,6 @@ const LLMPage = () => {
             )}
           </Box>
 
-          {/* Show Code Executed Toggle */}
           {typeof response === "object" && response.last_code_executed && (
             <Box mt={2}>
               <Button

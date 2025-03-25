@@ -47765,3 +47765,1624 @@ result = {'type': 'plot', 'value': plot_filename}
 2025-03-25 16:14:10 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 2025-03-25 16:14:10 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
 2025-03-25 16:14:10 [INFO] Response generated successfully.
+2025-03-25 16:16:54 [INFO] Question: Construct a bar graph of top 10 inbound VLAN traffic frequency
+2025-03-25 16:16:54 [INFO] Running PandaAI with openai LLM...
+2025-03-25 16:16:54 [INFO] Prompt ID: bc11bef7-cc29-47a3-a80a-ef1a5159d515
+2025-03-25 16:16:54 [INFO] Generating new code...
+2025-03-25 16:16:54 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_8b203ce1c2a958757008b6ae93d9f30d" dimensions="65535x20">
+Type,s_flow_agent_address,input port,output port,src_MAC,drc_MAC,ethernet_type,in_vlan,out_vlan,src_IP,dst_IP,IP_protocol,ip_tos,ip_ttl,src_transport_port,dst_transport_port,tcp_flags,packet_size,IP_size,sampling_rate
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.22,140.115.32.81,6,0x00,50,51216,23505,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,193,609c9f851b00,0031466b23cf,0x0800,11,919,155.69.160.32,64.233.188.128,6,0x00,56,23159,80,0x10,74,52,2048
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.53,140.115.32.83,6,0x00,50,50041,20739,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,135,609c9f851b00,002688cd5fc7,0x0800,11,919,155.69.160.32,54.169.174.79,17,0x00,120,54241,26510,0x10,116,94,2048
+FLOW,203.30.38.251,130,199,00239cd087c1,544b8cf9a7df,0x0800,919,600,137.132.228.15,193.62.192.8,6,0x00,56,53923,34262,0x10,70,52,2048
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Construct a bar graph of top 10 inbound VLAN traffic frequency
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-03-25 16:17:05 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-25 16:17:05 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Execute SQL query to get the top 10 inbound VLAN traffic frequency
+sql_query = """
+SELECT in_vlan, COUNT(*) AS traffic_count
+FROM table_8b203ce1c2a958757008b6ae93d9f30d
+GROUP BY in_vlan
+ORDER BY traffic_count DESC
+LIMIT 10
+"""
+vlan_traffic_df = execute_sql_query(sql_query)
+
+# Plotting the bar graph
+plt.figure(figsize=(10, 6))
+plt.bar(vlan_traffic_df['in_vlan'].astype(str), vlan_traffic_df['traffic_count'], color='skyblue')
+plt.title('Top 10 Inbound VLAN Traffic Frequency')
+plt.xlabel('Inbound VLAN')
+plt.ylabel('Traffic Count')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot to a file
+plot_filename = 'top_10_inbound_vlan_traffic.png'
+plt.savefig(plot_filename)
+plt.close()
+
+# Declare result var
+result = {"type": "plot", "value": plot_filename}
+2025-03-25 16:17:05 [INFO] Validating code requirements...
+2025-03-25 16:17:05 [INFO] Code validation successful.
+2025-03-25 16:17:05 [INFO] Cleaning the generated code...
+2025-03-25 16:17:05 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT in_vlan, COUNT(*) AS traffic_count
+FROM table_8b203ce1c2a958757008b6ae93d9f30d
+GROUP BY in_vlan
+ORDER BY traffic_count DESC
+LIMIT 10
+"""
+vlan_traffic_df = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(vlan_traffic_df['in_vlan'].astype(str), vlan_traffic_df['traffic_count'], color='skyblue')
+plt.title('Top 10 Inbound VLAN Traffic Frequency')
+plt.xlabel('Inbound VLAN')
+plt.ylabel('Traffic Count')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'exports/charts/temp_chart_eb346a5c-cb62-4ba2-8798-e687cbf67f54.png'
+plt.savefig(plot_filename)
+plt.close()
+result = {'type': 'plot', 'value': plot_filename}
+2025-03-25 16:17:05 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-03-25 16:17:05 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-03-25 16:17:05 [INFO] Response generated successfully.
+2025-03-25 16:17:22 [INFO] Question: How many rows does the Data 3 dataset have?
+2025-03-25 16:17:22 [INFO] Running PandaAI with openai LLM...
+2025-03-25 16:17:22 [INFO] Prompt ID: fa8611e3-c038-48a9-b0aa-8ba2a5c3e86d
+2025-03-25 16:17:22 [INFO] Generating new code...
+2025-03-25 16:17:22 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_8b203ce1c2a958757008b6ae93d9f30d" dimensions="65535x20">
+Type,s_flow_agent_address,input port,output port,src_MAC,drc_MAC,ethernet_type,in_vlan,out_vlan,src_IP,dst_IP,IP_protocol,ip_tos,ip_ttl,src_transport_port,dst_transport_port,tcp_flags,packet_size,IP_size,sampling_rate
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.22,140.115.32.81,6,0x00,50,51216,23505,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,193,609c9f851b00,0031466b23cf,0x0800,11,919,155.69.160.32,64.233.188.128,6,0x00,56,23159,80,0x10,74,52,2048
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.53,140.115.32.83,6,0x00,50,50041,20739,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,135,609c9f851b00,002688cd5fc7,0x0800,11,919,155.69.160.32,54.169.174.79,17,0x00,120,54241,26510,0x10,116,94,2048
+FLOW,203.30.38.251,130,199,00239cd087c1,544b8cf9a7df,0x0800,919,600,137.132.228.15,193.62.192.8,6,0x00,56,53923,34262,0x10,70,52,2048
+</table>
+
+
+<table dialect="duckdb" table_name="table_aab87f923d5bd82edba8d82e8400ad50" dimensions="1301x10">
+sn,pclass,survived,nan,gender,age,family,fare,embarked,date
+1,3,0,Mr. Anthony,male,42,0,7.55,,01-Jan-90
+1,3,0,Mr. Anthony,male,42,0,7.55,,01-Jan-90
+2,3,0,Master. Eugene Joseph,male,?,2,20.25,S,02-Jan-90
+3,2,0,"Abbott, Mr. Rossmore Edward",,,2,**,S,03-Jan-90
+4,3,1,"Abbott, Mr. Rossmore Edward",female,35,2,20.25,S,04-Jan-90
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many rows does the Data 3 dataset have?
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-03-25 16:17:25 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-25 16:17:25 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Execute SQL query to count the number of rows in the Data 3 dataset
+sql_query = "SELECT COUNT(*) AS row_count FROM table_aab87f923d5bd82edba8d82e8400ad50"
+result_df = execute_sql_query(sql_query)
+
+# Get the row count from the result dataframe
+row_count = result_df['row_count'].iloc[0]
+
+# Declare result var: 
+result = { "type": "number", "value": row_count }
+2025-03-25 16:17:25 [INFO] Validating code requirements...
+2025-03-25 16:17:25 [INFO] Code validation successful.
+2025-03-25 16:17:25 [INFO] Cleaning the generated code...
+2025-03-25 16:17:25 [INFO] Executing code: import pandas as pd
+sql_query = 'SELECT COUNT(*) AS row_count FROM table_aab87f923d5bd82edba8d82e8400ad50'
+result_df = execute_sql_query(sql_query)
+row_count = result_df['row_count'].iloc[0]
+result = {'type': 'number', 'value': row_count}
+2025-03-25 16:17:25 [INFO] Response generated successfully.
+2025-03-25 16:18:21 [INFO] Question: How many rows does the Data 3 dataset have? Use the matching csv file
+2025-03-25 16:18:21 [INFO] Running PandaAI with openai LLM...
+2025-03-25 16:18:21 [INFO] Prompt ID: f31d9093-9e2a-4255-b40d-02fc30982347
+2025-03-25 16:18:21 [INFO] Generating new code...
+2025-03-25 16:18:21 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_8b203ce1c2a958757008b6ae93d9f30d" dimensions="65535x20">
+Type,s_flow_agent_address,input port,output port,src_MAC,drc_MAC,ethernet_type,in_vlan,out_vlan,src_IP,dst_IP,IP_protocol,ip_tos,ip_ttl,src_transport_port,dst_transport_port,tcp_flags,packet_size,IP_size,sampling_rate
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.22,140.115.32.81,6,0x00,50,51216,23505,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,193,609c9f851b00,0031466b23cf,0x0800,11,919,155.69.160.32,64.233.188.128,6,0x00,56,23159,80,0x10,74,52,2048
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.53,140.115.32.83,6,0x00,50,50041,20739,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,135,609c9f851b00,002688cd5fc7,0x0800,11,919,155.69.160.32,54.169.174.79,17,0x00,120,54241,26510,0x10,116,94,2048
+FLOW,203.30.38.251,130,199,00239cd087c1,544b8cf9a7df,0x0800,919,600,137.132.228.15,193.62.192.8,6,0x00,56,53923,34262,0x10,70,52,2048
+</table>
+
+
+<table dialect="duckdb" table_name="table_aab87f923d5bd82edba8d82e8400ad50" dimensions="1301x10">
+sn,pclass,survived,nan,gender,age,family,fare,embarked,date
+1,3,0,Mr. Anthony,male,42,0,7.55,,01-Jan-90
+1,3,0,Mr. Anthony,male,42,0,7.55,,01-Jan-90
+2,3,0,Master. Eugene Joseph,male,?,2,20.25,S,02-Jan-90
+3,2,0,"Abbott, Mr. Rossmore Edward",,,2,**,S,03-Jan-90
+4,3,1,"Abbott, Mr. Rossmore Edward",female,35,2,20.25,S,04-Jan-90
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many rows does the Data 3 dataset have? Use the matching csv file
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-03-25 16:18:26 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-25 16:18:26 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Execute SQL query to count the number of rows in the Data 3 dataset
+sql_query = "SELECT COUNT(*) AS row_count FROM table_aab87f923d5bd82edba8d82e8400ad50"
+result_df = execute_sql_query(sql_query)
+
+# Get the row count from the result dataframe
+row_count = result_df['row_count'].iloc[0]
+
+# Declare result var: 
+result = { "type": "number", "value": row_count }
+2025-03-25 16:18:26 [INFO] Validating code requirements...
+2025-03-25 16:18:26 [INFO] Code validation successful.
+2025-03-25 16:18:26 [INFO] Cleaning the generated code...
+2025-03-25 16:18:26 [INFO] Executing code: import pandas as pd
+sql_query = 'SELECT COUNT(*) AS row_count FROM table_aab87f923d5bd82edba8d82e8400ad50'
+result_df = execute_sql_query(sql_query)
+row_count = result_df['row_count'].iloc[0]
+result = {'type': 'number', 'value': row_count}
+2025-03-25 16:18:26 [INFO] Response generated successfully.
+2025-03-25 16:19:25 [INFO] Question: How many rows does the Data 3 dataset have? 
+2025-03-25 16:19:25 [INFO] Running PandaAI with openai LLM...
+2025-03-25 16:19:25 [INFO] Prompt ID: 407291f4-614e-4b8b-862f-087aadf627e9
+2025-03-25 16:19:25 [INFO] Generating new code...
+2025-03-25 16:19:25 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_8b203ce1c2a958757008b6ae93d9f30d" dimensions="65535x20">
+Type,s_flow_agent_address,input port,output port,src_MAC,drc_MAC,ethernet_type,in_vlan,out_vlan,src_IP,dst_IP,IP_protocol,ip_tos,ip_ttl,src_transport_port,dst_transport_port,tcp_flags,packet_size,IP_size,sampling_rate
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.22,140.115.32.81,6,0x00,50,51216,23505,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,193,609c9f851b00,0031466b23cf,0x0800,11,919,155.69.160.32,64.233.188.128,6,0x00,56,23159,80,0x10,74,52,2048
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.53,140.115.32.83,6,0x00,50,50041,20739,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,135,609c9f851b00,002688cd5fc7,0x0800,11,919,155.69.160.32,54.169.174.79,17,0x00,120,54241,26510,0x10,116,94,2048
+FLOW,203.30.38.251,130,199,00239cd087c1,544b8cf9a7df,0x0800,919,600,137.132.228.15,193.62.192.8,6,0x00,56,53923,34262,0x10,70,52,2048
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many rows does the Data 3 dataset have? 
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-03-25 16:19:28 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-25 16:19:28 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Execute SQL query to count the number of rows in the Data 3 dataset
+sql_query = "SELECT COUNT(*) AS row_count FROM table_8b203ce1c2a958757008b6ae93d9f30d"
+result_df = execute_sql_query(sql_query)
+
+# Get the row count from the result dataframe
+row_count = result_df['row_count'].iloc[0]
+
+# Declare result var: 
+result = { "type": "number", "value": row_count }
+2025-03-25 16:19:28 [INFO] Validating code requirements...
+2025-03-25 16:19:28 [INFO] Code validation successful.
+2025-03-25 16:19:28 [INFO] Cleaning the generated code...
+2025-03-25 16:19:28 [INFO] Executing code: import pandas as pd
+sql_query = 'SELECT COUNT(*) AS row_count FROM table_8b203ce1c2a958757008b6ae93d9f30d'
+result_df = execute_sql_query(sql_query)
+row_count = result_df['row_count'].iloc[0]
+result = {'type': 'number', 'value': row_count}
+2025-03-25 16:19:28 [INFO] Response generated successfully.
+2025-03-25 16:22:23 [INFO] Question: How many rows does the Data 3 dataset have? 
+2025-03-25 16:22:23 [INFO] Running PandaAI with openai LLM...
+2025-03-25 16:22:23 [INFO] Prompt ID: d11acae9-8755-40f3-9fb5-728e3689251b
+2025-03-25 16:22:23 [INFO] Generating new code...
+2025-03-25 16:22:23 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_8b203ce1c2a958757008b6ae93d9f30d" dimensions="65535x20">
+Type,s_flow_agent_address,input port,output port,src_MAC,drc_MAC,ethernet_type,in_vlan,out_vlan,src_IP,dst_IP,IP_protocol,ip_tos,ip_ttl,src_transport_port,dst_transport_port,tcp_flags,packet_size,IP_size,sampling_rate
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.22,140.115.32.81,6,0x00,50,51216,23505,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,193,609c9f851b00,0031466b23cf,0x0800,11,919,155.69.160.32,64.233.188.128,6,0x00,56,23159,80,0x10,74,52,2048
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.53,140.115.32.83,6,0x00,50,50041,20739,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,135,609c9f851b00,002688cd5fc7,0x0800,11,919,155.69.160.32,54.169.174.79,17,0x00,120,54241,26510,0x10,116,94,2048
+FLOW,203.30.38.251,130,199,00239cd087c1,544b8cf9a7df,0x0800,919,600,137.132.228.15,193.62.192.8,6,0x00,56,53923,34262,0x10,70,52,2048
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many rows does the Data 3 dataset have? 
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-03-25 16:22:30 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-25 16:22:30 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Execute SQL query to count the number of rows in the Data 3 dataset
+sql_query = "SELECT COUNT(*) AS row_count FROM table_8b203ce1c2a958757008b6ae93d9f30d"
+result_df = execute_sql_query(sql_query)
+
+# Get the row count from the result dataframe
+row_count = result_df['row_count'].iloc[0]
+
+# Declare result var: 
+result = { "type": "number", "value": row_count }
+2025-03-25 16:22:30 [INFO] Validating code requirements...
+2025-03-25 16:22:30 [INFO] Code validation successful.
+2025-03-25 16:22:30 [INFO] Cleaning the generated code...
+2025-03-25 16:22:30 [INFO] Executing code: import pandas as pd
+sql_query = 'SELECT COUNT(*) AS row_count FROM table_8b203ce1c2a958757008b6ae93d9f30d'
+result_df = execute_sql_query(sql_query)
+row_count = result_df['row_count'].iloc[0]
+result = {'type': 'number', 'value': row_count}
+2025-03-25 16:22:31 [INFO] Response generated successfully.
+2025-03-25 16:22:49 [INFO] Question: Heatmap of traffic volume between top 10 port pairs
+2025-03-25 16:22:49 [INFO] Running PandaAI with openai LLM...
+2025-03-25 16:22:49 [INFO] Prompt ID: 5f02ca8e-569e-4592-a71a-39824948b5a3
+2025-03-25 16:22:49 [INFO] Generating new code...
+2025-03-25 16:22:49 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_8b203ce1c2a958757008b6ae93d9f30d" dimensions="65535x20">
+Type,s_flow_agent_address,input port,output port,src_MAC,drc_MAC,ethernet_type,in_vlan,out_vlan,src_IP,dst_IP,IP_protocol,ip_tos,ip_ttl,src_transport_port,dst_transport_port,tcp_flags,packet_size,IP_size,sampling_rate
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.22,140.115.32.81,6,0x00,50,51216,23505,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,193,609c9f851b00,0031466b23cf,0x0800,11,919,155.69.160.32,64.233.188.128,6,0x00,56,23159,80,0x10,74,52,2048
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.53,140.115.32.83,6,0x00,50,50041,20739,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,135,609c9f851b00,002688cd5fc7,0x0800,11,919,155.69.160.32,54.169.174.79,17,0x00,120,54241,26510,0x10,116,94,2048
+FLOW,203.30.38.251,130,199,00239cd087c1,544b8cf9a7df,0x0800,919,600,137.132.228.15,193.62.192.8,6,0x00,56,53923,34262,0x10,70,52,2048
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Heatmap of traffic volume between top 10 port pairs
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-03-25 16:22:59 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-25 16:22:59 [INFO] Code Generated:
+# Import the required dependencies
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Execute SQL query to get the top 10 port pairs by traffic volume
+sql_query = """
+SELECT 
+    "input port", 
+    "output port", 
+    SUM(packet_size) AS total_traffic
+FROM 
+    table_8b203ce1c2a958757008b6ae93d9f30d
+GROUP BY 
+    "input port", "output port"
+ORDER BY 
+    total_traffic DESC
+LIMIT 10
+"""
+
+# Fetch the data into a DataFrame
+top_port_pairs = execute_sql_query(sql_query)
+
+# Create a pivot table for the heatmap
+heatmap_data = top_port_pairs.pivot("input port", "output port", "total_traffic").fillna(0)
+
+# Generate the heatmap
+plt.figure(figsize=(10, 8))
+sns.heatmap(heatmap_data, annot=True, fmt=".0f", cmap="YlGnBu")
+plt.title("Heatmap of Traffic Volume Between Top 10 Port Pairs")
+plt.xlabel("Output Port")
+plt.ylabel("Input Port")
+plt.savefig("traffic_heatmap.png")  # Save the heatmap as an image
+plt.close()  # Close the plot to avoid display in interactive environments
+
+# Declare result variable
+result = {
+    "type": "plot",
+    "value": "traffic_heatmap.png"
+}
+2025-03-25 16:22:59 [INFO] Validating code requirements...
+2025-03-25 16:22:59 [INFO] Code validation successful.
+2025-03-25 16:22:59 [INFO] Cleaning the generated code...
+2025-03-25 16:22:59 [INFO] Executing code: import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT 
+    "input port", 
+    "output port", 
+    SUM(packet_size) AS total_traffic
+FROM 
+    table_8b203ce1c2a958757008b6ae93d9f30d
+GROUP BY 
+    "input port", "output port"
+ORDER BY 
+    total_traffic DESC
+LIMIT 10
+"""
+top_port_pairs = execute_sql_query(sql_query)
+heatmap_data = top_port_pairs.pivot('input port', 'output port', 'total_traffic').fillna(0)
+plt.figure(figsize=(10, 8))
+sns.heatmap(heatmap_data, annot=True, fmt='.0f', cmap='YlGnBu')
+plt.title('Heatmap of Traffic Volume Between Top 10 Port Pairs')
+plt.xlabel('Output Port')
+plt.ylabel('Input Port')
+plt.savefig('exports/charts/temp_chart_bf767b9f-8a7f-4ec4-8ffa-057fa6ae30cc.png')
+plt.close()
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart_bf767b9f-8a7f-4ec4-8ffa-057fa6ae30cc.png'}
+2025-03-25 16:22:59 [INFO] Retrying execution (1/3)...
+2025-03-25 16:22:59 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 18, in <module>
+TypeError: DataFrame.pivot() takes 1 positional argument but 4 were given
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/agent/base.py", line 186, in execute_with_retries
+    result = self.execute_code(code)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/agent/base.py", line 118, in execute_code
+    return code_executor.execute_and_return_result(code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-03-25 16:22:59 [INFO] Using Prompt: <table dialect="duckdb" table_name="table_8b203ce1c2a958757008b6ae93d9f30d" dimensions="65535x20">
+Type,s_flow_agent_address,input port,output port,src_MAC,drc_MAC,ethernet_type,in_vlan,out_vlan,src_IP,dst_IP,IP_protocol,ip_tos,ip_ttl,src_transport_port,dst_transport_port,tcp_flags,packet_size,IP_size,sampling_rate
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.22,140.115.32.81,6,0x00,50,51216,23505,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,193,609c9f851b00,0031466b23cf,0x0800,11,919,155.69.160.32,64.233.188.128,6,0x00,56,23159,80,0x10,74,52,2048
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.53,140.115.32.83,6,0x00,50,50041,20739,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,135,609c9f851b00,002688cd5fc7,0x0800,11,919,155.69.160.32,54.169.174.79,17,0x00,120,54241,26510,0x10,116,94,2048
+FLOW,203.30.38.251,130,199,00239cd087c1,544b8cf9a7df,0x0800,919,600,137.132.228.15,193.62.192.8,6,0x00,56,53923,34262,0x10,70,52,2048
+</table>
+
+
+The user asked the following question:
+### QUERY
+ Heatmap of traffic volume between top 10 port pairs
+
+You generated the following Python code:
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT 
+    "input port", 
+    "output port", 
+    SUM(packet_size) AS total_traffic
+FROM 
+    table_8b203ce1c2a958757008b6ae93d9f30d
+GROUP BY 
+    "input port", "output port"
+ORDER BY 
+    total_traffic DESC
+LIMIT 10
+"""
+top_port_pairs = execute_sql_query(sql_query)
+heatmap_data = top_port_pairs.pivot('input port', 'output port', 'total_traffic').fillna(0)
+plt.figure(figsize=(10, 8))
+sns.heatmap(heatmap_data, annot=True, fmt='.0f', cmap='YlGnBu')
+plt.title('Heatmap of Traffic Volume Between Top 10 Port Pairs')
+plt.xlabel('Output Port')
+plt.ylabel('Input Port')
+plt.savefig('exports/charts/temp_chart_bf767b9f-8a7f-4ec4-8ffa-057fa6ae30cc.png')
+plt.close()
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart_bf767b9f-8a7f-4ec4-8ffa-057fa6ae30cc.png'}
+
+However, it resulted in the following error:
+Traceback (most recent call last):
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 18, in <module>
+TypeError: DataFrame.pivot() takes 1 positional argument but 4 were given
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/agent/base.py", line 186, in execute_with_retries
+    result = self.execute_code(code)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/agent/base.py", line 118, in execute_code
+    return code_executor.execute_and_return_result(code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-03-25 16:23:08 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-25 16:23:08 [INFO] Code Generated:
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# SQL query to get the top 10 port pairs by traffic volume
+sql_query = """
+SELECT 
+    "input port", 
+    "output port", 
+    SUM(packet_size) AS total_traffic
+FROM 
+    table_8b203ce1c2a958757008b6ae93d9f30d
+GROUP BY 
+    "input port", "output port"
+ORDER BY 
+    total_traffic DESC
+LIMIT 10
+"""
+
+# Execute the SQL query
+top_port_pairs = execute_sql_query(sql_query)
+
+# Pivot the data for heatmap
+heatmap_data = top_port_pairs.pivot(index='input port', columns='output port', values='total_traffic').fillna(0)
+
+# Create the heatmap
+plt.figure(figsize=(10, 8))
+sns.heatmap(heatmap_data, annot=True, fmt='.0f', cmap='YlGnBu')
+plt.title('Heatmap of Traffic Volume Between Top 10 Port Pairs')
+plt.xlabel('Output Port')
+plt.ylabel('Input Port')
+
+# Save the heatmap to a file
+plt.savefig('exports/charts/temp_chart_bf767b9f-8a7f-4ec4-8ffa-057fa6ae30cc.png')
+plt.close()
+
+# Return the result
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart_bf767b9f-8a7f-4ec4-8ffa-057fa6ae30cc.png'}
+2025-03-25 16:23:08 [INFO] Validating code requirements...
+2025-03-25 16:23:08 [INFO] Code validation successful.
+2025-03-25 16:23:08 [INFO] Cleaning the generated code...
+2025-03-25 16:23:08 [INFO] Executing code: import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT 
+    "input port", 
+    "output port", 
+    SUM(packet_size) AS total_traffic
+FROM 
+    table_8b203ce1c2a958757008b6ae93d9f30d
+GROUP BY 
+    "input port", "output port"
+ORDER BY 
+    total_traffic DESC
+LIMIT 10
+"""
+top_port_pairs = execute_sql_query(sql_query)
+heatmap_data = top_port_pairs.pivot(index='input port', columns='output port', values='total_traffic').fillna(0)
+plt.figure(figsize=(10, 8))
+sns.heatmap(heatmap_data, annot=True, fmt='.0f', cmap='YlGnBu')
+plt.title('Heatmap of Traffic Volume Between Top 10 Port Pairs')
+plt.xlabel('Output Port')
+plt.ylabel('Input Port')
+plt.savefig('exports/charts/temp_chart_e686fbca-be21-4cea-adcd-94648d1197ca.png')
+plt.close()
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart_e686fbca-be21-4cea-adcd-94648d1197ca.png'}
+2025-03-25 16:23:08 [INFO] Response generated successfully.
+2025-03-25 16:23:15 [INFO] Question: Heatmap of traffic volume between top 10 port pairs
+2025-03-25 16:23:15 [INFO] Running PandaAI with openai LLM...
+2025-03-25 16:23:15 [INFO] Prompt ID: 097c1587-78ea-40ae-8cb0-ae6c2b5f8202
+2025-03-25 16:23:15 [INFO] Generating new code...
+2025-03-25 16:23:15 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_8b203ce1c2a958757008b6ae93d9f30d" dimensions="65535x20">
+Type,s_flow_agent_address,input port,output port,src_MAC,drc_MAC,ethernet_type,in_vlan,out_vlan,src_IP,dst_IP,IP_protocol,ip_tos,ip_ttl,src_transport_port,dst_transport_port,tcp_flags,packet_size,IP_size,sampling_rate
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.22,140.115.32.81,6,0x00,50,51216,23505,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,193,609c9f851b00,0031466b23cf,0x0800,11,919,155.69.160.32,64.233.188.128,6,0x00,56,23159,80,0x10,74,52,2048
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.53,140.115.32.83,6,0x00,50,50041,20739,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,135,609c9f851b00,002688cd5fc7,0x0800,11,919,155.69.160.32,54.169.174.79,17,0x00,120,54241,26510,0x10,116,94,2048
+FLOW,203.30.38.251,130,199,00239cd087c1,544b8cf9a7df,0x0800,919,600,137.132.228.15,193.62.192.8,6,0x00,56,53923,34262,0x10,70,52,2048
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Heatmap of traffic volume between top 10 port pairs
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-03-25 16:23:27 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-25 16:23:28 [INFO] Code Generated:
+# Import the required dependencies
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Execute SQL query to get the top 10 port pairs by traffic volume
+sql_query = """
+SELECT 
+    "input port", 
+    "output port", 
+    SUM(packet_size) AS total_traffic
+FROM 
+    table_8b203ce1c2a958757008b6ae93d9f30d
+GROUP BY 
+    "input port", "output port"
+ORDER BY 
+    total_traffic DESC
+LIMIT 10
+"""
+
+# Fetch the data into a DataFrame
+top_port_pairs = execute_sql_query(sql_query)
+
+# Create a pivot table for the heatmap
+heatmap_data = top_port_pairs.pivot("input port", "output port", "total_traffic").fillna(0)
+
+# Generate the heatmap
+plt.figure(figsize=(10, 8))
+sns.heatmap(heatmap_data, annot=True, fmt=".0f", cmap="YlGnBu")
+plt.title("Heatmap of Traffic Volume Between Top 10 Port Pairs")
+plt.xlabel("Output Port")
+plt.ylabel("Input Port")
+plt.savefig("traffic_heatmap.png")  # Save the heatmap as an image
+plt.close()  # Close the plot to avoid display in interactive environments
+
+# Declare result variable
+result = {
+    "type": "plot",
+    "value": "traffic_heatmap.png"
+}
+2025-03-25 16:23:28 [INFO] Validating code requirements...
+2025-03-25 16:23:28 [INFO] Code validation successful.
+2025-03-25 16:23:28 [INFO] Cleaning the generated code...
+2025-03-25 16:23:28 [INFO] Executing code: import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT 
+    "input port", 
+    "output port", 
+    SUM(packet_size) AS total_traffic
+FROM 
+    table_8b203ce1c2a958757008b6ae93d9f30d
+GROUP BY 
+    "input port", "output port"
+ORDER BY 
+    total_traffic DESC
+LIMIT 10
+"""
+top_port_pairs = execute_sql_query(sql_query)
+heatmap_data = top_port_pairs.pivot('input port', 'output port', 'total_traffic').fillna(0)
+plt.figure(figsize=(10, 8))
+sns.heatmap(heatmap_data, annot=True, fmt='.0f', cmap='YlGnBu')
+plt.title('Heatmap of Traffic Volume Between Top 10 Port Pairs')
+plt.xlabel('Output Port')
+plt.ylabel('Input Port')
+plt.savefig('exports/charts/temp_chart_279bda9a-cc36-4008-a9e2-450d779745a4.png')
+plt.close()
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart_279bda9a-cc36-4008-a9e2-450d779745a4.png'}
+2025-03-25 16:23:28 [INFO] Retrying execution (1/3)...
+2025-03-25 16:23:28 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 18, in <module>
+TypeError: DataFrame.pivot() takes 1 positional argument but 4 were given
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/agent/base.py", line 186, in execute_with_retries
+    result = self.execute_code(code)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/agent/base.py", line 118, in execute_code
+    return code_executor.execute_and_return_result(code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-03-25 16:23:28 [INFO] Using Prompt: <table dialect="duckdb" table_name="table_8b203ce1c2a958757008b6ae93d9f30d" dimensions="65535x20">
+Type,s_flow_agent_address,input port,output port,src_MAC,drc_MAC,ethernet_type,in_vlan,out_vlan,src_IP,dst_IP,IP_protocol,ip_tos,ip_ttl,src_transport_port,dst_transport_port,tcp_flags,packet_size,IP_size,sampling_rate
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.22,140.115.32.81,6,0x00,50,51216,23505,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,193,609c9f851b00,0031466b23cf,0x0800,11,919,155.69.160.32,64.233.188.128,6,0x00,56,23159,80,0x10,74,52,2048
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.53,140.115.32.83,6,0x00,50,50041,20739,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,135,609c9f851b00,002688cd5fc7,0x0800,11,919,155.69.160.32,54.169.174.79,17,0x00,120,54241,26510,0x10,116,94,2048
+FLOW,203.30.38.251,130,199,00239cd087c1,544b8cf9a7df,0x0800,919,600,137.132.228.15,193.62.192.8,6,0x00,56,53923,34262,0x10,70,52,2048
+</table>
+
+
+The user asked the following question:
+### QUERY
+ Heatmap of traffic volume between top 10 port pairs
+
+You generated the following Python code:
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT 
+    "input port", 
+    "output port", 
+    SUM(packet_size) AS total_traffic
+FROM 
+    table_8b203ce1c2a958757008b6ae93d9f30d
+GROUP BY 
+    "input port", "output port"
+ORDER BY 
+    total_traffic DESC
+LIMIT 10
+"""
+top_port_pairs = execute_sql_query(sql_query)
+heatmap_data = top_port_pairs.pivot('input port', 'output port', 'total_traffic').fillna(0)
+plt.figure(figsize=(10, 8))
+sns.heatmap(heatmap_data, annot=True, fmt='.0f', cmap='YlGnBu')
+plt.title('Heatmap of Traffic Volume Between Top 10 Port Pairs')
+plt.xlabel('Output Port')
+plt.ylabel('Input Port')
+plt.savefig('exports/charts/temp_chart_279bda9a-cc36-4008-a9e2-450d779745a4.png')
+plt.close()
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart_279bda9a-cc36-4008-a9e2-450d779745a4.png'}
+
+However, it resulted in the following error:
+Traceback (most recent call last):
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 18, in <module>
+TypeError: DataFrame.pivot() takes 1 positional argument but 4 were given
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/agent/base.py", line 186, in execute_with_retries
+    result = self.execute_code(code)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/agent/base.py", line 118, in execute_code
+    return code_executor.execute_and_return_result(code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-03-25 16:23:36 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-25 16:23:36 [INFO] Code Generated:
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# SQL query to get the top 10 port pairs by traffic volume
+sql_query = """
+SELECT 
+    "input port", 
+    "output port", 
+    SUM(packet_size) AS total_traffic
+FROM 
+    table_8b203ce1c2a958757008b6ae93d9f30d
+GROUP BY 
+    "input port", "output port"
+ORDER BY 
+    total_traffic DESC
+LIMIT 10
+"""
+
+# Execute the SQL query
+top_port_pairs = execute_sql_query(sql_query)
+
+# Pivot the data for heatmap
+heatmap_data = top_port_pairs.pivot(index='input port', columns='output port', values='total_traffic').fillna(0)
+
+# Create the heatmap
+plt.figure(figsize=(10, 8))
+sns.heatmap(heatmap_data, annot=True, fmt='.0f', cmap='YlGnBu')
+plt.title('Heatmap of Traffic Volume Between Top 10 Port Pairs')
+plt.xlabel('Output Port')
+plt.ylabel('Input Port')
+
+# Save the heatmap to a file
+plt.savefig('exports/charts/temp_chart_279bda9a-cc36-4008-a9e2-450d779745a4.png')
+plt.close()
+
+# Return the result
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart_279bda9a-cc36-4008-a9e2-450d779745a4.png'}
+2025-03-25 16:23:36 [INFO] Validating code requirements...
+2025-03-25 16:23:36 [INFO] Code validation successful.
+2025-03-25 16:23:36 [INFO] Cleaning the generated code...
+2025-03-25 16:23:36 [INFO] Executing code: import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT 
+    "input port", 
+    "output port", 
+    SUM(packet_size) AS total_traffic
+FROM 
+    table_8b203ce1c2a958757008b6ae93d9f30d
+GROUP BY 
+    "input port", "output port"
+ORDER BY 
+    total_traffic DESC
+LIMIT 10
+"""
+top_port_pairs = execute_sql_query(sql_query)
+heatmap_data = top_port_pairs.pivot(index='input port', columns='output port', values='total_traffic').fillna(0)
+plt.figure(figsize=(10, 8))
+sns.heatmap(heatmap_data, annot=True, fmt='.0f', cmap='YlGnBu')
+plt.title('Heatmap of Traffic Volume Between Top 10 Port Pairs')
+plt.xlabel('Output Port')
+plt.ylabel('Input Port')
+plt.savefig('exports/charts/temp_chart_be3f0d29-f3cf-4e8b-a929-2414066aa7aa.png')
+plt.close()
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart_be3f0d29-f3cf-4e8b-a929-2414066aa7aa.png'}
+2025-03-25 16:23:36 [INFO] Response generated successfully.
+2025-03-25 16:26:38 [INFO] Question: Create a bar graph comparing the number of male and female survivors
+2025-03-25 16:26:38 [INFO] Running PandaAI with openai LLM...
+2025-03-25 16:26:38 [INFO] Prompt ID: 8e0b90fa-4d8b-42d0-a3c4-30eb870a105e
+2025-03-25 16:26:38 [INFO] Generating new code...
+2025-03-25 16:26:38 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_aab87f923d5bd82edba8d82e8400ad50" dimensions="1301x10">
+sn,pclass,survived,nan,gender,age,family,fare,embarked,date
+1,3,0,Mr. Anthony,male,42,0,7.55,,01-Jan-90
+1,3,0,Mr. Anthony,male,42,0,7.55,,01-Jan-90
+2,3,0,Master. Eugene Joseph,male,?,2,20.25,S,02-Jan-90
+3,2,0,"Abbott, Mr. Rossmore Edward",,,2,**,S,03-Jan-90
+4,3,1,"Abbott, Mr. Rossmore Edward",female,35,2,20.25,S,04-Jan-90
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Create a bar graph comparing the number of male and female survivors
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-03-25 16:26:45 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-25 16:26:45 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Execute SQL query to get the count of male and female survivors
+sql_query = """
+SELECT gender, COUNT(*) AS survivor_count
+FROM table_aab87f923d5bd82edba8d82e8400ad50
+WHERE survived = 1
+GROUP BY gender
+"""
+survivor_data = execute_sql_query(sql_query)
+
+# Create a bar graph
+plt.figure(figsize=(8, 5))
+plt.bar(survivor_data['gender'], survivor_data['survivor_count'], color=['blue', 'pink'])
+plt.title('Number of Male and Female Survivors')
+plt.xlabel('Gender')
+plt.ylabel('Number of Survivors')
+plt.xticks(rotation=45)
+plt.grid(axis='y')
+
+# Save the plot
+plt.savefig('survivor_gender_comparison.png')
+
+# Declare result var
+result = {
+    "type": "plot",
+    "value": "survivor_gender_comparison.png"
+}
+2025-03-25 16:26:45 [INFO] Validating code requirements...
+2025-03-25 16:26:45 [INFO] Code validation successful.
+2025-03-25 16:26:45 [INFO] Cleaning the generated code...
+2025-03-25 16:26:45 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT gender, COUNT(*) AS survivor_count
+FROM table_aab87f923d5bd82edba8d82e8400ad50
+WHERE survived = 1
+GROUP BY gender
+"""
+survivor_data = execute_sql_query(sql_query)
+plt.figure(figsize=(8, 5))
+plt.bar(survivor_data['gender'], survivor_data['survivor_count'], color=['blue', 'pink'])
+plt.title('Number of Male and Female Survivors')
+plt.xlabel('Gender')
+plt.ylabel('Number of Survivors')
+plt.xticks(rotation=45)
+plt.grid(axis='y')
+plt.savefig('exports/charts/temp_chart_1dafde04-cb14-4371-a1b6-fce9d35e54d9.png')
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart_1dafde04-cb14-4371-a1b6-fce9d35e54d9.png'}
+2025-03-25 16:26:45 [INFO] Response generated successfully.
+2025-03-25 16:27:11 [INFO] Question: What is the percentage of male and female survivors
+2025-03-25 16:27:11 [INFO] Running PandaAI with openai LLM...
+2025-03-25 16:27:11 [INFO] Prompt ID: 3edb41da-5dae-4241-b789-9b1dde6ad833
+2025-03-25 16:27:11 [INFO] Generating new code...
+2025-03-25 16:27:11 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_aab87f923d5bd82edba8d82e8400ad50" dimensions="1301x10">
+sn,pclass,survived,nan,gender,age,family,fare,embarked,date
+1,3,0,Mr. Anthony,male,42,0,7.55,,01-Jan-90
+1,3,0,Mr. Anthony,male,42,0,7.55,,01-Jan-90
+2,3,0,Master. Eugene Joseph,male,?,2,20.25,S,02-Jan-90
+3,2,0,"Abbott, Mr. Rossmore Edward",,,2,**,S,03-Jan-90
+4,3,1,"Abbott, Mr. Rossmore Edward",female,35,2,20.25,S,04-Jan-90
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What is the percentage of male and female survivors
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-03-25 16:27:15 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-25 16:27:15 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Execute SQL query to calculate the percentage of male and female survivors
+sql_query = """
+SELECT 
+    gender,
+    COUNT(*) AS total,
+    SUM(survived) AS survived_count,
+    (SUM(survived) * 100.0 / COUNT(*)) AS survival_percentage
+FROM 
+    table_aab87f923d5bd82edba8d82e8400ad50
+GROUP BY 
+    gender
+"""
+
+# Execute the query and store the result in a DataFrame
+survivor_data = execute_sql_query(sql_query)
+
+# Prepare the result variable
+result = {
+    "type": "dataframe",
+    "value": survivor_data
+}
+
+# Display the result
+print(result)
+2025-03-25 16:27:15 [INFO] Validating code requirements...
+2025-03-25 16:27:15 [INFO] Code validation successful.
+2025-03-25 16:27:15 [INFO] Cleaning the generated code...
+2025-03-25 16:27:15 [INFO] Executing code: import pandas as pd
+sql_query = """
+SELECT 
+    gender,
+    COUNT(*) AS total,
+    SUM(survived) AS survived_count,
+    (SUM(survived) * 100.0 / COUNT(*)) AS survival_percentage
+FROM 
+    table_aab87f923d5bd82edba8d82e8400ad50
+GROUP BY 
+    gender
+"""
+survivor_data = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': survivor_data}
+print(result)
+2025-03-25 16:27:15 [INFO] Retrying execution (1/3)...
+2025-03-25 16:27:15 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 13, in <module>
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/agent/base.py", line 150, in _execute_sql_query
+    return db_manager.sql(final_query).df()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 39, in sql
+    return self.connection.sql(query, params=params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+duckdb.duckdb.BinderException: Binder Error: No function matches the given name and argument types 'sum(VARCHAR)'. You might need to add explicit type casts.
+	Candidate functions:
+	sum(DECIMAL) -> DECIMAL
+	sum(BOOLEAN) -> HUGEINT
+	sum(SMALLINT) -> HUGEINT
+	sum(INTEGER) -> HUGEINT
+	sum(BIGINT) -> HUGEINT
+	sum(HUGEINT) -> HUGEINT
+	sum(DOUBLE) -> DOUBLE
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/agent/base.py", line 186, in execute_with_retries
+    result = self.execute_code(code)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/agent/base.py", line 118, in execute_code
+    return code_executor.execute_and_return_result(code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-03-25 16:27:15 [INFO] Using Prompt: <table dialect="duckdb" table_name="table_aab87f923d5bd82edba8d82e8400ad50" dimensions="1301x10">
+sn,pclass,survived,nan,gender,age,family,fare,embarked,date
+1,3,0,Mr. Anthony,male,42,0,7.55,,01-Jan-90
+1,3,0,Mr. Anthony,male,42,0,7.55,,01-Jan-90
+2,3,0,Master. Eugene Joseph,male,?,2,20.25,S,02-Jan-90
+3,2,0,"Abbott, Mr. Rossmore Edward",,,2,**,S,03-Jan-90
+4,3,1,"Abbott, Mr. Rossmore Edward",female,35,2,20.25,S,04-Jan-90
+</table>
+
+
+The user asked the following question:
+### QUERY
+ What is the percentage of male and female survivors
+
+You generated the following Python code:
+import pandas as pd
+sql_query = """
+SELECT 
+    gender,
+    COUNT(*) AS total,
+    SUM(survived) AS survived_count,
+    (SUM(survived) * 100.0 / COUNT(*)) AS survival_percentage
+FROM 
+    table_aab87f923d5bd82edba8d82e8400ad50
+GROUP BY 
+    gender
+"""
+survivor_data = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': survivor_data}
+print(result)
+
+However, it resulted in the following error:
+Traceback (most recent call last):
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 13, in <module>
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/agent/base.py", line 150, in _execute_sql_query
+    return db_manager.sql(final_query).df()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 39, in sql
+    return self.connection.sql(query, params=params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+duckdb.duckdb.BinderException: Binder Error: No function matches the given name and argument types 'sum(VARCHAR)'. You might need to add explicit type casts.
+	Candidate functions:
+	sum(DECIMAL) -> DECIMAL
+	sum(BOOLEAN) -> HUGEINT
+	sum(SMALLINT) -> HUGEINT
+	sum(INTEGER) -> HUGEINT
+	sum(BIGINT) -> HUGEINT
+	sum(HUGEINT) -> HUGEINT
+	sum(DOUBLE) -> DOUBLE
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/agent/base.py", line 186, in execute_with_retries
+    result = self.execute_code(code)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/agent/base.py", line 118, in execute_code
+    return code_executor.execute_and_return_result(code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-03-25 16:27:20 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-25 16:27:20 [INFO] Code Generated:
+import pandas as pd
+
+sql_query = """
+SELECT 
+    gender,
+    COUNT(*) AS total,
+    SUM(CAST(survived AS INTEGER)) AS survived_count,
+    (SUM(CAST(survived AS INTEGER)) * 100.0 / COUNT(*)) AS survival_percentage
+FROM 
+    table_aab87f923d5bd82edba8d82e8400ad50
+GROUP BY 
+    gender
+"""
+survivor_data = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': survivor_data}
+print(result)
+2025-03-25 16:27:20 [INFO] Validating code requirements...
+2025-03-25 16:27:20 [INFO] Code validation successful.
+2025-03-25 16:27:20 [INFO] Cleaning the generated code...
+2025-03-25 16:27:20 [INFO] Executing code: import pandas as pd
+sql_query = """
+SELECT 
+    gender,
+    COUNT(*) AS total,
+    SUM(CAST(survived AS INTEGER)) AS survived_count,
+    (SUM(CAST(survived AS INTEGER)) * 100.0 / COUNT(*)) AS survival_percentage
+FROM 
+    table_aab87f923d5bd82edba8d82e8400ad50
+GROUP BY 
+    gender
+"""
+survivor_data = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': survivor_data}
+print(result)
+2025-03-25 16:27:20 [INFO] Response generated successfully.
+2025-03-25 16:27:58 [INFO] Question: Was there anyone named Rose on the Titanic?
+2025-03-25 16:27:58 [INFO] Running PandaAI with openai LLM...
+2025-03-25 16:27:58 [INFO] Prompt ID: d83613ba-5761-4338-b290-206fb5c46ceb
+2025-03-25 16:27:58 [INFO] Generating new code...
+2025-03-25 16:27:58 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_aab87f923d5bd82edba8d82e8400ad50" dimensions="1301x10">
+sn,pclass,survived,nan,gender,age,family,fare,embarked,date
+1,3,0,Mr. Anthony,male,42,0,7.55,,01-Jan-90
+1,3,0,Mr. Anthony,male,42,0,7.55,,01-Jan-90
+2,3,0,Master. Eugene Joseph,male,?,2,20.25,S,02-Jan-90
+3,2,0,"Abbott, Mr. Rossmore Edward",,,2,**,S,03-Jan-90
+4,3,1,"Abbott, Mr. Rossmore Edward",female,35,2,20.25,S,04-Jan-90
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Was there anyone named Rose on the Titanic?
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-03-25 16:28:02 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-25 16:28:02 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Execute SQL query to find if there was anyone named Rose on the Titanic
+sql_query = """
+SELECT * 
+FROM table_aab87f923d5bd82edba8d82e8400ad50 
+WHERE name LIKE '%Rose%'
+"""
+
+# Get the result from the database
+result_df = execute_sql_query(sql_query)
+
+# Check if any records were found
+if not result_df.empty:
+    result_value = f"There was someone named Rose on the Titanic."
+else:
+    result_value = "There was no one named Rose on the Titanic."
+
+# Declare result var: 
+result = { "type": "string", "value": result_value }
+2025-03-25 16:28:02 [INFO] Validating code requirements...
+2025-03-25 16:28:02 [INFO] Code validation successful.
+2025-03-25 16:28:02 [INFO] Cleaning the generated code...
+2025-03-25 16:28:02 [INFO] Executing code: import pandas as pd
+sql_query = """
+SELECT * 
+FROM table_aab87f923d5bd82edba8d82e8400ad50 
+WHERE name LIKE '%Rose%'
+"""
+result_df = execute_sql_query(sql_query)
+if not result_df.empty:
+    result_value = f'There was someone named Rose on the Titanic.'
+else:
+    result_value = 'There was no one named Rose on the Titanic.'
+result = {'type': 'string', 'value': result_value}
+2025-03-25 16:28:02 [INFO] Retrying execution (1/3)...
+2025-03-25 16:28:02 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 7, in <module>
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/agent/base.py", line 150, in _execute_sql_query
+    return db_manager.sql(final_query).df()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 39, in sql
+    return self.connection.sql(query, params=params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+duckdb.duckdb.BinderException: Binder Error: Referenced column "name" not found in FROM clause!
+Candidate bindings: "nan", "age", "fare", "date", "family"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/agent/base.py", line 186, in execute_with_retries
+    result = self.execute_code(code)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/agent/base.py", line 118, in execute_code
+    return code_executor.execute_and_return_result(code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-03-25 16:28:02 [INFO] Using Prompt: <table dialect="duckdb" table_name="table_aab87f923d5bd82edba8d82e8400ad50" dimensions="1301x10">
+sn,pclass,survived,nan,gender,age,family,fare,embarked,date
+1,3,0,Mr. Anthony,male,42,0,7.55,,01-Jan-90
+1,3,0,Mr. Anthony,male,42,0,7.55,,01-Jan-90
+2,3,0,Master. Eugene Joseph,male,?,2,20.25,S,02-Jan-90
+3,2,0,"Abbott, Mr. Rossmore Edward",,,2,**,S,03-Jan-90
+4,3,1,"Abbott, Mr. Rossmore Edward",female,35,2,20.25,S,04-Jan-90
+</table>
+
+
+The user asked the following question:
+### QUERY
+ Was there anyone named Rose on the Titanic?
+
+You generated the following Python code:
+import pandas as pd
+sql_query = """
+SELECT * 
+FROM table_aab87f923d5bd82edba8d82e8400ad50 
+WHERE name LIKE '%Rose%'
+"""
+result_df = execute_sql_query(sql_query)
+if not result_df.empty:
+    result_value = f'There was someone named Rose on the Titanic.'
+else:
+    result_value = 'There was no one named Rose on the Titanic.'
+result = {'type': 'string', 'value': result_value}
+
+However, it resulted in the following error:
+Traceback (most recent call last):
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 7, in <module>
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/agent/base.py", line 150, in _execute_sql_query
+    return db_manager.sql(final_query).df()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 39, in sql
+    return self.connection.sql(query, params=params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+duckdb.duckdb.BinderException: Binder Error: Referenced column "name" not found in FROM clause!
+Candidate bindings: "nan", "age", "fare", "date", "family"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/agent/base.py", line 186, in execute_with_retries
+    result = self.execute_code(code)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/agent/base.py", line 118, in execute_code
+    return code_executor.execute_and_return_result(code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/Users/akashsavanur/Desktop/cyber-sierra/Backend/venv311/lib/python3.11/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-03-25 16:28:08 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-25 16:28:08 [INFO] Code Generated:
+import pandas as pd
+
+# Assuming the table is already loaded into a DataFrame
+sql_query = """
+SELECT * 
+FROM table_aab87f923d5bd82edba8d82e8400ad50 
+WHERE family LIKE '%Rose%' OR gender LIKE '%Rose%'
+"""
+result_df = execute_sql_query(sql_query)
+
+if not result_df.empty:
+    result_value = 'There was someone named Rose on the Titanic.'
+else:
+    result_value = 'There was no one named Rose on the Titanic.'
+
+result = {'type': 'string', 'value': result_value}
+2025-03-25 16:28:08 [INFO] Validating code requirements...
+2025-03-25 16:28:08 [INFO] Code validation successful.
+2025-03-25 16:28:08 [INFO] Cleaning the generated code...
+2025-03-25 16:28:08 [INFO] Executing code: import pandas as pd
+sql_query = """
+SELECT * 
+FROM table_aab87f923d5bd82edba8d82e8400ad50 
+WHERE family LIKE '%Rose%' OR gender LIKE '%Rose%'
+"""
+result_df = execute_sql_query(sql_query)
+if not result_df.empty:
+    result_value = 'There was someone named Rose on the Titanic.'
+else:
+    result_value = 'There was no one named Rose on the Titanic.'
+result = {'type': 'string', 'value': result_value}
+2025-03-25 16:28:08 [INFO] Response generated successfully.
+2025-03-26 00:19:56 [INFO] Question: Construct a bar graph of top 10 inbound VLAN traffic frequency
+2025-03-26 00:19:56 [INFO] Running PandaAI with openai LLM...
+2025-03-26 00:19:56 [INFO] Prompt ID: 17d44124-2a88-4d71-abda-1a9e4e89d9d3
+2025-03-26 00:19:56 [INFO] Generating new code...
+2025-03-26 00:19:56 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_8b203ce1c2a958757008b6ae93d9f30d" dimensions="65535x20">
+Type,s_flow_agent_address,input port,output port,src_MAC,drc_MAC,ethernet_type,in_vlan,out_vlan,src_IP,dst_IP,IP_protocol,ip_tos,ip_ttl,src_transport_port,dst_transport_port,tcp_flags,packet_size,IP_size,sampling_rate
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.22,140.115.32.81,6,0x00,50,51216,23505,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,193,609c9f851b00,0031466b23cf,0x0800,11,919,155.69.160.32,64.233.188.128,6,0x00,56,23159,80,0x10,74,52,2048
+FLOW,203.30.38.251,137,200,d404ff55fd4d,80711fc76001,0x0800,919,280,130.246.176.53,140.115.32.83,6,0x00,50,50041,20739,0x10,1518,1500,2048
+FLOW,203.30.38.251,129,135,609c9f851b00,002688cd5fc7,0x0800,11,919,155.69.160.32,54.169.174.79,17,0x00,120,54241,26510,0x10,116,94,2048
+FLOW,203.30.38.251,130,199,00239cd087c1,544b8cf9a7df,0x0800,919,600,137.132.228.15,193.62.192.8,6,0x00,56,53923,34262,0x10,70,52,2048
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Construct a bar graph of top 10 inbound VLAN traffic frequency
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-03-26 00:20:04 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-26 00:20:04 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Execute SQL query to get the top 10 inbound VLAN traffic frequency
+sql_query = """
+SELECT in_vlan, COUNT(*) AS traffic_count
+FROM table_8b203ce1c2a958757008b6ae93d9f30d
+GROUP BY in_vlan
+ORDER BY traffic_count DESC
+LIMIT 10
+"""
+vlan_traffic_df = execute_sql_query(sql_query)
+
+# Plotting the bar graph
+plt.figure(figsize=(10, 6))
+plt.bar(vlan_traffic_df['in_vlan'].astype(str), vlan_traffic_df['traffic_count'], color='skyblue')
+plt.title('Top 10 Inbound VLAN Traffic Frequency')
+plt.xlabel('Inbound VLAN')
+plt.ylabel('Traffic Count')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot to a file
+plot_filename = 'top_10_inbound_vlan_traffic.png'
+plt.savefig(plot_filename)
+plt.close()
+
+# Declare result var: 
+result = {"type": "plot", "value": plot_filename}
+2025-03-26 00:20:04 [INFO] Validating code requirements...
+2025-03-26 00:20:04 [INFO] Code validation successful.
+2025-03-26 00:20:04 [INFO] Cleaning the generated code...
+2025-03-26 00:20:04 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+SELECT in_vlan, COUNT(*) AS traffic_count
+FROM table_8b203ce1c2a958757008b6ae93d9f30d
+GROUP BY in_vlan
+ORDER BY traffic_count DESC
+LIMIT 10
+"""
+vlan_traffic_df = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(vlan_traffic_df['in_vlan'].astype(str), vlan_traffic_df['traffic_count'], color='skyblue')
+plt.title('Top 10 Inbound VLAN Traffic Frequency')
+plt.xlabel('Inbound VLAN')
+plt.ylabel('Traffic Count')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'exports/charts/temp_chart_3cfdb05a-5cd6-4cf8-af5d-265f54388f16.png'
+plt.savefig(plot_filename)
+plt.close()
+result = {'type': 'plot', 'value': plot_filename}
+2025-03-26 00:20:04 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-03-26 00:20:04 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-03-26 00:20:05 [INFO] Response generated successfully.
