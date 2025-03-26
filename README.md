@@ -8,7 +8,7 @@ A full-stack AI-powered web app that allows users to:
 - Reuse previous prompts
 - Provide feedback to improve LLM performance
 
-> Built with ❤️ using React, FastAPI, PandasAI, and OpenAI.
+> Built using React, FastAPI, PandasAI, and OpenAI.
 
 ---
 
@@ -19,7 +19,6 @@ A full-stack AI-powered web app that allows users to:
 - 💬 Ask questions in natural language and get responses from the data
 - 🔁 Reuse previous prompts from history
 - 👍👎 Provide feedback for LLM responses
-- ☀️🌑 Toggle between dark and light themes
 - 📊 Chart rendering supported (auto-generated plots)
 
 ---
