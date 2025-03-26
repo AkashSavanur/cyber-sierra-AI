@@ -1,5 +1,15 @@
 [
   {
+    "id": "c5d552e6-6321-4b3a-acbb-50bbe160c1a3",
+    "prompt": "Heatmap of traffic volume between top 10 port pairs",
+    "filenames": [
+      "Data 3.xls"
+    ],
+    "response": "exports/charts/temp_chart_6ee3661e-1e87-426f-9fa9-1f577fbc8086.png",
+    "code": "import pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT \n    \"input port\", \n    \"output port\", \n    SUM(packet_size) AS total_traffic\nFROM \n    table_8b203ce1c2a958757008b6ae93d9f30d\nGROUP BY \n    \"input port\", \"output port\"\nORDER BY \n    total_traffic DESC\nLIMIT 10\n\"\"\"\ntop_port_pairs = execute_sql_query(sql_query)\nheatmap_data = top_port_pairs.pivot(index='input port', columns='output port', values='total_traffic').fillna(0)\nplt.figure(figsize=(10, 8))\nsns.heatmap(heatmap_data, annot=True, fmt='.0f', cmap='YlGnBu')\nplt.title('Heatmap of Traffic Volume Between Top 10 Port Pairs')\nplt.xlabel('Output Port')\nplt.ylabel('Input Port')\nplt.savefig('exports/charts/temp_chart_6ee3661e-1e87-426f-9fa9-1f577fbc8086.png')\nplt.close()\nresult = {'type': 'plot', 'value': 'exports/charts/temp_chart_6ee3661e-1e87-426f-9fa9-1f577fbc8086.png'}",
+    "timestamp": "2025-03-26T13:19:30.717253"
+  },
+  {
     "id": "7d8a8001-229d-4399-b580-f5830751a291",
     "prompt": "Construtc a histogram of ip_ttl ",
     "filenames": [
