@@ -17,14 +17,14 @@ async def query_data(request: QueryRequest):
         result = run_llm_query(request.filenames, request.prompt)
 
         prompt_id = str(uuid4())
-
-        save_prompt({
-            "id": prompt_id,
-            "prompt": request.prompt,
-            "filenames": request.filenames,
-            "response": result.get("value"),
-            "code": result.get("last_code_executed"),
-        })
+        if result.get("value") != 'No data available.':
+            save_prompt({
+                "id": prompt_id,
+                "prompt": request.prompt,
+                "filenames": request.filenames,
+                "response": result.get("value"),
+                "code": result.get("last_code_executed"),
+            })
 
         return {
             "response": result,

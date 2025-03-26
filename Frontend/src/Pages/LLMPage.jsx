@@ -18,6 +18,7 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import Lottie from "lottie-react";
 import aiLoadingAnimation from "../assets/ai-loader.json";
+import Swal from "sweetalert2";
 
 const LLMPage = () => {
   const location = useLocation();
@@ -36,7 +37,13 @@ const LLMPage = () => {
       id: responseId,
       feedback,
     });
-    alert("Thanks for your feedback!");
+    Swal.fire({
+      icon: "success",
+      title: "Thank you!",
+      text: "We value your feedback",
+      timer: 2000,
+      showConfirmButton: false,
+    });
   };
 
   useEffect(() => {
