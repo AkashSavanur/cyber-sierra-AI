@@ -2,7 +2,7 @@
 
 [![Deploy Status](https://img.shields.io/badge/deployed-success-green?style=flat-square&logo=vercel)](https://cyber-sierra-ai.vercel.app/)
 
-🌐 **Live Demo**: [https://cyber-sierra-ai.vercel.app/](https://cyber-sierra-ai.vercel.app/)
+# 🌐 **Live Demo**: [https://cyber-sierra-ai.vercel.app/](https://cyber-sierra-ai.vercel.app/)
 
 A full-stack AI-powered web app that allows users to:
 
