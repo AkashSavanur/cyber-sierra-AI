@@ -9,3 +9,4 @@ python-dotenv
 pandasai 
 pandasai-openai 
 python-multipart
+typing_extensions
