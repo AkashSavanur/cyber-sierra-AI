@@ -85,14 +85,20 @@ const UploadPage = () => {
   };
 
   const handlePreview = async () => {
-    if (!selectedFile || !numRows) {
-      alert("Please select a file and specify the number of rows.");
+    if (!selectedFile || !numRows || isNaN(numRows) || parseInt(numRows) < 1 || !Number.isInteger(Number(numRows))) {
+      Swal.fire({
+        icon: "error",
+        title: "Unsuccessful",
+        text: "Please ensure that you have selected a file and enter a valid positive integer for the number of rows",
+        timer: 2000,
+        showConfirmButton: false,
+      });
       return;
     }
-
+  
     setLoading(true);
     setPreviewData(null);
-
+  
     try {
       const response = await axios.get("https://cyber-sierra-ai.onrender.com/api/preview", {
         params: {
@@ -108,6 +114,7 @@ const UploadPage = () => {
       setLoading(false);
     }
   };
+  
 
   return (
     <Box p={4} display="flex" flexDirection="column" gap={3}>
