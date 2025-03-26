@@ -32,7 +32,7 @@ const LLMPage = () => {
   const [responseId, setResponseId] = useState(null);
 
   const sendFeedback = async (feedback) => {
-    await axios.post("http://localhost:8000/api/feedback", {
+    await axios.post("https://cyber-sierra-ai.onrender.com/api/feedback", {
       id: responseId,
       feedback,
     });
@@ -48,7 +48,7 @@ const LLMPage = () => {
 
   const fetchUploadedFiles = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/api/files");
+      const res = await axios.get("https://cyber-sierra-ai.onrender.com/api/files");
       setUploadedFiles(res.data.files);
     } catch (err) {
       console.error("Error fetching file list:", err);
@@ -66,7 +66,7 @@ const LLMPage = () => {
     setResponseId(null);
 
     try {
-      const res = await axios.post("http://localhost:8000/api/query", {
+      const res = await axios.post("https://cyber-sierra-ai.onrender.com/api/query", {
         filenames: selectedFiles,
         prompt: prompt,
       });
@@ -171,7 +171,7 @@ const LLMPage = () => {
                     <Box mt={2} sx={{ textAlign: "center" }}>
                       {/* Add timestamp or random query param to avoid cached image */}
                       <img
-                        src={`http://127.0.0.1:8000/${
+                        src={`https://cyber-sierra-ai.onrender.com/${
                           response.value
                         }?t=${new Date().getTime()}`}
                         alt="Chart"
