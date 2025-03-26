@@ -1,5 +1,35 @@
 [
   {
+    "id": "7d8a8001-229d-4399-b580-f5830751a291",
+    "prompt": "Construtc a histogram of ip_ttl ",
+    "filenames": [
+      "Data 3.xls"
+    ],
+    "response": "exports/charts/temp_chart_db957246-3994-42a7-91ce-62979c09d47a.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT ip_ttl, COUNT(*) as count\nFROM table_8b203ce1c2a958757008b6ae93d9f30d\nGROUP BY ip_ttl\nORDER BY ip_ttl\n\"\"\"\ndf_ip_ttl = execute_sql_query(sql_query)\nplt.figure(figsize=(10, 6))\nplt.bar(df_ip_ttl['ip_ttl'].astype(str), df_ip_ttl['count'], color='blue')\nplt.xlabel('IP TTL Values')\nplt.ylabel('Count')\nplt.title('Histogram of IP TTL')\nplt.xticks(rotation=45)\nplt.tight_layout()\nplot_filename = 'exports/charts/temp_chart_db957246-3994-42a7-91ce-62979c09d47a.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
+    "timestamp": "2025-03-26T13:09:35.850869"
+  },
+  {
+    "id": "4b2f4046-5dcc-479a-b959-403b4dbee332",
+    "prompt": "Construtc a histogram of ip_ttl with bin size 10",
+    "filenames": [
+      "Data 3.xls"
+    ],
+    "response": "exports/charts/temp_chart_8f595e3e-f766-4def-94ba-3223c97cdbb3.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT \n    FLOOR(ip_ttl / 10) * 10 AS ttl_bin,\n    COUNT(*) AS count\nFROM \n    table_8b203ce1c2a958757008b6ae93d9f30d\nGROUP BY \n    ttl_bin\nORDER BY \n    ttl_bin;\n\"\"\"\nttl_data = execute_sql_query(sql_query)\nplt.figure(figsize=(10, 6))\nplt.bar(ttl_data['ttl_bin'].astype(str), ttl_data['count'], width=8)\nplt.xlabel('IP TTL Bins')\nplt.ylabel('Count')\nplt.title('Histogram of IP TTL with Bin Size 10')\nplt.xticks(rotation=45)\nplt.grid(axis='y')\nplot_filename = 'exports/charts/temp_chart_8f595e3e-f766-4def-94ba-3223c97cdbb3.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
+    "timestamp": "2025-03-26T08:07:31.546248"
+  },
+  {
+    "id": "6a6b3ef8-c095-4298-a4bb-f00d98eca9b4",
+    "prompt": "Construtc a histogram of ip_ttl ",
+    "filenames": [
+      "Data 3.xls"
+    ],
+    "response": "exports/charts/temp_chart_5742c917-a238-430b-80e5-374a2fc5c6e3.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT ip_ttl, COUNT(*) as count\nFROM table_8b203ce1c2a958757008b6ae93d9f30d\nGROUP BY ip_ttl\nORDER BY ip_ttl\n\"\"\"\ndf_ip_ttl = execute_sql_query(sql_query)\nplt.figure(figsize=(10, 6))\nplt.bar(df_ip_ttl['ip_ttl'].astype(str), df_ip_ttl['count'], color='blue')\nplt.xlabel('IP TTL Values')\nplt.ylabel('Count')\nplt.title('Histogram of IP TTL')\nplt.xticks(rotation=45)\nplt.tight_layout()\nplot_filename = 'exports/charts/temp_chart_5742c917-a238-430b-80e5-374a2fc5c6e3.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
+    "timestamp": "2025-03-25T18:28:10.491489"
+  },
+  {
     "id": "ccaac548-6f0b-41d5-bd36-11305fd0012b",
     "prompt": "Construtc a histogram of ip_ttl ",
     "filenames": [
