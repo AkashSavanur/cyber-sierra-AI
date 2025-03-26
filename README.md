@@ -1,5 +1,9 @@
 # CyberSierra AI App 🧠📊
 
+[![Deploy Status](https://img.shields.io/badge/deployed-success-green?style=flat-square&logo=vercel)](https://cyber-sierra-ai.vercel.app/)
+
+🌐 **Live Demo**: [https://cyber-sierra-ai.vercel.app/](https://cyber-sierra-ai.vercel.app/)
+
 A full-stack AI-powered web app that allows users to:
 
 - Upload CSV/XLS files
@@ -61,7 +65,7 @@ source venv/bin/activate          # On Mac/Linux
 # venv\Scripts\activate           # On Windows
 
 # 3. Install dependencies
-pip install setuptools wheel xlrd fastapi uvicorn pandas openpyxl python-dotenv pandasai pandasai-openai python-multipart
+pip install setuptools wheel xlrd fastapi uvicorn pandas openpyxl python-dotenv pandasai pandasai-openai python-multipart typing_extensions
 
 # May need to install Rust and Cargo, if encountering errors:
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
