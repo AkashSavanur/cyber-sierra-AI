@@ -7,19 +7,7 @@ Two Datasets: The Titanic Dataset.csv and Data 3.xls (Network Log Data) is alrea
 
 ---
 
-A full-stack AI-powered web app that allows users to:
-
-- Upload CSV/XLS files
-- Preview top N rows
-- Ask natural language questions powered by LLMs
-- Reuse previous prompts
-- Provide feedback to improve LLM performance
-
-> Built using React, FastAPI, PandasAI, and OpenAI.
-
----
-
-## 🚀 Features
+## 🚀 A full-stack AI-powered web app that allows users to:
 
 - 📁 Upload CSV/XLS files (multi-upload supported)
 - 👀 Preview top N rows from selected files
@@ -27,6 +15,8 @@ A full-stack AI-powered web app that allows users to:
 - 🔁 Reuse previous prompts from history
 - 👍👎 Provide feedback for LLM responses
 - 📊 Chart rendering supported (auto-generated plots)
+
+> Built using React, FastAPI, PandasAI, and OpenAI.
 
 ---
 
