@@ -3,6 +3,9 @@
 ### [![Deploy Status](https://img.shields.io/badge/deployed-success-green?style=flat-square&logo=vercel)](https://cyber-sierra-ai.vercel.app/)
 
 ## 🌐 **Live Demo**: [https://cyber-sierra-ai.vercel.app/](https://cyber-sierra-ai.vercel.app/)
+- 🔵 **Frontend (React)**: Deployed on [Vercel](https://vercel.com/)
+- 🟣 **Backend (FastAPI)**: Deployed on [Render](https://render.com/)
+  
 Two Datasets: The Titanic Dataset.csv and Data 3.xls (Network Log Data) is already uploaded and can be used for testing.
 
 ---
