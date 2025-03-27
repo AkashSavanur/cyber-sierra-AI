@@ -129,6 +129,13 @@ const LLMPage = () => {
         onChange={(e) => setPrompt(e.target.value)}
         fullWidth
       />
+      <Typography
+        style={{ fontStyle: "italic", fontSize: "0.8rem", color: "grey" }}
+      >
+        * You may need to explicitly mention conversion of datatypes of certain
+        columns if error result is being obtained. For example, Convert age to
+        FLOAT.
+      </Typography>
 
       <Button
         variant="contained"
