@@ -6,7 +6,7 @@
 - 🔵 **Frontend (React)**: Deployed on [Vercel](https://vercel.com/)
 - 🟣 **Backend (FastAPI)**: Deployed on [Render](https://render.com/)
   
-Two Datasets: The Titanic Dataset.csv and Data 3.xls (Network Log Data) is already uploaded and can be used for testing.
+Two Datasets: The Titanic Dataset.csv is already uploaded and can be used for testing.
 
 ---
 
