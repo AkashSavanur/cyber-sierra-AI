@@ -36,3 +36,18 @@ async def preview_file(filename: str = Query(...), n: int = Query(5)):
         return {"filename": filename, "preview": data}
     except Exception as e:
         return JSONResponse(status_code=400, content={"error": str(e)})
+    
+@router.delete("/files/{filename}")
+async def delete_file(filename: str):
+    file_path = os.path.join(UPLOAD_FOLDER, filename)
+
+    try:
+        # Check if the file exists
+        if os.path.exists(file_path):
+            os.remove(file_path)  # Delete the file
+            return {"message": f"File '{filename}' has been deleted successfully."}
+        else:
+            return JSONResponse(status_code=404, content={"error": "File not found"})
+
+    except Exception as e:
+        return JSONResponse(status_code=500, content={"error": f"Error deleting file: {str(e)}"})

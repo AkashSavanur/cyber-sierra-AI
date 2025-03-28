@@ -39,5 +39,5 @@ app.mount("/exports", StaticFiles(directory="exports"), name="exports")
 async def get_chart(chart_name: str):
     chart_path = os.path.join("exports", "charts", chart_name)
     if os.path.exists(chart_path):
-        return FileResponse(chart_path)  # Serve the chart image
+        return FileResponse(chart_path)  
     return {"error": "Chart not found"}

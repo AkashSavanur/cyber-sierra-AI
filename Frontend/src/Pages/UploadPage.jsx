@@ -84,6 +84,36 @@ const UploadPage = () => {
     }
   };
 
+  const handleDeleteFile = async (filename) => {
+    try {
+      const response = await axios.delete(
+        `https://cyber-sierra-ai.onrender.com/api/files/${filename}`
+      );
+
+      if (response.status === 200) {
+        Swal.fire({
+          icon: "success",
+          title: "File Deleted",
+          text: `The file ${filename} has been deleted.`,
+          timer: 2000,
+          showConfirmButton: false,
+        });
+
+        // Refresh file list after deletion
+        fetchUploadedFiles();
+      } else {
+        throw new Error("Unexpected response");
+      }
+    } catch (err) {
+      console.error("Error deleting file:", err);
+      Swal.fire({
+        icon: "error",
+        title: "Deletion Failed",
+        text: `Something went wrong while deleting ${filename}.`,
+      });
+    }
+  };
+
   const handlePreview = async () => {
     if (!selectedFile || !numRows || isNaN(numRows) || parseInt(numRows) < 1 || !Number.isInteger(Number(numRows))) {
       Swal.fire({
@@ -114,7 +144,6 @@ const UploadPage = () => {
       setLoading(false);
     }
   };
-  
 
   return (
     <Box p={4} display="flex" flexDirection="column" gap={3}>
@@ -156,6 +185,26 @@ const UploadPage = () => {
         ref={fileInputRef}
         onChange={handleFileChange}
       />
+
+      {uploadedFiles.length > 0 && (
+        <Box sx={{ marginTop: 2 }}>
+          <Typography variant="h6">Uploaded Files</Typography>
+          <Box>
+            {uploadedFiles.map((file, idx) => (
+              <Box key={idx} display="flex" justifyContent="space-between" alignItems="center" sx={{ marginBottom: 1 }}>
+                <Typography variant="body2">{file}</Typography>
+                <Button
+                  variant="outlined"
+                  color="error"
+                  onClick={() => handleDeleteFile(file)}
+                >
+                  Delete
+                </Button>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      )}
 
       {uploadedFiles.length > 0 && (
         <FormControl fullWidth>
