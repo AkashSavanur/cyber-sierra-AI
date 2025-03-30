@@ -1,0 +1,25 @@
+[
+  {
+    "id": "5bd116a8-1566-433d-bcb1-fd4037f647ff",
+    "prompt": "Comparison of male and female survival rates in a bar graph.",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": "exports/charts/temp_chart_0b179481-85c3-440c-8010-756ba772e738.png",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsql_query = \"\"\"\nSELECT gender, \n       SUM(CAST(survived AS INTEGER)) AS survived_count, \n       COUNT(*) AS total_count, \n       (SUM(CAST(survived AS INTEGER)) * 1.0 / COUNT(*)) AS survival_rate\nFROM table_aab87f923d5bd82edba8d82e8400ad50\nGROUP BY gender\n\"\"\"\nsurvival_data = execute_sql_query(sql_query)\nplt.figure(figsize=(8, 5))\nplt.bar(survival_data['gender'], survival_data['survival_rate'], color=['blue', 'pink'])\nplt.title('Survival Rates by Gender')\nplt.xlabel('Gender')\nplt.ylabel('Survival Rate')\nplt.ylim(0, 1)\nplt.grid(axis='y')\nplot_filename = 'exports/charts/temp_chart_0b179481-85c3-440c-8010-756ba772e738.png'\nplt.savefig(plot_filename)\nplt.close()\nresult = {'type': 'plot', 'value': plot_filename}",
+    "timestamp": "2025-03-30T07:04:12.480218"
+  },
+  {
+    "id": "089dce2b-da1c-4185-a1c9-c9c80a66a5e1",
+    "prompt": "Generate me two graphs. 1) Comparison of male and female survival rates in a bar graph. 2) Pie chart of distribution of embarkation ports",
+    "filenames": [
+      "The Titanic dataset.csv"
+    ],
+    "response": {
+      "survival_rates_plot": "exports/charts/temp_chart_535f4f60-d103-42c2-b0dd-67ad38745d41.png",
+      "embarkation_ports_plot": "exports/charts/temp_chart_535f4f60-d103-42c2-b0dd-67ad38745d41.png"
+    },
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\nsurvival_query = \"\"\"\nSELECT gender, AVG(CAST(survived AS INTEGER)) AS survival_rate\nFROM table_aab87f923d5bd82edba8d82e8400ad50\nGROUP BY gender\n\"\"\"\nsurvival_data = execute_sql_query(survival_query)\nplt.figure(figsize=(10, 5))\nplt.bar(survival_data['gender'], survival_data['survival_rate'], color=['blue', 'pink'])\nplt.title('Survival Rates by Gender')\nplt.xlabel('Gender')\nplt.ylabel('Survival Rate')\nplt.savefig('exports/charts/temp_chart_535f4f60-d103-42c2-b0dd-67ad38745d41.png')\nplt.close()\nembarkation_query = \"\"\"\nSELECT embarked, COUNT(*) AS count\nFROM table_aab87f923d5bd82edba8d82e8400ad50\nGROUP BY embarked\n\"\"\"\nembarkation_data = execute_sql_query(embarkation_query)\nplt.figure(figsize=(8, 8))\nplt.pie(embarkation_data['count'], labels=embarkation_data['embarked'], autopct='%1.1f%%', startangle=140)\nplt.title('Distribution of Embarkation Ports')\nplt.savefig('exports/charts/temp_chart_535f4f60-d103-42c2-b0dd-67ad38745d41.png')\nplt.close()\nresult = {'type': 'plot', 'value': {'survival_rates_plot': 'exports/charts/temp_chart_535f4f60-d103-42c2-b0dd-67ad38745d41.png', 'embarkation_ports_plot': 'exports/charts/temp_chart_535f4f60-d103-42c2-b0dd-67ad38745d41.png'}}",
+    "timestamp": "2025-03-30T07:03:47.842707"
+  }
+]

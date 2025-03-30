@@ -100,7 +100,7 @@ export default function SignUpPage() {
           </Button>
           <div style={{ marginTop: "16px" }}>
             <Button
-              variant="contained"
+              variant="outlined"
               color="primary"
               onClick={handleLogIn}
               fullWidth
