@@ -31,7 +31,7 @@ const UploadPage = () => {
 
   const fetchUploadedFiles = async () => {
     try {
-      const response = await axios.get("https://cyber-sierra-ai.onrender.com/api/files");
+      const response = await axios.get("http://localhost:8000/api/files");
       setUploadedFiles(response.data.files);
     } catch (err) {
       console.error("Error fetching file list:", err);
@@ -50,7 +50,7 @@ const UploadPage = () => {
 
     try {
       const response = await axios.post(
-        "https://cyber-sierra-ai.onrender.com/api/upload",
+        "http://localhost:8000/api/upload",
         formData,
         {
           headers: {
@@ -69,7 +69,7 @@ const UploadPage = () => {
           showConfirmButton: false,
         });
 
-        await fetchUploadedFiles(); // Refresh file list after upload
+        await fetchUploadedFiles(); 
       } else {
         throw new Error("Unexpected response");
       }
@@ -87,7 +87,7 @@ const UploadPage = () => {
   const handleDeleteFile = async (filename) => {
     try {
       const response = await axios.delete(
-        `https://cyber-sierra-ai.onrender.com/api/files/${filename}`
+        `http://localhost:8000/api/files/${filename}`
       );
 
       if (response.status === 200) {
@@ -99,7 +99,6 @@ const UploadPage = () => {
           showConfirmButton: false,
         });
 
-        // Refresh file list after deletion
         fetchUploadedFiles();
       } else {
         throw new Error("Unexpected response");
@@ -130,7 +129,7 @@ const UploadPage = () => {
     setPreviewData(null);
   
     try {
-      const response = await axios.get("https://cyber-sierra-ai.onrender.com/api/preview", {
+      const response = await axios.get("http://localhost:8000/api/preview", {
         params: {
           filename: selectedFile,
           n: numRows,

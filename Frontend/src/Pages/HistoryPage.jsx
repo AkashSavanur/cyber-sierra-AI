@@ -20,7 +20,7 @@ const HistoryPage = () => {
 
   const fetchHistory = async () => {
     try {
-      const res = await axios.get("https://cyber-sierra-ai.onrender.com/api/history");
+      const res = await axios.get("http://localhost:8000/api/history");
       setHistory(res.data.history || []);
     } catch (err) {
       console.error("Error fetching history:", err);
