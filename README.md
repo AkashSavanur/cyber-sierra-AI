@@ -5,6 +5,10 @@
 ## 🌐 **Live Demo**: [https://cyber-sierra-ai.vercel.app/](https://cyber-sierra-ai.vercel.app/)
 - 🔵 **Frontend (React)**: Deployed on [Vercel](https://vercel.com/)
 - 🟣 **Backend (FastAPI)**: Deployed on [Render](https://render.com/)
+
+## Log In Details:
+Email: user@gmail.com
+Password: cyber-sierra-30
   
 Two Datasets: The Titanic Dataset.csv is already uploaded and can be used for testing.
 
